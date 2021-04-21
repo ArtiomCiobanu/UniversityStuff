@@ -1,0 +1,918 @@
+(* Content-type: application/mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 6.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       145,          7]
+NotebookDataLength[     39048,        910]
+NotebookOptionsPosition[     34609,        820]
+NotebookOutlinePosition[     35965,        860]
+CellTagsIndexPosition[     35922,        857]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Unit test basics in C#", "Title",
+ CellChangeTimes->{{3.6530500192318993`*^9, 3.65305004576584*^9}, {
+  3.8212912101339874`*^9, 
+  3.82129121212947*^9}},ExpressionUUID->"1adf6da7-99ac-423c-b762-\
+d9279496158d"],
+
+Cell["Artiom Ciobanu, I1902", "Text",
+ CellChangeTimes->{{3.6530500649706855`*^9, 3.653050123164774*^9}, {
+  3.821291238576745*^9, 
+  3.821291248355941*^9}},ExpressionUUID->"33b4356f-098c-4528-b426-\
+4cb89779d362"],
+
+Cell[CellGroupData[{
+
+Cell["Create the unit test project and unit tests manually", "Section",
+ CellChangeTimes->{{3.424927816609375*^9, 3.424927833015625*^9}, {
+   3.424928707671875*^9, 3.424928714*^9}, 3.424989185*^9, {3.424989862125*^9, 
+   3.424989881546875*^9}, {3.544540797984375*^9, 3.544540810796875*^9}, 
+   3.821291332754145*^9},ExpressionUUID->"3e382ad3-f325-439b-ac1f-\
+517fc141744c"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+A unit test project usually mirrors the structure of a single code project. \
+In the MyBank example, you add two unit test projects named AccountsTests and \
+BankDbTests to the MyBanks solution. The test project names are arbitrary, \
+but adopting a standard naming convention is a good idea.
+
+To add a unit test project to a solution:\
+\>", "Subsection",
+ CellChangeTimes->{{3.424929081375*^9, 3.424929133390625*^9}, {
+   3.424929199265625*^9, 3.42492920475*^9}, {3.42492925109375*^9, 
+   3.424929289046875*^9}, {3.42492969040625*^9, 3.42492971471875*^9}, 
+   3.424989185*^9, {3.424989899484375*^9, 3.424989964171875*^9}, 
+   3.5383131560694957`*^9, {3.54453984215625*^9, 3.544539855875*^9}, {
+   3.544541069328125*^9, 3.544541075859375*^9}, {3.544541299125*^9, 
+   3.54454130428125*^9}, 3.821291341071024*^9, {3.821291469106358*^9, 
+   3.821291473536148*^9}},
+ FontSize->16,ExpressionUUID->"e2ebf539-6b6a-41d2-bfcf-0cf67efc908c"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"1.", " ", "In", " ", "Solution", " ", "Explorer"}], ",", 
+    RowBox[{
+     RowBox[{"right", "-", 
+      RowBox[{
+      "click", " ", "on", " ", "the", " ", "solution", " ", "and", " ", 
+       "choose", " ", "Add"}]}], ">", 
+     RowBox[{"New", " ", "Project"}]}]}], "\[IndentingNewLine]", 
+   RowBox[{
+   "2.", " ", "Use", " ", "the", " ", "project", " ", "template", " ", 
+    "search", " ", "box", " ", "to", " ", "find", " ", "a", " ", "unit", " ", 
+    "test", " ", "project", " ", "template", " ", "for", " ", "the", " ", 
+    "test", " ", "framework", " ", "that", " ", "you", " ", "want", " ", "to",
+     " ", "use"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"3.", " ", "On", " ", "the", " ", "next", " ", "page"}], ",", 
+    RowBox[{"name", " ", "the", " ", 
+     RowBox[{"project", ".", "To"}], " ", "test", " ", "the", " ", "Accounts",
+      " ", "project", " ", "of", " ", "our", " ", "example"}], ",", 
+    RowBox[{
+    "you", " ", "could", " ", "name", " ", "the", " ", "project", " ", 
+     "AccountsTests"}]}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+    "4.", " ", "In", " ", "your", " ", "unit", " ", "test", " ", "project"}], 
+    ",", 
+    RowBox[{
+    "add", " ", "a", " ", "reference", " ", "to", " ", "the", " ", "code", 
+     " ", "project", " ", "under", " ", "test"}], ",", 
+    RowBox[{
+    "in", " ", "our", " ", "example", " ", "to", " ", "the", " ", "Accounts", 
+     " ", 
+     RowBox[{"project", ".", "\[IndentingNewLine]", "To"}], " ", "create", 
+     " ", "the", " ", "reference", " ", "to", " ", "the", " ", "code", " ", 
+     RowBox[{"project", ":", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\:0430", ".", " ", "Select"}], " ", "the", " ", "project", 
+       " ", "in", " ", "Solution", " ", "Explorer"}]}]}]}], 
+   "\[IndentingNewLine]", "     ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"b", ".", " ", "On"}], " ", "the", " ", "Project", " ", "menu"}],
+     ",", 
+    RowBox[{"choose", " ", "Add", " ", "Reference"}]}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{
+  3.5445394289375*^9, {3.544539849375*^9, 3.5445398503125*^9}, {
+   3.544540026640625*^9, 3.544540033203125*^9}, {3.8212914491889067`*^9, 
+   3.821291597031596*^9}},ExpressionUUID->"5e768bdf-c0e4-4fb1-ae65-\
+324574cf1fd2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Create the unit test project and unit tests manually:",
+  FontWeight->"Bold"],
+ "\nThe unit test framework that you use and Visual Studio IntelliSense will \
+guide you through writing the code for your unit tests for a code project. To \
+run in Test Explorer, most frameworks require that you add specific \
+attributes to identify unit test methods. The frameworks also provide a way\
+\[LongDash]usually through assert statements or method \
+attributes\[LongDash]to indicate whether the test method has passed or \
+failed. Other attributes identify optional setup methods that are at class \
+initialization and before each test method and teardown methods that are run \
+after each test method and before the class is destroyed."
+}], "Subsection",
+ CellChangeTimes->{{3.5445394475*^9, 3.54453945003125*^9}, {3.544539639125*^9,
+   3.54453970771875*^9}, {3.821291610735217*^9, 3.821291685247278*^9}},
+ FontSize->16,ExpressionUUID->"e4f26ad0-204e-4351-a6b2-65333e839e66"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "     ", 
+  RowBox[{
+   RowBox[{"-", "The"}], " ", "AAA", " ", 
+   RowBox[{"(", 
+    RowBox[{"Arrange", ",", "Act", ",", "Assert"}], ")"}], " ", "pattern", 
+   " ", "is", " ", "a", " ", "common", " ", "way", " ", "of", " ", "writing", 
+   " ", "unit", " ", "tests", " ", "for", " ", "a", " ", "method", " ", 
+   "under", " ", 
+   RowBox[{"test", ".", "\[IndentingNewLine]", 
+    RowBox[{"-", "The"}]}], " ", "Arrange", " ", "section", " ", "of", " ", 
+   "a", " ", "unit", " ", "test", " ", "method", " ", "initializes", " ", 
+   "objects", " ", "and", " ", "sets", " ", "the", " ", "value", " ", "of", 
+   " ", "the", " ", "data", " ", "that", " ", "is", " ", "passed", " ", "to", 
+   " ", "the", " ", "method", " ", "under", " ", 
+   RowBox[{"test", ".", "\[IndentingNewLine]", 
+    RowBox[{"-", "The"}]}], " ", "Act", " ", "section", " ", "invokes", " ", 
+   "the", " ", "method", " ", "under", " ", "test", " ", "with", " ", "the", 
+   " ", "arranged", " ", 
+   RowBox[{"parameters", ".", "\[IndentingNewLine]", 
+    RowBox[{"-", "The"}]}], " ", "Assert", " ", "section", " ", "verifies", 
+   " ", "that", " ", "the", " ", "action", " ", "of", " ", "the", " ", 
+   "method", " ", "under", " ", "test", " ", "behaves", " ", "as", " ", 
+   RowBox[{"expected", "."}]}]}]], "Input",
+ CellChangeTimes->{{3.424989996359375*^9, 3.42499006559375*^9}, {
+  3.5445397115625*^9, 3.544539729921875*^9}, {3.544539863703125*^9, 
+  3.544539864296875*^9}, {3.544540039625*^9, 3.54454004128125*^9}, {
+  3.821291693257468*^9, 
+  3.821291757071082*^9}},ExpressionUUID->"d0a111f0-1ab2-487f-9e04-\
+1426fba58e9d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"C", "#"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"[", "TestMethod", "]"}], "\n", 
+ RowBox[{"public", " ", "void", " ", "Withdraw_ValidAmount", 
+  "_ChangesBalance", 
+  RowBox[{"(", ")"}]}], "\n", 
+ RowBox[{
+  RowBox[{"{", "\[IndentingNewLine]", "       ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"//", 
+          RowBox[{
+          "arrange", " ", "\[IndentingNewLine]", "double", " ", 
+           "currentBalance"}]}], "=", "10.0"}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"double", " ", "withdrawal"}], "=", "1.0"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"double", " ", "expected"}], "=", "9.0"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"var", " ", "account"}], "=", 
+         RowBox[{"new", " ", "CheckingAccount", 
+          RowBox[{"(", 
+           RowBox[{"\"\<JohnDoe\>\"", ",", "currentBalance"}], ")"}]}]}], 
+        ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", "//", 
+       RowBox[{"act", " ", "\[IndentingNewLine]", 
+        RowBox[{"account", ".", "Withdraw"}], 
+        RowBox[{"(", "withdrawal", ")"}]}]}], ";"}], "\[IndentingNewLine]", 
+     "\t", "\[IndentingNewLine]", "   ", "//", 
+     RowBox[{"assert", " ", "\[IndentingNewLine]", 
+      RowBox[{"Assert", ".", "AreEqual"}], 
+      RowBox[{"(", 
+       RowBox[{"expected", ",", 
+        RowBox[{"account", ".", "Balance"}]}], ")"}]}]}], ";"}], "}"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"[", "TestMethod", "]"}], "\n", 
+ RowBox[{"public", " ", "void", " ", "Withdraw_AmountMoreThanBalance", 
+  "_Throws", 
+  RowBox[{"(", ")"}]}], "\n", 
+ RowBox[{"{", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"//", 
+       RowBox[{
+       "arrange", "\[IndentingNewLine]", " ", "var", " ", "account"}]}], "=", 
+      RowBox[{"new", " ", "CheckingAccount", 
+       RowBox[{"(", 
+        RowBox[{"\"\<John Doe\>\"", ",", "10.0"}], ")"}]}]}], ";"}], 
+    "\[IndentingNewLine]", "//", 
+    RowBox[{
+     RowBox[{"act", " ", "and", " ", "assert", " ", "\[IndentingNewLine]", 
+      RowBox[{"Assert", ".", "ThrowsException"}]}], "<", 
+     RowBox[{"System", ".", "ArgumentException"}], ">", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", ")"}], "=", 
+       RowBox[{">", 
+        RowBox[{
+         RowBox[{"account", ".", "Withdraw"}], 
+         RowBox[{"(", "20.0", ")"}]}]}]}], ")"}]}]}], ";"}], 
+  "\[IndentingNewLine]", "}"}]}], "Input",
+ CellChangeTimes->{{3.821291769542587*^9, 
+  3.8212918629747543`*^9}},ExpressionUUID->"f21e0f29-36ca-4683-9611-\
+b6ef50231067"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ StyleBox["Set timeouts for unit tests",
+  FontWeight->"Bold"],
+ "\nIf you\[CloseCurlyQuote]re using the MSTest framework, you can use the \
+TimeoutAttribute to set a timeout on an individual test method:"
+}], "Subsection",
+ CellChangeTimes->{{3.54454000065625*^9, 3.54454001359375*^9}, {
+  3.54454005921875*^9, 3.54454011809375*^9}, {3.544540161453125*^9, 
+  3.5445401771875*^9}, {3.54454037471875*^9, 3.5445403824375*^9}, {
+  3.54454047940625*^9, 3.544540480078125*^9}, {3.821291869680436*^9, 
+  3.8212918819030833`*^9}},
+ FontSize->16,ExpressionUUID->"d9b9a26c-e17b-4696-a82e-7b0d3a5e9627"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"C", "#"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"[", "TestMethod", "]"}], "\n", 
+ RowBox[{"[", 
+  RowBox[{"Timeout", 
+   RowBox[{"(", "2000", ")"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"//", "Milliseconds"}], "\n", 
+ RowBox[{"public", " ", "void", " ", "My_Test", 
+  RowBox[{"(", ")"}]}], "\n", 
+ RowBox[{"{", "...", "}"}]}], "Input",
+ CellChangeTimes->{{3.424989996359375*^9, 3.42499006559375*^9}, {
+  3.5445397115625*^9, 3.544539729921875*^9}, {3.544539863703125*^9, 
+  3.544539864296875*^9}, {3.544539912671875*^9, 3.544539921921875*^9}, {
+  3.54453995234375*^9, 3.544539980328125*^9}, {3.544540050375*^9, 
+  3.54454005278125*^9}, {3.54454026459375*^9, 3.5445402678125*^9}, {
+  3.8212918895607653`*^9, 
+  3.8212918940567255`*^9}},ExpressionUUID->"ddddde57-48c8-41fc-be48-\
+d9ca7e57e79c"],
+
+Cell[BoxData[{
+ RowBox[{"To", " ", "set", " ", "the", " ", "timeout", " ", "to", " ", "the", 
+  " ", "maximum", " ", 
+  RowBox[{"allowed", ":", "\[IndentingNewLine]", "\n", 
+   RowBox[{"[", "TestMethod", "]"}]}]}], "\n", 
+ RowBox[{"[", 
+  RowBox[{"Timeout", 
+   RowBox[{"(", 
+    RowBox[{"TestTimeout", ".", "Infinite"}], ")"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"//", "Milliseconds"}], "\n", 
+ RowBox[{"public", " ", "void", " ", "My_Test", " ", 
+  RowBox[{"(", ")"}]}], "\n", 
+ RowBox[{"{", "...", "}"}]}], "Input",
+ CellChangeTimes->{{3.821291900125496*^9, 
+  3.821291945221511*^9}},ExpressionUUID->"5406c39d-052f-403d-8de3-\
+434a3f904704"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Run and view tests", "Subsection",
+ CellChangeTimes->{{3.5445406915*^9, 3.54454070053125*^9}, {
+   3.591462317807249*^9, 3.591462368537321*^9}, 3.821291972749915*^9},
+ FontSize->16,ExpressionUUID->"92255b54-3447-415a-ab9b-9e0ddc0662d2"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "The", " ", "Test", " ", "Explorer", " ", "toolbar", " ", "helps", " ", 
+    "you", " ", "discover"}], ",", "organize", ",", 
+   RowBox[{
+   "and", " ", "run", " ", "the", " ", "tests", " ", "that", " ", "you", " ", 
+    "are", " ", "interested", " ", 
+    RowBox[{"in", ".", "Run"}], " ", "tests", " ", "from", " ", "the", " ", 
+    "Test", " ", "Explorer", " ", "toolbar"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "You", " ", "can", " ", "choose", " ", "Run", " ", "All", " ", "to", " ", 
+   "run", " ", "all", " ", "your", " ", "tests"}], ",", 
+  RowBox[{
+   RowBox[{
+   "or", " ", "choose", " ", "Run", " ", "to", " ", "choose", " ", "a", " ", 
+    "subset", " ", "of", " ", "tests", " ", "to", " ", 
+    RowBox[{"run", ".", "Select"}], " ", "a", " ", "test", " ", "to", " ", 
+    "view", " ", "the", " ", "details", " ", "of", " ", "that", " ", "test", 
+    " ", "in", " ", "the", " ", "test", " ", "details", " ", 
+    RowBox[{"pane", ".", "Choose"}], " ", "Open", " ", "Test", " ", "from", 
+    " ", "the", " ", "right"}], "-", 
+   RowBox[{"click", " ", "menu", " ", 
+    RowBox[{"(", 
+     RowBox[{"Keyboard", ":", "F12"}], ")"}], " ", "to", " ", "display", " ", 
+    "the", " ", "source", " ", "code", " ", "for", " ", "the", " ", 
+    "selected", " ", 
+    RowBox[{"test", ".", "\[IndentingNewLine]", "\[IndentingNewLine]", "If"}],
+     " ", "individual", " ", "tests", " ", "have", " ", "no", " ", 
+    "dependencies", " ", "that", " ", "prevent", " ", "them", " ", "from", 
+    " ", "being", " ", "run", " ", "in", " ", "any", " ", "order"}]}], ",", 
+  RowBox[{
+  "turn", " ", "on", " ", "parallel", " ", "test", " ", "execution", " ", 
+   "in", " ", "the", " ", "settings", " ", "menu", " ", "of", " ", "the", " ", 
+   RowBox[{"toolbar", ".", "This"}], " ", "can", " ", "noticeably", " ", 
+   "reduce", " ", "the", " ", "time", " ", "taken", " ", "to", " ", "run", 
+   " ", "all", " ", "the", " ", 
+   RowBox[{"tests", "."}]}]}]}], "Input",
+ CellChangeTimes->{{3.5914620911605864`*^9, 3.591462301724641*^9}, {
+  3.8212919802788744`*^9, 
+  3.8212919942340097`*^9}},ExpressionUUID->"9b6b4055-caf9-410b-b52a-\
+7f08a4daf7b8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Run", " ", "tests", " ", "after", " ", "every", " ", 
+   RowBox[{"build", ".", "\n", "To"}], " ", "run", " ", "your", " ", "unit", 
+   " ", "tests", " ", "after", " ", "each", " ", "local", " ", "build"}], ",", 
+  RowBox[{
+  "open", " ", "the", " ", "settings", " ", "icon", " ", "in", " ", "the", 
+   " ", "Test", " ", "Explorer", " ", "toolbar", " ", "and", " ", "select", 
+   " ", "Run", " ", "Tests", " ", "After", " ", 
+   RowBox[{"Build", "."}]}]}]], "Input",
+ CellChangeTimes->{{3.8212920072352986`*^9, 
+  3.8212920106431894`*^9}},ExpressionUUID->"36951e21-89cc-4ca3-a7cb-\
+6fe9fa7e19fa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Q&A
+Q: How do I debug unit tests?\
+\>", "Subsection",
+ CellChangeTimes->{{3.5445406915*^9, 3.54454070053125*^9}, {
+   3.591462379839452*^9, 3.5914624055920267`*^9}, {3.5914624430067673`*^9, 
+   3.5914624553890057`*^9}, {3.653050458078765*^9, 3.653050463188772*^9}, 
+   3.821292027160392*^9},
+ FontSize->16,ExpressionUUID->"3e83254b-5f6a-4a8a-9941-e1748e91877a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", ":", 
+   RowBox[{
+   "Use", " ", "Test", " ", "Explorer", " ", "to", " ", "start", " ", "a", 
+    " ", "debugging", " ", "session", " ", "for", " ", "your", " ", 
+    RowBox[{"tests", ".", "Stepping"}], " ", "through", " ", "your", " ", 
+    "code", " ", "with", " ", "the", " ", "Visual", " ", "Studio", " ", 
+    "debugger", " ", "seamlessly", " ", "takes", " ", "you", " ", "back", " ",
+     "and", " ", "forth", " ", "between", " ", "the", " ", "unit", " ", 
+    "tests", " ", "and", " ", "the", " ", "project", " ", "under", " ", 
+    RowBox[{"test", ".", "\[IndentingNewLine]", "To"}], " ", "start", " ", 
+    "debugging"}], ":", "\[IndentingNewLine]", 
+   RowBox[{
+   "1.", " ", "In", " ", "the", " ", "Visual", " ", "Studio", " ", 
+    "editor"}]}], ",", 
+  RowBox[{
+  "set", " ", "a", " ", "breakpoint", " ", "in", " ", "one", " ", "or", " ", 
+   "more", " ", "test", " ", "methods", " ", "that", " ", "you", " ", "want", 
+   " ", "to", " ", 
+   RowBox[{
+   "debug", ".", "\[IndentingNewLine]", "Note"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Because", " ", "test", " ", "methods", " ", "can", " ", "run", " ", "in", 
+   " ", "any", " ", "order"}], ",", 
+  RowBox[{
+  "set", " ", "breakpoints", " ", "in", " ", "all", " ", "the", " ", "test", 
+   " ", "methods", " ", "that", " ", "you", " ", "want", " ", "to", " ", 
+   RowBox[{"debug", ".", "\[IndentingNewLine]", "2."}], " ", "In", " ", 
+   "Test", " ", "Explorer"}], ",", 
+  RowBox[{
+  "select", " ", "the", " ", "test", " ", "methods", " ", "and", " ", "then", 
+   " ", "choose", " ", "Debug", " ", "Selected", " ", "Tests", " ", "from", 
+   " ", "the", " ", "shortcut", " ", 
+   RowBox[{"menu", ".", "Learn"}], " ", "more", " ", "details", " ", "about", 
+   " ", "debugging", " ", "unit", " ", 
+   RowBox[{"tests", "."}]}]}]}], "Input",
+ CellChangeTimes->{{3.5914620911605864`*^9, 3.5914622265061197`*^9}, 
+   3.653050450874908*^9, {3.8212920381727643`*^9, 
+   3.8212920712982035`*^9}},ExpressionUUID->"9cfd45de-bf27-4a50-9b23-\
+655cbf9e9ca9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Q", ":", 
+   RowBox[{"If", " ", 
+    RowBox[{"I", "'"}], "m", " ", "using", " ", "TDD"}]}], ",", 
+  RowBox[{
+  "how", " ", "do", " ", "I", " ", "generate", " ", "code", " ", "from", " ", 
+   "my", " ", 
+   RowBox[{"tests", "?", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"A", ":", 
+     RowBox[{
+     "Use", " ", "Quick", " ", "Actions", " ", "to", " ", "generate", " ", 
+      "classes", " ", "and", " ", "methods", " ", "in", " ", "your", " ", 
+      "project", " ", 
+      RowBox[{"code", ".", "Write"}], " ", "a", " ", "statement", " ", "in", 
+      " ", "a", " ", "test", " ", "method", " ", "that", " ", "calls", " ", 
+      "the", " ", "class", " ", "or", " ", "method", " ", "that", " ", "you", 
+      " ", "want", " ", "to", " ", "generate"}]}]}]}], ",", 
+  RowBox[{
+  "then", " ", "open", " ", "the", " ", "lightbulb", " ", "that", " ", 
+   "appears", " ", "under", " ", "the", " ", 
+   RowBox[{"error", ".", "If"}], " ", "the", " ", "call", " ", "is", " ", 
+   "to", " ", "a", " ", "constructor", " ", "of", " ", "the", " ", "new", " ",
+    "class"}], ",", 
+  RowBox[{
+  "choose", " ", "Generate", " ", "type", " ", "from", " ", "the", " ", 
+   "menu", " ", "and", " ", "follow", " ", "the", " ", "wizard", " ", "to", 
+   " ", "insert", " ", "the", " ", "class", " ", "in", " ", "your", " ", 
+   "code", " ", 
+   RowBox[{"project", ".", "If"}], " ", "the", " ", "call", " ", "is", " ", 
+   "to", " ", "a", " ", "method"}], ",", 
+  RowBox[{
+  "choose", " ", "Generate", " ", "method", " ", "from", " ", "the", " ", 
+   "IntelliSense", " ", "menu"}]}]], "Input",
+ CellChangeTimes->{{3.8212920874305553`*^9, 
+  3.821292106527997*^9}},ExpressionUUID->"d7bacdf4-2f2c-42d2-a0a0-\
+8d2f6568bccb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Autofac framework:
+Autofac is an addictive Inversion of Control container for .NET Core, ASP.NET \
+Core, .NET 4.5.1+, Universal Windows apps, and more.\
+\>", "Subsection",
+ CellChangeTimes->{{3.5445406915*^9, 3.54454070053125*^9}, {
+  3.591462379839452*^9, 3.5914624055920267`*^9}, {3.5914624430067673`*^9, 
+  3.5914624785073175`*^9}, {3.82129215139063*^9, 3.8212921590827985`*^9}},
+ FontSize->16,ExpressionUUID->"24e54afb-9f8e-4aaf-b09e-fb786a5b0e98"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Register", " ", 
+   RowBox[{"Components", ":", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+    "Build", " ", "up", " ", "containers", " ", "with", " ", "lambdas"}]}]}], 
+  ",", "types", ",", 
+  RowBox[{
+   RowBox[{"or", " ", "pre"}], "-", 
+   RowBox[{"built", " ", "instances", " ", "of", " ", 
+    RowBox[{"components", ".", "You"}], " ", "can", " ", "also", " ", "scan", 
+    " ", "assemblies", " ", "for", " ", 
+    RowBox[{"registrations", "."}]}]}]}]], "Input",
+ CellChangeTimes->{{3.5914620911605864`*^9, 3.591462144125882*^9}, {
+  3.821292168052609*^9, 
+  3.8212921823811717`*^9}},ExpressionUUID->"22ef5e31-375f-4e30-bb69-\
+e5fb8b638d1d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"var", " ", "builder"}], "=", 
+    RowBox[{"new", " ", "ContainerBuilder", 
+     RowBox[{"(", ")"}]}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"//", 
+  RowBox[{"Register", " ", "individual", " ", "components"}]}], "\n", 
+ RowBox[{
+  RowBox[{"builder", ".", "RegisterInstance"}], 
+  RowBox[{"(", 
+   RowBox[{"new", " ", "TaskRepository", 
+    RowBox[{"(", ")"}]}], ")"}]}], "\n", 
+ RowBox[{"       ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{".", "As"}], "<", "ITaskRepository", ">", 
+    RowBox[{"(", ")"}]}], ";"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"builder", ".", "RegisterType"}], "<", "TaskController", ">", 
+   RowBox[{"(", ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"builder", ".", "Register"}], 
+  RowBox[{"(", 
+   RowBox[{"c", "=", 
+    RowBox[{">", 
+     RowBox[{"new", " ", "LogManager", 
+      RowBox[{"(", 
+       RowBox[{"DateTime", ".", "Now"}], ")"}]}]}]}], ")"}]}], "\n", 
+ RowBox[{"       ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{".", "As"}], "<", "ILogger", ">", 
+    RowBox[{"(", ")"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"//", 
+  RowBox[{
+  "Scan", " ", "an", " ", "assembly", " ", "for", " ", "components"}]}], "\n", 
+ RowBox[{
+  RowBox[{"builder", ".", "RegisterAssemblyTypes"}], 
+  RowBox[{"(", "myAssembly", ")"}]}], "\n", 
+ RowBox[{"       ", 
+  RowBox[{
+   RowBox[{".", "Where"}], 
+   RowBox[{"(", 
+    RowBox[{"t", "=", 
+     RowBox[{">", 
+      RowBox[{
+       RowBox[{"t", ".", "Name", ".", "EndsWith"}], 
+       RowBox[{"(", "\"\<Repository\>\"", ")"}]}]}]}], ")"}]}]}], "\n", 
+ RowBox[{"       ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{".", "AsImplementedInterfaces"}], 
+    RowBox[{"(", ")"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"var", " ", "container"}], "=", 
+   RowBox[{
+    RowBox[{"builder", ".", "Build"}], 
+    RowBox[{"(", ")"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.821292177537034*^9, 
+  3.821292177835658*^9}},ExpressionUUID->"d0fd5726-88d1-40e7-aaaa-\
+cf36413ef9d0"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Express Dependencies", "Section",
+ CellChangeTimes->{{3.54454095946875*^9, 3.54454096525*^9}, 
+   3.8212921909588366`*^9, 
+   3.8213593395646715`*^9},ExpressionUUID->"40c12fdf-9adc-42cf-9b0d-\
+7ef287bb244f"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Let Autofac inject your constructor parameters for you. It can also handle \
+property and method injection.\
+\>", "Subsection",
+ CellChangeTimes->{{3.424929081375*^9, 3.424929133390625*^9}, {
+   3.424929199265625*^9, 3.42492920475*^9}, {3.42492925109375*^9, 
+   3.424929289046875*^9}, {3.42492969040625*^9, 3.42492971471875*^9}, 
+   3.424989185*^9, {3.424989899484375*^9, 3.424989964171875*^9}, 
+   3.5383131560694957`*^9, {3.54453984215625*^9, 3.544539855875*^9}, {
+   3.5445410360625*^9, 3.544541050828125*^9}, {3.54454128221875*^9, 
+   3.54454128609375*^9}, 3.821292201350569*^9, 3.8213594038694077`*^9},
+ FontSize->16,ExpressionUUID->"fabbdfc5-a67b-4a31-b427-e11754828d19"],
+
+Cell[BoxData[{
+ RowBox[{"public", " ", "class", " ", "TaskController"}], "\n", 
+ RowBox[{"{", "\[IndentingNewLine]", "     ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"private", " ", "ITaskRepository", " ", "_repository"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"private", " ", "ILogger", " ", "_logger"}], ";"}], 
+    "\[IndentingNewLine]", "//", 
+    RowBox[{
+    "Autofac", " ", "will", " ", "automatically", " ", "find", " ", "the", 
+     " ", "registered"}]}], "\[IndentingNewLine]", " ", "//", 
+   RowBox[{
+   "values", " ", "and", " ", "pass", " ", "them", " ", "in", " ", "for", " ", 
+    RowBox[{"you", ".", "\[IndentingNewLine]", "public"}], " ", 
+    "TaskController", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"ITaskRepository", " ", "repository"}], ",", 
+      RowBox[{"ILogger", " ", "logger"}]}], ")"}], "\[IndentingNewLine]", " ", 
+    RowBox[{"{", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"this", ".", "_repository"}], "=", "repository"}], ";", 
+      "\[IndentingNewLine]", "         ", 
+      RowBox[{
+       RowBox[{"this", ".", "_logger"}], "=", "logger"}], ";"}], 
+     "\[IndentingNewLine]", " ", "}"}]}]}]}]}], "Input",
+ CellChangeTimes->{
+  3.5445394289375*^9, {3.544539849375*^9, 3.5445398503125*^9}, {
+   3.544540026640625*^9, 3.544540033203125*^9}, {3.544540987953125*^9, 
+   3.54454102865625*^9}, {3.8212922075029573`*^9, 
+   3.821292266442361*^9}},ExpressionUUID->"64819b52-8e87-4e55-a2a9-\
+1a7a8ce86b82"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8212922702428093`*^9, 
+  3.821292270244808*^9}},ExpressionUUID->"9b514f05-b541-4f15-8fb2-\
+0cf102e6e86f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+C# Unit Testing & TDD Basics
+I\[CloseCurlyQuote]ve mentioned earlier that TDD is not a testing technique. \
+What is it, though? And how it\[CloseCurlyQuote]s related to C# unit testing \
+(or unit testing in general, for that matter?)\
+\>", "Subsection",
+ CellChangeTimes->{{3.42499009403125*^9, 3.424990140703125*^9}, {
+  3.544450094390625*^9, 3.544450095546875*^9}, {3.54454133184375*^9, 
+  3.5445413624375*^9}, {3.821359415015405*^9, 3.8213594258244047`*^9}},
+ FontSize->16,ExpressionUUID->"db4a21de-0ed6-4169-908d-654924c6d646"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"Defining", " ", "TDD"}], "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"As", " ", "you"}]}], "\[CloseCurlyQuote]"}], "ve", " ", 
+           "seen"}], ",", 
+          RowBox[{
+           RowBox[{"TDD", " ", "stands", " ", "for", " ", "Test"}], "-", 
+           RowBox[{"Driven", " ", 
+            RowBox[{"Development", ".", "It"}], " ", "is", " ", "a", " ", 
+            "technique", " ", "or", " ", "methodology", " ", "of", " ", 
+            "software", " ", "development", " ", "that", " ", "uses", " ", 
+            "unit", " ", "tests", " ", "to", " ", "drive", " ", "the", " ", 
+            "development", " ", "of", " ", "the", " ", 
+            RowBox[{
+            "application", ".", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             "Instead"}], " ", "of", " ", "doing", " ", "the", " ", "more", 
+            " ", "intuitive", " ", "thing"}]}], ",", 
+          RowBox[{
+          "which", " ", "would", " ", "be", " ", "writing", " ", "unit", " ", 
+           "tests", " ", "after", " ", "the", " ", "production", " ", 
+           "code"}], ",", 
+          RowBox[{
+          "the", " ", "TDD", " ", "methodology", " ", "states", " ", "that", 
+           " ", "you", " ", "should", " ", "start", " ", "by", " ", "writing",
+            " ", "a", " ", "failing", " ", "unit", " ", 
+           RowBox[{"test", ".", "Then"}], " ", "you", " ", "write", " ", 
+           "the", " ", "production", " ", "code"}], ",", 
+          RowBox[{"but", " ", "only", " ", "what"}]}], "\[CloseCurlyQuote]"}],
+         "s", " ", "necessary", " ", "to", " ", "make", " ", "the", " ", 
+        "test", " ", 
+        RowBox[{"pass", ".", " ", "I"}], " ", "guess", " ", "you"}], 
+       "\[CloseCurlyQuote]"}], "re", " ", "now", " ", "wondering", " ", "at", 
+      " ", "least", " ", "two", " ", 
+      RowBox[{"things", ":", "\[IndentingNewLine]", 
+       RowBox[{"How", " ", "does", " ", "that", " ", "work", " ", "in", " ", 
+        RowBox[{"practice", "?", "\[IndentingNewLine]", "Why"}], " ", "write",
+         " ", "code", " ", "in", " ", "such", " ", "a", " ", "weird", " ", 
+        RowBox[{"way", "?", "\[IndentingNewLine]", "That"}]}]}]}], 
+     "\[CloseCurlyQuote]"}], "s", " ", "what", " ", "we"}], 
+   "\[CloseCurlyQuote]"}], "re", " ", "going", " ", "to", " ", "see", " ", 
+  RowBox[{"next", "."}]}]], "Input",
+ CellChangeTimes->{{3.42499017503125*^9, 3.424990234984375*^9}, {
+   3.5383132704100356`*^9, 3.5383132722131386`*^9}, 3.54454134946875*^9, {
+   3.544541394671875*^9, 3.544541395046875*^9}, {3.821359432582405*^9, 
+   3.8213595302418933`*^9}},ExpressionUUID->"7f165de4-eb2f-4ac1-890f-\
+76b7de69b375"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"est", "-", 
+      RowBox[{
+      "driven", " ", "development", " ", "relies", " ", "on", " ", "the", " ",
+        "repetition", " ", "of", " ", "an", " ", "incredibly", " ", "short", 
+       " ", 
+       RowBox[{"cycle", ".", "This"}], " ", "cycle", " ", "is", " ", 
+       "composed", " ", "of", " ", "three", " ", 
+       RowBox[{"phases", ":", "\[IndentingNewLine]", 
+        RowBox[{"1.", " ", "First"}]}]}]}], ",", 
+     RowBox[{
+     "you", " ", "write", " ", "a", " ", "test", " ", "that", " ", 
+      "represents", " ", "a", " ", "specific", " ", "requirement", " ", "of", 
+      " ", "the", " ", "functionality", " ", "you"}]}], 
+    "\[CloseCurlyQuote]"}], "re", " ", "trying", " ", "to", " ", 
+   RowBox[{"implement", ".", "\[IndentingNewLine]", "2."}], " ", "You", " ", 
+   "then", " ", "make", " ", "the", " ", "test", " ", "pass"}], ",", 
+  RowBox[{
+  "writing", " ", "the", " ", "minimum", " ", "amount", " ", "of", " ", 
+   "production", " ", "code", " ", "you", " ", "can", " ", "get", " ", "away",
+    " ", 
+   RowBox[{"with", ".", "\[IndentingNewLine]", "3."}], " ", "If", " ", 
+   "necessary"}], ",", 
+  RowBox[{
+  "you", " ", "refactor", " ", "the", " ", "code", " ", "to", " ", 
+   "eliminate", " ", "duplication", " ", "or", " ", "other", " ", 
+   RowBox[{"problems", "."}]}]}]], "Input",
+ CellChangeTimes->{{3.8213595359058924`*^9, 
+  3.8213595575638924`*^9}},ExpressionUUID->"6e874ee1-d577-4616-a78e-\
+86139fb05ed8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Why Use TDD?", "Subsection",
+ CellChangeTimes->{{3.424990308296875*^9, 3.424990381859375*^9}, 
+   3.5383133847155733`*^9, 3.821359574772891*^9},
+ FontSize->16,ExpressionUUID->"2a5173a9-d07d-4016-9f07-d3f6b35173df"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "The", " ", "hard", " ", "thing", " ", "to", " ", 
+                    "understand", " ", "when", " ", "getting", " ", "started",
+                     " ", "with", " ", "TDD", " ", "isn"}], 
+                    "\[CloseCurlyQuote]"}], "t", " ", "the", " ", 
+                    RowBox[{"how", ".", "The"}], " ", 
+                    RowBox[{
+                    "\[OpenCurlyDoubleQuote]", "how", 
+                    "\[CloseCurlyDoubleQuote]"}], " ", "is", " ", 
+                    RowBox[{"trivial", ":", 
+                    RowBox[{"write", " ", "a", " ", "test"}]}]}], ",", 
+                   RowBox[{"make", " ", "it", " ", "pass"}], ",", 
+                   RowBox[{"maybe", " ", "refactor"}], ",", "rinse", ",", 
+                   RowBox[{
+                    RowBox[{"repeat", ".", "The"}], " ", "troubling", " ", 
+                    "part", " ", "is", " ", "the", " ", 
+                    RowBox[{"\[OpenCurlyDoubleQuote]", 
+                    RowBox[{"why", "."}], "\[CloseCurlyDoubleQuote]"}]}]}], 
+                  " ", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{
+                   "Why", " ", "develop", " ", "software", " ", "in", " ", 
+                    "such", " ", "a", " ", "non"}], "-", 
+                   RowBox[{"intuitive", " ", 
+                    RowBox[{"way", "?", "I"}]}]}]}], "\[CloseCurlyQuote]"}], 
+                "ll", " ", "talk", " ", "more", " ", "of", " ", "the", " ", 
+                "TDD", " ", "philosophy", " ", "in", " ", "future", " ", 
+                RowBox[{"articles", ".", "\[IndentingNewLine]", "In"}], " ", 
+                "a", " ", "nutshell"}], ",", 
+               RowBox[{"applying", " ", "TDD", " ", "ensures", " ", "you"}]}],
+               "\[CloseCurlyQuote]"}], "ll", " ", "have", " ", "testable", 
+             " ", "code", " ", "from", " ", "the", " ", 
+             RowBox[{"beginning", ".", "It"}], " ", "will", " ", "encourage", 
+             " ", "you", " ", "to", " ", "design", " ", "your", " ", "code", 
+             " ", "in", " ", "a", " ", "simple", " ", "and", " ", "modular", 
+             " ", 
+             RowBox[{"way", ".", "But"}], " ", "perhaps"}], ",", 
+            RowBox[{
+            "the", " ", "main", " ", "advantage", " ", "of", " ", "TDD", " ", 
+             "is", " ", "increasing", " ", "the", " ", "developer"}]}], 
+           "\[CloseCurlyQuote]"}], "s", " ", "confidence", " ", "on", " ", 
+          "their", " ", 
+          RowBox[{"code", ".", "By"}], " ", "developing", " ", "one", " ", 
+          "tiny", " ", "step", " ", "at", " ", "a", " ", "time"}], ",", 
+         "you"}], "\[CloseCurlyQuote]"}], "ll", " ", "never", " ", "be", " ", 
+       "able", " ", "to", " ", "get", " ", "a", " ", "lot", " ", "wrong"}], 
+      ",", 
+      RowBox[{"since", " ", "you"}]}], "\[CloseCurlyQuote]"}], "re", " ", 
+    "doing", " ", "too", " ", 
+    RowBox[{"little", ".", "Knowing"}], " ", "that", " ", "you"}], 
+   "\[CloseCurlyQuote]"}], "re", " ", "only", " ", "one", " ", "failing", " ",
+   "test", " ", "away", " ", "from", " ", "having", " ", "working", " ", 
+  "code", " ", "is", " ", 
+  RowBox[{"reassuring", "."}]}]], "Input",
+ CellChangeTimes->{{3.424990419265625*^9, 3.4249904311875*^9}, {
+  3.538313340270031*^9, 3.5383133509046392`*^9}, {3.544541409390625*^9, 
+  3.5445414160625*^9}, {3.8213595815357423`*^9, 
+  3.8213595900970783`*^9}},ExpressionUUID->"c8b4a5fa-0d00-4686-abfa-\
+5bb7b76ff1b6"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+AutoGeneratedPackage->None,
+WindowSize->{1152., 585.6},
+WindowMargins->{{
+  Automatic, -5.399999999999864}, {-5.399999999999977, Automatic}},
+PrintingCopies->1,
+PrintingPageRange->{Automatic, Automatic},
+ShowSelection->True,
+CellLabelAutoDelete->True,
+InputAliases->{},
+Magnification->1.,
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 14, 2020)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData["Input"], FontSize -> 16, Background -> 
+    RGBColor[0.7215686274509804, 0.9803921568627451, 0.7058823529411765]], 
+   Cell[
+    StyleData["Output"], FontSize -> 14, Background -> 
+    RGBColor[0.9176470588235294, 0.9176470588235294, 0.9568627450980393]], 
+   Cell[
+    StyleData["Section"], FontFamily -> "Verdana", FontSize -> 20, FontWeight -> 
+    "Plain", FontSlant -> "Plain", 
+    FontVariations -> {"StrikeThrough" -> False, "Underline" -> False}], 
+   Cell[
+    StyleData["Text"], FontSize -> 16]}, Visible -> False, FrontEndVersion -> 
+  "12.1 for Microsoft Windows (64-bit) (March 14, 2020)", StyleDefinitions -> 
+  "PrivateStylesheetFormatting.nb"],
+ExpressionUUID->"c9945624-f236-403f-bda5-9ead2cdd0579"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[567, 22, 216, 4, 97, "Title",ExpressionUUID->"1adf6da7-99ac-423c-b762-d9279496158d"],
+Cell[786, 28, 214, 4, 37, "Text",ExpressionUUID->"33b4356f-098c-4528-b426-4cb89779d362"],
+Cell[CellGroupData[{
+Cell[1025, 36, 373, 5, 56, "Section",ExpressionUUID->"3e382ad3-f325-439b-ac1f-517fc141744c"],
+Cell[CellGroupData[{
+Cell[1423, 45, 941, 16, 119, "Subsection",ExpressionUUID->"e2ebf539-6b6a-41d2-bfcf-0cf67efc908c"],
+Cell[2367, 63, 2353, 52, 265, "Input",ExpressionUUID->"5e768bdf-c0e4-4fb1-ae65-324574cf1fd2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4757, 120, 995, 15, 142, "Subsection",ExpressionUUID->"e4f26ad0-204e-4351-a6b2-65333e839e66"],
+Cell[5755, 137, 1640, 29, 169, "Input",ExpressionUUID->"d0a111f0-1ab2-487f-9e04-1426fba58e9d"],
+Cell[7398, 168, 2683, 71, 625, "Input",ExpressionUUID->"f21e0f29-36ca-4683-9611-b6ef50231067"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10118, 244, 609, 11, 73, "Subsection",ExpressionUUID->"d9b9a26c-e17b-4696-a82e-7b0d3a5e9627"],
+Cell[10730, 257, 836, 18, 193, "Input",ExpressionUUID->"ddddde57-48c8-41fc-be48-d9ca7e57e79c"],
+Cell[11569, 277, 654, 16, 193, "Input",ExpressionUUID->"5406c39d-052f-403d-8de3-434a3f904704"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12260, 298, 242, 3, 50, "Subsection",ExpressionUUID->"92255b54-3447-415a-ab9b-9e0ddc0662d2"],
+Cell[12505, 303, 2206, 44, 289, "Input",ExpressionUUID->"9b6b4055-caf9-410b-b52a-7f08a4daf7b8"],
+Cell[14714, 349, 630, 12, 97, "Input",ExpressionUUID->"36951e21-89cc-4ca3-a7cb-6fe9fa7e19fa"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15381, 366, 371, 8, 73, "Subsection",ExpressionUUID->"3e83254b-5f6a-4a8a-9941-e1748e91877a"],
+Cell[15755, 376, 2062, 41, 217, "Input",ExpressionUUID->"9cfd45de-bf27-4a50-9b23-655cbf9e9ca9"],
+Cell[17820, 419, 1750, 36, 193, "Input",ExpressionUUID->"d7bacdf4-2f2c-42d2-a0a0-8d2f6568bccb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19607, 460, 462, 8, 73, "Subsection",ExpressionUUID->"24e54afb-9f8e-4aaf-b09e-fb786a5b0e98"],
+Cell[20072, 470, 696, 16, 121, "Input",ExpressionUUID->"22ef5e31-375f-4e30-bb69-e5fb8b638d1d"],
+Cell[20771, 488, 2038, 64, 385, "Input",ExpressionUUID->"d0fd5726-88d1-40e7-aaaa-cf36413ef9d0"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22858, 558, 213, 4, 56, "Section",ExpressionUUID->"40c12fdf-9adc-42cf-9b0d-7ef287bb244f"],
+Cell[CellGroupData[{
+Cell[23096, 566, 687, 11, 50, "Subsection",ExpressionUUID->"fabbdfc5-a67b-4a31-b427-e11754828d19"],
+Cell[23786, 579, 1492, 34, 289, "Input",ExpressionUUID->"64819b52-8e87-4e55-a2a9-1a7a8ce86b82"],
+Cell[25281, 615, 154, 3, 48, "Input",ExpressionUUID->"9b514f05-b541-4f15-8fb2-0cf102e6e86f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25472, 623, 541, 9, 96, "Subsection",ExpressionUUID->"db4a21de-0ed6-4169-908d-654924c6d646"],
+Cell[26016, 634, 2879, 57, 337, "Input",ExpressionUUID->"7f165de4-eb2f-4ac1-890f-76b7de69b375"],
+Cell[28898, 693, 1515, 33, 169, InheritFromParent,ExpressionUUID->"6e874ee1-d577-4616-a78e-86139fb05ed8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30450, 731, 220, 3, 50, "Subsection",ExpressionUUID->"2a5173a9-d07d-4016-9f07-d3f6b35173df"],
+Cell[30673, 736, 3896, 79, 265, "Input",ExpressionUUID->"c8b4a5fa-0d00-4686-abfa-5bb7b76ff1b6"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

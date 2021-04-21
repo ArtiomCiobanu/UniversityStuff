@@ -1,0 +1,4420 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    161887,       4412]
+NotebookOptionsPosition[    158411,       4351]
+NotebookOutlinePosition[    158831,       4367]
+CellTagsIndexPosition[    158788,       4364]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ StyleBox[
+  RowBox[{"\[IndentingNewLine]", 
+   RowBox[{
+   "\:0421\:0442\:0430\:0442\:0438\:0441\:0442\:0438\:043a\:0430", " ", 
+    "\:0430\:044d\:0440\:043e\:0434\:0440\:043e\:043c\:043e\:0432", 
+    RowBox[{"(", "\:0412\:041f\:041f", ")"}]}]}], "Title"]], "Input",
+ CellChangeTimes->{{3.8268076234571466`*^9, 3.8268076357635393`*^9}, 
+   3.8268076912380376`*^9, {3.8268102483010197`*^9, 3.826810251338978*^9}, {
+   3.826810288644591*^9, 3.8268102935042953`*^9}},
+ TextJustification->
+  0.5,ExpressionUUID->"01adae49-81fa-430e-9126-d2870153ef69"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   StyleBox[
+    RowBox[{
+    "\:0413\:0440\:0443\:043d\:0442\:043e\:0432\:044b\:0435", " ", 
+     "\:0412\:041f\:041f"}], "Section"], 
+   StyleBox["\[IndentingNewLine]", "Section"], 
+   StyleBox["\:0415\:0432\:0440\:043e\:043f\:0430", 
+    "Subsection"]}]}]], "Input",
+ CellChangeTimes->{{3.8268076979321003`*^9, 3.826807699250439*^9}, {
+  3.8268077865190744`*^9, 3.826807793923253*^9}, {3.826808383854989*^9, 
+  3.826808387184366*^9}, {3.8268102682501836`*^9, 
+  3.826810300193488*^9}},ExpressionUUID->"61077aef-855d-425e-9883-\
+c20edb95435a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"airportData", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", "\"\<Europe\>\"", "]"}]}], "}"}]}], 
+      "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Short", "[", 
+  RowBox[{"SortBy", "[", 
+   RowBox[{"airportData", ",", " ", "Last"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Histogram", "[", 
+  RowBox[{"airportData", "[", 
+   RowBox[{"[", 
+    RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.826807561660297*^9, 3.826807576578431*^9}, {
+  3.8268080349565887`*^9, 3.8268080465373163`*^9}, {3.8268098668061094`*^9, 
+  3.826809870716874*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"13ea1b7f-326e-4187-be84-f1b673802ce5"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Albania\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Albania\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Albania\\\"]\"", "\"country\""},
+       "Entity"], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Luxembourg\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Luxembourg\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Luxembourg\\\"]\"", "\"country\""},
+       "Entity"], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Cyprus\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Cyprus\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Cyprus\\\"]\"", "\"country\""},
+       "Entity"], ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Montenegro\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Montenegro\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Montenegro\\\"]\"", "\"country\""},
+       "Entity"], ",", "2"}], "}"}], ",", 
+    RowBox[{"\[LeftSkeleton]", "32", "\[RightSkeleton]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"France\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"France\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"France\\\"]\"", "\"country\""},
+       "Entity"], ",", "178"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"United Kingdom\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"UnitedKingdom\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"UnitedKingdom\\\"]\"", "\"country\""},
+       "Entity"], ",", "199"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Germany\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Germany\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Germany\\\"]\"", "\"country\""},
+       "Entity"], ",", "220"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Ukraine\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Ukraine\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Ukraine\\\"]\"", "\"country\""},
+       "Entity"], ",", "236"}], "}"}]}], "}"}],
+  Short]], "Output",
+ CellChangeTimes->{{3.826807565949053*^9, 3.8268075777974777`*^9}},
+ CellLabel->
+  "Out[5]//Short=",ExpressionUUID->"9bd156ed-e18e-49d7-8bc3-2edb67e1dee1"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
+    Opacity[0.651], Thickness[Small]}], {}, 
+    {RGBColor[0.987148, 0.8073604000000001, 0.49470040000000004`], EdgeForm[{
+     Opacity[0.651], Thickness[Small]}], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{0., 0}, {50., 28.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{20.179411764705883`, 
+           86.9735294117647}, {-103.10821199407242`, 95.85000000000001}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 28]& ,
+        TagBoxNote->"28"],
+       StyleBox["28", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[28, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{50., 0}, {100., 8.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{86.4735294117647, 153.26764705882354`}, {
+           38.64765371597932, 95.85000000000001}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 8]& ,
+        TagBoxNote->"8"],
+       StyleBox["8", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[8, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{150., 0}, {200., 2.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{219.06176470588235`, 285.8558823529412}, {
+           81.17441342899484, 95.85000000000001}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 2]& ,
+        TagBoxNote->"2"],
+       StyleBox["2", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[2, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{200., 0}, {250., 2.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{285.3558823529412, 352.15000000000003`}, {
+           81.17441342899484, 95.85000000000001}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 2]& ,
+        TagBoxNote->"2"],
+       StyleBox["2", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[2, {}], "Tooltip"]& ]}, {}, {}}, {{}, {}, {}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{-5., 0},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  PlotRange->{{0., 250.}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.826807565949053*^9, 3.8268075778471746`*^9}},
+ CellLabel->"Out[6]=",ExpressionUUID->"47748d7a-428f-41e2-83bb-818069b9d76c"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"\:041d\:0430\:0438\:0431\:043e\:043b\:044c\:0448\:0438\:0435", " ", 
+   RowBox[{
+   "\:0437\:043d\:0430\:0447\:0435\:043d\:0438\:044f", ":"}]}]}]], "Input",
+ CellChangeTimes->{{3.8268104069915295`*^9, 
+  3.826810424209419*^9}},ExpressionUUID->"f07d0869-b5a2-4e8e-b028-\
+69ec090d312d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TakeLargest", "[", 
+  RowBox[{
+   RowBox[{"airportData", " ", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{{3.826810425289274*^9, 3.8268104269541583`*^9}},
+ CellLabel->
+  "In[122]:=",ExpressionUUID->"da19d53d-d9eb-4723-9189-1cbb502b1767"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "621", ",", "519", ",", "183", ",", "169", ",", "137", ",", "118", ",", 
+   "99", ",", "80", ",", "75", ",", "57"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.8268104311042557`*^9, {3.8268104911773434`*^9, 3.826810502581862*^9}},
+ CellLabel->
+  "Out[122]=",ExpressionUUID->"e46e2cae-a1fa-417a-bff1-9c0247f85918"]
+}, Open  ]],
+
+Cell[BoxData[
+ StyleBox["\:0410\:0437\:0438\:044f", "Subsection"]], "Input",
+ CellChangeTimes->{{3.826810373761057*^9, 
+  3.82681040503769*^9}},ExpressionUUID->"99bd56ea-2468-45da-8ee9-\
+71049d7314dd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"asianAirports", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", "\"\<Asia\>\"", "]"}]}], "}"}]}], "]"}], 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Short", "[", 
+  RowBox[{"SortBy", "[", 
+   RowBox[{"asianAirports", ",", " ", "Greater"}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"topTenAirports", " ", "=", " ", 
+   RowBox[{"Take", "[", 
+    RowBox[{
+     RowBox[{"SortBy", "[", 
+      RowBox[{"africanAirports", ",", " ", "Greater"}], "]"}], ",", " ", 
+     "10"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"BarChart", "[", 
+  RowBox[{
+   RowBox[{"topTenAirports", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", 
+   RowBox[{"ChartLabels", "\[Rule]", 
+    RowBox[{"topTenAirports", "[", 
+     RowBox[{"[", 
+      RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+   RowBox[{"BarOrigin", "\[Rule]", " ", "Left"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8268084003704557`*^9, 3.8268084146408253`*^9}, {
+   3.826808455658603*^9, 3.826808496087163*^9}, {3.8268085635391397`*^9, 
+   3.8268085739497013`*^9}, {3.826808658542451*^9, 3.826808742718345*^9}, {
+   3.826808790699674*^9, 3.826808792412797*^9}, 3.8268089738872175`*^9, {
+   3.826809880094123*^9, 3.8268098813010855`*^9}, {3.8268099148467474`*^9, 
+   3.826809935813052*^9}, {3.826810012626733*^9, 3.8268100337941685`*^9}, {
+   3.826810177873322*^9, 3.8268102069801846`*^9}, {3.8268103304110394`*^9, 
+   3.8268103307187076`*^9}, {3.826810371287242*^9, 3.826810372259264*^9}, {
+   3.8268104374485703`*^9, 3.8268104501554365`*^9}, {3.8270324091333733`*^9, 
+   3.8270324146479254`*^9}},ExpressionUUID->"c53e8394-b94b-4495-9a6c-\
+a4b741e9340a"],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Afghanistan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Afghanistan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Afghanistan\\\"]\"", "\"country\""},
+       "Entity"], ",", "35"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Armenia\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Armenia\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Armenia\\\"]\"", "\"country\""},
+       "Entity"], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Azerbaijan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Azerbaijan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Azerbaijan\\\"]\"", "\"country\""},
+       "Entity"], ",", "7"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Bangladesh\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Bangladesh\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Bangladesh\\\"]\"", "\"country\""},
+       "Entity"], ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Bhutan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Bhutan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Bhutan\\\"]\"", "\"country\""},
+       "Entity"], ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Brunei\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Brunei\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Brunei\\\"]\"", "\"country\""},
+       "Entity"], ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Cambodia\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Cambodia\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Cambodia\\\"]\"", "\"country\""},
+       "Entity"], ",", "14"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"China\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"China\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"China\\\"]\"", "\"country\""},
+       "Entity"], ",", "57"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"East Timor\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"EastTimor\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"EastTimor\\\"]\"", "\"country\""},
+       "Entity"], ",", "4"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Egypt\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Egypt\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Egypt\\\"]\"", "\"country\""},
+       "Entity"], ",", "13"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Gaza Strip\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"GazaStrip\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"GazaStrip\\\"]\"", "\"country\""},
+       "Entity"], ",", "0"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Georgia\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Georgia\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Georgia\\\"]\"", "\"country\""},
+       "Entity"], ",", "4"}], "}"}], ",", 
+    RowBox[{"\[LeftSkeleton]", "24", "\[RightSkeleton]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"South Korea\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"SouthKorea\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"SouthKorea\\\"]\"", "\"country\""},
+       "Entity"], ",", "44"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Sri Lanka\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"SriLanka\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"SriLanka\\\"]\"", "\"country\""},
+       "Entity"], ",", "2"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Syria\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Syria\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Syria\\\"]\"", "\"country\""},
+       "Entity"], ",", "75"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Taiwan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Taiwan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Taiwan\\\"]\"", "\"country\""},
+       "Entity"], ",", "4"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Tajikistan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Tajikistan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Tajikistan\\\"]\"", "\"country\""},
+       "Entity"], ",", "8"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Thailand\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Thailand\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Thailand\\\"]\"", "\"country\""},
+       "Entity"], ",", "41"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Turkey\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Turkey\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Turkey\\\"]\"", "\"country\""},
+       "Entity"], ",", "12"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Turkmenistan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Turkmenistan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Turkmenistan\\\"]\"", "\"country\""},
+       "Entity"], ",", "7"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"United Arab Emirates\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"UnitedArabEmirates\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"UnitedArabEmirates\\\"]\"", 
+        "\"country\""},
+       "Entity"], ",", "14"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Uzbekistan\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Uzbekistan\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Uzbekistan\\\"]\"", "\"country\""},
+       "Entity"], ",", "27"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Vietnam\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Vietnam\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Vietnam\\\"]\"", "\"country\""},
+       "Entity"], ",", "6"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      TemplateBox[{"\"Yemen\"", 
+        RowBox[{"Entity", "[", 
+          RowBox[{"\"Country\"", ",", "\"Yemen\""}], "]"}], 
+        "\"Entity[\\\"Country\\\", \\\"Yemen\\\"]\"", "\"country\""},
+       "Entity"], ",", "37"}], "}"}]}], "}"}],
+  Short]], "Output",
+ CellChangeTimes->{{3.8268084107559876`*^9, 3.8268084152415056`*^9}, 
+   3.826808464444378*^9, 3.826808496864179*^9, 3.8268085744961348`*^9, 
+   3.826808660114577*^9, {3.826808694537799*^9, 3.8268087116673*^9}, 
+   3.8268089742304516`*^9, {3.8268100086381407`*^9, 3.826810018037203*^9}, {
+   3.826810193039974*^9, 3.826810207332686*^9}, {3.82681035124876*^9, 
+   3.826810379195427*^9}, {3.8268104661295676`*^9, 3.8268105114081917`*^9}},
+ CellLabel->
+  "Out[125]//Short=",ExpressionUUID->"818f7f89-9c59-4c71-85d1-87246953e2a5"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Opacity[0], 
+    PointBox[{{0., 0.3479427549194991}, {0., 10.453901197192788`}}]}, {{}, 
+    {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+     Thickness[Small]}], 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 0.5460988028072107}, {35., 1.4539011971927893`},
+              "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 232.68333333333334`}, {
+            61.28444975342345, 77.43399995582055}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 35]& ,
+         TagBoxNote->"35"],
+        StyleBox["35", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[35, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 1.5460988028072107`}, {1., 2.4539011971927893`},
+              "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 66.53666666666668}, {
+            44.04551064158175, 60.195060843978844`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 2.5460988028072107`}, {7., 3.4539011971927893`},
+              "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 95.85666666666667}, {
+            26.806571529740047`, 42.95612173213714}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 7]& ,
+         TagBoxNote->"7"],
+        StyleBox["7", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[7, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 3.5460988028072107`}, {2., 4.453901197192789}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 71.42333333333335}, {
+            9.567632417898338, 25.71718262029544}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 2]& ,
+         TagBoxNote->"2"],
+        StyleBox["2", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[2, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 4.546098802807211}, {1., 5.453901197192789}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            66.53666666666668}, {-7.6713066939433645`, 8.478243508453744}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 5.546098802807211}, {0., 6.453901197192789}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            61.650000000000006`}, {-24.910245805785067`, -8.760695603387958}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0]& ,
+         TagBoxNote->"0"],
+        StyleBox["0", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 6.546098802807211}, {14., 7.453901197192789}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            130.06333333333333`}, {-42.149184917626755`, -25.99963471522966}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 14]& ,
+         TagBoxNote->"14"],
+        StyleBox["14", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[14, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 7.546098802807211}, {57., 8.453901197192788}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            340.19000000000005`}, {-59.38812402946844, -43.23857382707136}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 57]& ,
+         TagBoxNote->"57"],
+        StyleBox["57", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[57, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 8.54609880280721}, {4., 9.453901197192788}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            81.19666666666667}, {-76.62706314131016, -60.47751293891305}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 4]& ,
+         TagBoxNote->"4"],
+        StyleBox["4", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[4, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.63], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0., 9.54609880280721}, {13., 10.453901197192788`}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{61.150000000000006`, 
+            125.17666666666668`}, {-93.86600225315185, -77.71645205075477}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 13]& ,
+         TagBoxNote->"13"],
+        StyleBox["13", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[13, {}], "Tooltip"]& ]}}, {}, {}}, {}, {}, {}, {}, 
+   StyleBox[{
+     {Thickness[Tiny], 
+      LineBox[{{0., 0.3479427549194991}, {0., 10.656020366038254`}}], 
+      StyleBox[{}, "GraphicsLabel",
+       StripOnInput->False]}, 
+     StyleBox[{
+       {Thickness[Tiny], 
+        LineBox[{{0., 0.5460988028072107}, 
+          Offset[{-6., 0.}, {0., 0.5460988028072107}]}], 
+        LineBox[{{0., 10.453901197192788`}, 
+          Offset[{-6., 0.}, {0., 
+           10.453901197192788`}]}], {{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
+          LineBox[{{0., 1.4539011971927893`}, 
+            Offset[{-4., 0.}, {0., 1.4539011971927893`}]}], 
+          LineBox[{{0., 1.5460988028072107`}, 
+            Offset[{-4., 0.}, {0., 1.5460988028072107`}]}], 
+          LineBox[{{0., 2.4539011971927893`}, 
+            Offset[{-4., 0.}, {0., 2.4539011971927893`}]}], 
+          LineBox[{{0., 2.5460988028072107`}, 
+            Offset[{-4., 0.}, {0., 2.5460988028072107`}]}], 
+          LineBox[{{0., 3.4539011971927893`}, 
+            Offset[{-4., 0.}, {0., 3.4539011971927893`}]}], 
+          LineBox[{{0., 3.5460988028072107`}, 
+            Offset[{-4., 0.}, {0., 3.5460988028072107`}]}], 
+          LineBox[{{0., 4.453901197192789}, 
+            Offset[{-4., 0.}, {0., 4.453901197192789}]}], 
+          LineBox[{{0., 4.546098802807211}, 
+            Offset[{-4., 0.}, {0., 4.546098802807211}]}], 
+          LineBox[{{0., 5.453901197192789}, 
+            Offset[{-4., 0.}, {0., 5.453901197192789}]}], 
+          LineBox[{{0., 5.546098802807211}, 
+            Offset[{-4., 0.}, {0., 5.546098802807211}]}], 
+          LineBox[{{0., 6.453901197192789}, 
+            Offset[{-4., 0.}, {0., 6.453901197192789}]}], 
+          LineBox[{{0., 6.546098802807211}, 
+            Offset[{-4., 0.}, {0., 6.546098802807211}]}], 
+          LineBox[{{0., 7.453901197192789}, 
+            Offset[{-4., 0.}, {0., 7.453901197192789}]}], 
+          LineBox[{{0., 7.546098802807211}, 
+            Offset[{-4., 0.}, {0., 7.546098802807211}]}], 
+          LineBox[{{0., 8.453901197192788}, 
+            Offset[{-4., 0.}, {0., 8.453901197192788}]}], 
+          LineBox[{{0., 8.54609880280721}, 
+            Offset[{-4., 0.}, {0., 8.54609880280721}]}], 
+          LineBox[{{0., 9.453901197192788}, 
+            Offset[{-4., 0.}, {0., 9.453901197192788}]}], 
+          LineBox[{{0., 9.546098802807208}, 
+            Offset[{-4., 0.}, {0., 9.546098802807208}]}]}, {}}}, 
+       StyleBox[
+        {Thickness[Tiny], InsetBox[
+          TemplateBox[{"\"Afghanistan\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Afghanistan\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Afghanistan\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 1.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Armenia\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Armenia\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Armenia\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 2.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Azerbaijan\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Azerbaijan\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Azerbaijan\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 3.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Bangladesh\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Bangladesh\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Bangladesh\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 4.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Bhutan\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Bhutan\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Bhutan\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 5.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Brunei\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Brunei\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Brunei\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 6.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Cambodia\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Cambodia\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Cambodia\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 7.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"China\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"China\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"China\\\"]\""},
+           "EntityTraditionalFramed"], 
+          Offset[{-2, 0}, {0., 7.999999999999999}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"East Timor\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"EastTimor\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"EastTimor\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 9.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}], InsetBox[
+          TemplateBox[{"\"Egypt\"", 
+            RowBox[{"Entity", "[", 
+              RowBox[{"\"Country\"", ",", "\"Egypt\""}], "]"}], 
+            "\"Entity[\\\"Country\\\", \\\"Egypt\\\"]\""},
+           "EntityTraditionalFramed"], Offset[{-2, 0}, {0., 10.}], 
+          ImageScaled[{1, Rational[1, 2]}], Automatic, {1, 0}]}, 
+        "GraphicsLabel",
+        StripOnInput->False]}, "GraphicsTicks",
+      StripOnInput->False]}, "GraphicsAxes",
+    StripOnInput->False,
+    Antialiasing->False]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0., 0.3479427549194991},
+  CoordinatesToolOptions:>{"DisplayFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& )},
+  DisplayFunction->Identity,
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  PlotRange->{{All, All}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.05]}, {
+     Scaled[0.02], 
+     Scaled[0.02]}},
+  Ticks->{Automatic, None}]], "Output",
+ CellChangeTimes->{{3.8268084107559876`*^9, 3.8268084152415056`*^9}, 
+   3.826808464444378*^9, 3.826808496864179*^9, 3.8268085744961348`*^9, 
+   3.826808660114577*^9, {3.826808694537799*^9, 3.8268087116673*^9}, 
+   3.8268089742304516`*^9, {3.8268100086381407`*^9, 3.826810018037203*^9}, {
+   3.826810193039974*^9, 3.826810207332686*^9}, {3.82681035124876*^9, 
+   3.826810379195427*^9}, {3.8268104661295676`*^9, 3.826810511528002*^9}},
+ CellLabel->
+  "Out[127]=",ExpressionUUID->"e8d5c459-3aac-4ccb-ba25-b07601390e1e"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"\:041d\:0430\:0438\:0431\:043e\:043b\:044c\:0448\:0438\:0435", " ", 
+   RowBox[{
+   "\:0437\:043d\:0430\:0447\:0435\:043d\:0438\:044f", ":"}]}]}]], "Input",
+ CellChangeTimes->{{3.8268102360047436`*^9, 3.8268102378545485`*^9}, {
+  3.826810311773255*^9, 
+  3.826810324632256*^9}},ExpressionUUID->"10337ebf-51fa-4281-9af5-\
+7561572ebdbe"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TakeLargest", "[", 
+  RowBox[{
+   RowBox[{"africanAirports", " ", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "10"}], "]"}]], "Input",
+ CellChangeTimes->{{3.826810334334114*^9, 3.82681033769611*^9}, 
+   3.8268105070930014`*^9},
+ CellLabel->
+  "In[128]:=",ExpressionUUID->"99bb2492-30a4-4ce0-8f98-d20516441f52"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "621", ",", "519", ",", "183", ",", "169", ",", "137", ",", "118", ",", 
+   "99", ",", "80", ",", "75", ",", "57"}], "}"}]], "Output",
+ CellChangeTimes->{{3.8268084107559876`*^9, 3.8268084152415056`*^9}, 
+   3.826808464444378*^9, 3.826808496864179*^9, 3.8268085744961348`*^9, 
+   3.826808660114577*^9, {3.826808694537799*^9, 3.8268087116673*^9}, 
+   3.8268089742304516`*^9, {3.8268100086381407`*^9, 3.826810018037203*^9}, {
+   3.826810193039974*^9, 3.826810207558628*^9}, {3.8268103350869684`*^9, 
+   3.826810338756482*^9}, {3.8268105079743834`*^9, 3.8268105189719872`*^9}},
+ CellLabel->
+  "Out[128]=",ExpressionUUID->"f2f14b51-0f87-45bc-9233-b1624052b241"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+  "\:041f\:043e\:043b\:0443\:0447\:0438\:043c", " ", 
+   "\:043e\:0431\:0449\:0435\:0435", " ", 
+   "\:043a\:043e\:043b\:0438\:0447\:0435\:0441\:0442\:0432\:043e", " ", 
+   "\:0430\:044d\:0440\:043e\:043f\:043e\:0440\:0442\:043e\:0432", " ", 
+   "\:0438", " ", "\:0441\:0440\:0435\:0434\:043d\:0435\:0435", " ", 
+   RowBox[{
+   "\:0437\:043d\:0430\:0447\:0435\:043d\:0438\:0435", ":"}]}]}]], "Input",
+ CellChangeTimes->{
+  3.827031121473153*^9, {3.827032108437473*^9, 3.827032133765688*^9}, {
+   3.827032502575709*^9, 
+   3.8270325050328894`*^9}},ExpressionUUID->"f2e860a9-3a27-49db-bc7f-\
+efee811d19a3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"asianAirports", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", "\"\<Asia\>\"", "]"}]}], "}"}]}], "]"}], 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"asianAirportAmounts", " ", "=", " ", 
+   RowBox[{"asianAirports", "[", 
+    RowBox[{"[", 
+     RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Total", "[", "asianAirportAmounts", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Mean", "[", "asianAirportAmounts", "]"}]}], "Input",
+ CellChangeTimes->{{3.827032320805011*^9, 3.8270323983778152`*^9}, {
+  3.8270324430651493`*^9, 3.8270324547480326`*^9}, {3.82703250784921*^9, 
+  3.827032633343423*^9}},ExpressionUUID->"2ef2295e-f78b-4a19-bf27-\
+82c497086bf1"],
+
+Cell[BoxData["2702"], "Output",
+ CellChangeTimes->{{3.8270325625489273`*^9, 3.827032613779157*^9}},
+ CellLabel->"Out[48]=",ExpressionUUID->"d0ca1094-36a3-49b1-bfc7-71500e04c816"],
+
+Cell[BoxData[
+ FractionBox["1351", "24"]], "Output",
+ CellChangeTimes->{{3.8270325625489273`*^9, 3.8270326137835717`*^9}},
+ CellLabel->"Out[49]=",ExpressionUUID->"1bcf787a-ad44-4425-87f2-b89c2d9d2ecd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+  "\:0421\:0440\:0430\:0432\:043d\:0438\:043c", " ", 
+   "\:043a\:043e\:043b\:0438\:0447\:0435\:0441\:0442\:0432\:043e", " ", 
+   "\:0430\:044d\:0440\:043e\:043f\:043e\:0440\:0442\:043e\:0432", 
+   " "}]}]], "Input",
+ CellChangeTimes->{{3.8270431361978073`*^9, 
+  3.8270431491950436`*^9}},ExpressionUUID->"078f139d-6c0e-42bf-8f7a-\
+024847a0864c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"asianAirports", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", "\"\<Asia\>\"", "]"}]}], "}"}]}], "]"}], 
+     ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"africanAirports", " ", "=", " ", 
+   RowBox[{"DeleteCases", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}],
+        ",", 
+       RowBox[{"{", 
+        RowBox[{"country", ",", 
+         RowBox[{"CountryData", "[", "\"\<Africa\>\"", "]"}]}], "}"}]}], 
+      "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"europeanAirports", " ", "=", " ", 
+    RowBox[{"DeleteCases", "[", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"country", ",", 
+          RowBox[{"CountryData", "[", 
+           RowBox[{"country", ",", "\"\<UnpavedAirports\>\""}], "]"}]}], 
+         "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"country", ",", 
+          RowBox[{"CountryData", "[", "\"\<Europe\>\"", "]"}]}], "}"}]}], 
+       "]"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"_", ",", " ", "_Missing"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"BarChart", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Mean", "[", 
+      RowBox[{"asianAirports", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], ",", " ", 
+     RowBox[{"Mean", "[", 
+      RowBox[{"africanAirports", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], ",", " ", 
+     RowBox[{"Mean", "[", 
+      RowBox[{"europeanAirports", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], "}"}], ",", " ", 
+   RowBox[{"ChartLabels", " ", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Asia\>\"", ",", " ", "\"\<Africa\>\"", ",", " ", "\"\<Europe\>\""}],
+      "}"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8270432643118706`*^9, 3.827043296904267*^9}, {
+  3.8270433452134295`*^9, 3.827043428478509*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"91ae10fe-2484-44c0-aab7-2d0bfd2903d6"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Opacity[0], 
+    PointBox[{{-0.4116533139111435, 0.}, {4.35360524399126, 0.}}]}, {{}, 
+    {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[
+     0.6789999999999999], Thickness[Small]}], 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[
+      0.6789999999999999], Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0.5487982520029133, 0.}, {1.4512017479970867`, 
+             56.291666666666664`}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{80.81306546384738, 
+            144.51086489488318`}, {-105.69686859372308`, 97.85}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 
+          Rational[1351, 24]]& ,
+         TagBoxNote->"1351/24"],
+        StyleBox[
+         FractionBox["1351", "24"], {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         Rational[1351, 24], {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[
+      0.6789999999999999], Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{1.5487982520029133`, 0.}, {2.4512017479970867`, 
+             50.68627450980392}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{150.8458165686191, 
+            214.54361599965492`}, {-85.47793758515235, 97.85}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 
+          Rational[2585, 51]]& ,
+         TagBoxNote->"2585/51"],
+        StyleBox[
+         FractionBox["2585", "51"], {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[
+         Rational[2585, 51], {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[
+      0.6789999999999999], Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{2.5487982520029133`, 0.}, {3.4512017479970867`, 
+             48.}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{220.87856767339082`, 
+            284.57636710442665`}, {-75.78841052551368, 97.85}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 48]& ,
+         TagBoxNote->"48"],
+        StyleBox["48", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[48, {}], "Tooltip"]& ]}}, {}, {}}, {}, {}, {}, {}, 
+   StyleBox[{
+     {Thickness[Tiny], 
+      LineBox[{{-0.4116533139111435, 0.}, {4.430862345229425, 0.}}], 
+      StyleBox[{}, "GraphicsLabel",
+       StripOnInput->False]}, 
+     StyleBox[{
+       {Thickness[Tiny], 
+        LineBox[{{0.5487982520029133, 0.}, 
+          Offset[{-1.102182119232618*^-15, -6.}, {0.5487982520029133, 0.}]}], 
+        LineBox[{{3.4512017479970867`, 0.}, 
+          Offset[{-1.102182119232618*^-15, -6.}, {3.4512017479970867`, 
+           0.}]}], {{}, {}, {}, {
+          LineBox[{{1.4512017479970867`, 0.}, 
+            Offset[{-7.347880794884119*^-16, -4.}, {1.4512017479970867`, 
+             0.}]}], LineBox[{{1.5487982520029133`, 0.}, 
+            Offset[{-7.347880794884119*^-16, -4.}, {1.5487982520029133`, 
+             0.}]}], LineBox[{{2.4512017479970867`, 0.}, 
+            Offset[{-7.347880794884119*^-16, -4.}, {2.4512017479970867`, 
+             0.}]}], 
+          LineBox[{{2.5487982520029133`, 0.}, 
+            Offset[{-7.347880794884119*^-16, -4.}, {2.5487982520029133`, 
+             0.}]}]}, {}}}, 
+       StyleBox[
+        {Thickness[Tiny], 
+         InsetBox["\<\"Asia\"\>", Offset[{0, -2}, {1., 0.}], 
+          ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], 
+         InsetBox["\<\"Africa\"\>", Offset[{0, -2}, {2., 0.}], 
+          ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}], 
+         InsetBox["\<\"Europe\"\>", Offset[{0, -2}, {3., 0.}], 
+          ImageScaled[{Rational[1, 2], 1}], Automatic, {1, 0}]}, 
+        "GraphicsLabel",
+        StripOnInput->False]}, "GraphicsTicks",
+      StripOnInput->False]}, "GraphicsAxes",
+    StripOnInput->False,
+    Antialiasing->False]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{-0.4116533139111435, 0.},
+  CoordinatesToolOptions:>{"DisplayFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& )},
+  DisplayFunction->Identity,
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  PlotRange->{{All, All}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{None, Automatic}]], "Output",
+ CellChangeTimes->{{3.8270434250795527`*^9, 3.8270434295272446`*^9}},
+ CellLabel->"Out[8]=",ExpressionUUID->"fd639a87-3b0a-4a61-a001-609f1229ade3"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+  "\:0423\:0437\:043d\:0430\:0435\:043c", " ", 
+   "\:0437\:0430\:0432\:0438\:0441\:0438\:043c\:043e\:0441\:0442\:044c", " ", 
+   "\:043a\:043e\:043b\:0438\:0447\:0435\:0441\:0442\:0432\:0430", " ", 
+   "\:0430\:044d\:0440\:043e\:0434\:0440\:043e\:043c\:043e\:0432", " ", 
+   "\:043e\:0442", " ", "\:0412\:0412\:041f"}]}]], "Input",
+ CellChangeTimes->{
+  3.8270508446366615`*^9, {3.8270509490198116`*^9, 3.8270509849859095`*^9}, {
+   3.82705164145029*^9, 
+   3.827051644884041*^9}},ExpressionUUID->"c65deeb8-7ab4-4219-b493-\
+264c75b601a6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Tooltip", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"CountryData", "[", 
+          RowBox[{"i", ",", " ", "\"\<UnpavedAirports\>\""}], "]"}], ",", " ", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"i", ",", " ", "\"\<GDP\>\""}], "]"}]}], "}"}], ",", " ", 
+       RowBox[{"CountryData", "[", 
+        RowBox[{"i", ",", " ", "\"\<Name\>\""}], "]"}]}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", " ", 
+       RowBox[{"CountryData", "[", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLogPlot", "[", 
+  RowBox[{"data", ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<UnpavedAirports\>\"", ",", " ", "\"\<GDP\>\""}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.827050985685667*^9, 3.8270510702966204`*^9}, {
+  3.8270511055096025`*^9, 3.827051160205555*^9}, {3.8270513577090645`*^9, 
+  3.8270513952411537`*^9}, {3.82705142698351*^9, 3.8270514277068834`*^9}, {
+  3.827051475461608*^9, 3.8270515184068365`*^9}, {3.8270515802044168`*^9, 
+  3.8270515860512915`*^9}, {3.8270516285874977`*^9, 3.827051655123406*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"09051941-a475-4429-b7ae-fcceb9b9fe95"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668], 
+     AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxFVglYzekaP6VNEzKlGyppKtqotGk559ceUdpO25wWlBrShkcxHLKU7GUJ
+ozCXujKlBaMiiorbrmRKWlwxUxzmZlBqurf/e/7nec5znt9599/7vt/3zV8d
+6x0hyeFwqia+//v9/0doj9Sdl0Pc8y0x+YeIl9b24oBGIoOFflCRejV7oHOp
+WG5eFmmy0tlsEmMtxt/ot310JjkH49mz7kw3WCLWT101s0jb2XwSxx1G0rDe
+sbdPrMXyGaPxIcV8Jl5YOHLMp6nzP9owci562lYWSLWSvhqG5nlw4k5bMfk5
+Yujz5W1BLpQ/Bzt6x/x3x1qL7f9SaZup2c3oc0zxa0TksZYxkjtC6+meXaVB
+TH4cReillGnUr2H54IQ3fTA7z8hxCD7+BkpGsay/uPNPu/Jvkb4XFJa9TO2/
+wODzeYivG8w4a2crzu/gqrqm2hwzwpyEYgfL595k74saHbs1Su/JvxUCtj2t
+b08muRpcTb9NSWylfA0ho+G5v1ya9Jfijh8nNDGcwW7pOBsn4jUuovgiXuHq
+RwlOUeZiXF8fE/Ryg4WYj4YtYZuC9pLcFTlzR5O4ukx8xOM1L6P7gYDhT7gC
+99tnFPm5cydxWDouWjzo7BYSv5qoXf/p8bAPMw/4Hjujc+OrO6h/LshMqOMq
+tTK40gv3lv6w6Ttfdp6kXh99WThI8+iDJzWio7I25D8CuR05a/dnUv2rsJQ7
+/0RYBsm14Y1DO3mDVM8SbGwtHFGyIP+K2DLvk/aILSNvSsRVlZ57cZEk18ez
+z4WS0nFUrwdaP7l1zBHzLeIdyMuvuDSP+qON9BvNWo8SKJ4q7KrTSzcakL4r
+orR37f99GfmXA99+/4WYraYMtsKTpP50q1imHxPZr55iV2noxcRHJG638ESu
+F6ifapBo872eosfGK5SyDx4fJsyDGn90jX2aeD84P4aYlGRupvlThMSeG9nR
+WcTveuwN/mZH8BdbsbzHpzt/xxDlbwi5jv9Kt88kfpWxqzmhobqdnSfjf0qP
+NX5hce7y/0hEC5l6wrZAomhxtpki1b8Qxc9kL+n6sfPd4M9fs0CK9o2P7oxW
+iQgjmk9tyF3NTRrpYrDQH5EJuo/1PpC9NUqq5Xe+r2f8wx9+/WMB5a8ZeWUA
+BK3PPAcKmPqshNBqXuwfcoc5b3oicWWVjdGWFqrPDl8r9MxbjAhb4FzXOY+L
+BYRNsOukR0ZTMc2HPZJDOZt1fIg/c9waGLea82/ibxGktQys9fdRvsDmqoqW
+Uns76g/qTsT+Ei20Est1NA9srP2dqSdnLeYEZvy1wo34M0b8O71BExU6bxUR
+WiU1W+Mx8SUH3w3WkptySF8XWY7zhD93Woj9O395zj2UTflYwsaHN7UOFJ8D
+rbfr3L2KrcTy2wYXfzuTzc5XdJWMc2AHgyf2069xvEDhGu23Ox6Gz78UepPd
+l3WWBjdqRgkrYuT7bS/idCi+J7imo01uIWw/Ty9+Lsi6T/n64riLmqR3NvEv
+hzQJjWMyW0luiONp/1CXPUn2uniwMu2atCV7H8kPnQ98lEr6puiuVa7RrSSs
+iJsyukK5MMY+6hSeZ+0+GtxF95EqOh0Uhvlm5J8Hp8UHyhWC2PtnU3Nvhk8M
++bPGcMS3GtJChn/hxPleLIhdHkP6TohNDu1Vm079CYbseNyRMVuSOyDDrM/A
+VYf4UoNdgPCFVhrlo4/Pf8o03i1l+K/0gdKjskTudJrHMET/XPUvA5A/U2xO
+zrMWuLE4Rt7KfZr4PubgWtnhrEYO9dcZZssenl1ow87rYYeXb1V/Jf8CJI5a
+mKjPpPpcYatdKyUXxPqrtdq6YmALw7/QEzmd3IOPB5l6OoRwEvC394jo/EnF
+GvWt/UECqnc1AvW8Tj3QYfxpRuCrv8+U/CsU3wkF010urZtLfFii3SVo0S0T
+iq+PkHunaw6EsfeJ28eSzNh3hJegPDDyZsMcqs8WDVGcG7e5jH1UCj50OKoK
+9GiflbFdPWmobCr7PvDI/MVeNlV8n+OnXfmn7h5hsGY4KszLhhdEUn5akOW2
+7jPtY/l/w79XdTeP6lVFxzvPky0g/jVRNOsbAxdVdl6NSxT+PB1O+Wtj22lZ
+vlop2dujNU8xpF2J7JejYL7aoiQXxr5wO9brTRl5coL4cYEdf8DosCbVtxJ1
+os5LWeL3Fwefdosaty6g/gbC44qg7lwe5e+MdzW9U+fMpfz0IZ8b0fLejO6v
+ABivrNP8YZziWUJ96A9hsCvjv9IbDwcNM1U2sOdBeGVrwPUa9v2w9nJKhWkz
++RcgTSFCsIfecxP9D7/YV7JXmt3Pccc/SorXk74yXs9at1o0SPsvh0/na97V
+D1D+xugpP+NZRO+liftI93Z0XEQg+VPDi/pz1/02sufhQaOf1BvuUL9FvNmx
+MyT7rpowmIu+HW8K6x0ovxg4a0jF4z71yxCOyZ+VFlYz9fVEYepvvctOXZ3k
+XxhWhePZU6pmFzHvKY4bovalzu28S/FtcMzbTdutlrAt8n7sP/P1IpOPcTwW
+XOanvnpF/KliSVWTc8Zy8T5yElf0Og6+ZvIVOsApfcPxWHnyx8c0ZcmuI120
+j1EYyf9O/kWdJf4GMBYnKw==
+      "]]}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668],
+       AbsoluteThickness[1.6]}, {}}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668],
+       AbsoluteThickness[1.6]}, {}}, {
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{35., 23.673025050782172`}}]},
+       "\"Afghanistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Afghanistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 23.449684791228297`}}]},
+       "\"Albania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Albania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{86., 25.85899507394432}}]},
+       "\"Algeria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Algeria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 20.270709121304396`}}]},
+       "\"American Samoa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "American Samoa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{162., 25.273297617890417`}}]},
+       "\"Angola\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Angola", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 19.16819370296434}}]},
+       "\"Anguilla\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Anguilla", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 21.270091180064384`}}]},
+       "\"Antigua and Barbuda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Antigua and Barbuda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{974., 26.83176524423968}}]},
+       "\"Argentina\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Argentina", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 23.338674452617905`}}]},
+       "\"Armenia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Armenia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{139., 27.962251487469644`}}]},
+       "\"Australia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Australia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{30., 26.824290234091563`}}]},
+       "\"Austria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Austria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 24.595459002564827`}}]},
+       "\"Azerbaijan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Azerbaijan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{39., 23.274818161264125`}}]},
+       "\"Bahamas\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bahamas", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 26.435582637526288`}}]},
+       "\"Bangladesh\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bangladesh", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{30., 24.867676844142775`}}]},
+       "\"Belarus\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belarus", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 26.99540051221786}}]},
+       "\"Belgium\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belgium", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{38., 21.354332060748796`}}]},
+       "\"Belize\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belize", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 23.389848633555776`}}]},
+       "\"Benin\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Benin", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 21.61799542987228}}]},
+       "\"Bhutan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bhutan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{936., 24.434281538087202`}}]},
+       "\"Bolivia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bolivia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 23.721387674943287`}}]},
+       "\"Bosnia and Herzegovina\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bosnia and Herzegovina", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{68., 23.6323781545007}}]},
+       "\"Botswana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Botswana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3279., 28.24065517931871}}]},
+       "\"Brazil\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Brazil", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 20.62806420245083}}]},
+       "\"British Virgin Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "British Virgin Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 23.323687986168302`}}]},
+       "\"Brunei\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Brunei", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{80., 24.941702082089048`}}]},
+       "\"Bulgaria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bulgaria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{24., 23.479840149982323`}}]},
+       "\"Burkina Faso\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Burkina Faso", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 21.82598132318733}}]},
+       "\"Burundi\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Burundi", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 24.02240796739172}}]},
+       "\"Cambodia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cambodia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{25., 24.380666673261423`}}]},
+       "\"Cameroon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cameroon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{873., 28.182849880410327`}}]},
+       "\"Canada\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Canada", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 21.4072944397073}}]},
+       "\"Cape Verde\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cape Verde", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 22.425359393889995`}}]},
+       "\"Cayman Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cayman Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{38., 21.520911477614213`}}]},
+       "\"Central African Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Central African Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{46., 23.14939081578234}}]},
+       "\"Chad\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Chad", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{276., 26.36630049796068}}]},
+       "\"Chile\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Chile", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{57., 30.294276360384863`}}]},
+       "\"China\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "China", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{876., 26.503400550506406`}}]},
+       "\"Colombia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Colombia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 19.327969310903228`}}]},
+       "\"Cook Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cook Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{113., 24.846747497192606`}}]},
+       "\"Costa Rica\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Costa Rica", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{45., 24.82451240938333}}]},
+       "\"Croatia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Croatia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{71., 25.328665996488557`}}]},
+       "\"Cuba\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cuba", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 23.92457417047264}}]},
+       "\"Cyprus\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cyprus", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{78., 26.230584200653382`}}]},
+       "\"Czech Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Czech Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{168., 24.580190934437866`}}]},
+       "\"Democratic Republic of the Congo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Democratic Republic of the Congo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{64., 26.575692482582074`}}]},
+       "\"Denmark\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Denmark", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 21.922843906388444`}}]},
+       "\"Djibouti\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Djibouti", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{19., 25.211242418928514`}}]},
+       "\"Dominican Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Dominican Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 21.238207159592513`}}]},
+       "\"East Timor\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "East Timor", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{317., 25.400158040246122`}}]},
+       "\"Ecuador\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ecuador", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 26.43757645436003}}]},
+       "\"Egypt\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Egypt", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{61., 24.019940870109007`}}]},
+       "\"El Salvador\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "El Salvador", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 23.123592238096116`}}]},
+       "\"Equatorial Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Equatorial Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 21.448396850776174`}}]},
+       "\"Eritrea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Eritrea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 24.169658037779516`}}]},
+       "\"Estonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Estonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{46., 25.288734883335934`}}]},
+       "\"Ethiopia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ethiopia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 18.47042283584718}}]},
+       "\"Falkland Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Falkland Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{24., 22.434456580196482`}}]},
+       "\"Fiji\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Fiji", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{73., 26.317089095016293`}}]},
+       "\"Finland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Finland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{178., 28.63000394399817}}]},
+       "\"France\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "France", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 21.162165721140813`}}]},
+       "\"French Guiana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "French Guiana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 21.960927680371867`}}]},
+       "\"French Polynesia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "French Polynesia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{31., 23.536154030900533`}}]},
+       "\"Gabon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Gabon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 20.459300291111948`}}]},
+       "\"Gaza Strip\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Gaza Strip", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 23.599267942485316`}}]},
+       "\"Georgia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Georgia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{220., 28.977958562634303`}}]},
+       "\"Germany\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Germany", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 24.927714161185463`}}]},
+       "\"Ghana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ghana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 26.069671985889755`}}]},
+       "\"Greece\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Greece", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 21.83894052794631}}]},
+       "\"Greenland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Greenland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 21.9797362102301}}]},
+       "\"Guadeloupe\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guadeloupe", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 22.501602285842324`}}]},
+       "\"Guam\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guam", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{358., 25.063302945274703`}}]},
+       "\"Guatemala\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guatemala", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{12., 23.332620801369284`}}]},
+       "\"Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 21.016226013736564`}}]},
+       "\"Guinea-Bissau\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guinea-Bissau", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{89., 22.177322496561708`}}]},
+       "\"Guyana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guyana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 22.863212207487805`}}]},
+       "\"Haiti\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Haiti", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{94., 23.94595021904606}}]},
+       "\"Honduras\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Honduras", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{26., 25.804466190461156`}}]},
+       "\"Hungary\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Hungary", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{93., 23.90912395689823}}]},
+       "\"Iceland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iceland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{99., 28.687123289756858`}}]},
+       "\"India\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "India", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{519., 27.743627022909216`}}]},
+       "\"Indonesia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Indonesia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{183., 26.82211573312875}}]},
+       "\"Iran\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iran", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{29., 26.178988764468148`}}]},
+       "\"Iraq\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iraq", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{22., 26.68607035951264}}]},
+       "\"Ireland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ireland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{17., 26.702401358305455`}}]},
+       "\"Israel\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Israel", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{35., 28.324790299025587`}}]},
+       "\"Italy\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Italy", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{21., 24.797275125958294`}}]},
+       "\"Ivory Coast\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ivory Coast", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{15., 23.52408183625268}}]},
+       "\"Jamaica\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Jamaica", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{32., 29.256680651978474`}}]},
+       "\"Japan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Japan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 24.501612570040184`}}]},
+       "\"Jordan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Jordan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{32., 25.91712084648329}}]},
+       "\"Kazakhstan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kazakhstan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{165., 25.28242442462315}}]},
+       "\"Kenya\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kenya", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{16., 19.086699257124057`}}]},
+       "\"Kiribati\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kiribati", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 22.793428004897006`}}]},
+       "\"Kosovo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kosovo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 25.62677015234324}}]},
+       "\"Kuwait\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kuwait", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{11., 22.85797882808001}}]},
+       "\"Kyrgyzstan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kyrgyzstan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{32., 23.62324898642898}}]},
+       "\"Laos\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Laos", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{23., 24.253067567787394`}}]},
+       "\"Latvia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Latvia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 24.700459206460557`}}]},
+       "\"Lebanon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lebanon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{23., 21.62345663508652}}]},
+       "\"Lesotho\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lesotho", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{31., 21.84511214652176}}]},
+       "\"Liberia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Liberia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{78., 24.675974845841967`}}]},
+       "\"Libya\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Libya", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{55., 24.71630305829037}}]},
+       "\"Lithuania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lithuania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 24.987422357130892`}}]},
+       "\"Luxembourg\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Luxembourg", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 23.14625355493352}}]},
+       "\"North Macedonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "North Macedonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{62., 23.36829858929763}}]},
+       "\"Madagascar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Madagascar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{26., 22.760152689457385`}}]},
+       "\"Malawi\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Malawi", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{80., 26.622345096495856`}}]},
+       "\"Malaysia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Malaysia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 22.468850202394183`}}]},
+       "\"Maldives\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Maldives", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 23.58604604553836}}]},
+       "\"Mali\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mali", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{11., 19.214930387517388`}}]},
+       "\"Marshall Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Marshall Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 22.534337617206837`}}]},
+       "\"Martinique\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Martinique", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 22.750591700147986`}}]},
+       "\"Mauritania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mauritania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 23.375129708560703`}}]},
+       "\"Mauritius\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mauritius", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1498., 27.860772163281457`}}]},
+       "\"Mexico\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mexico", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 23.204451861852117`}}]},
+       "\"Moldova\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Moldova", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{31., 23.351756843315584`}}]},
+       "\"Mongolia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mongolia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 22.42705654395236}}]},
+       "\"Montenegro\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Montenegro", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{26., 25.500078086368337`}}]},
+       "\"Morocco\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Morocco", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{82., 23.42691703832295}}]},
+       "\"Mozambique\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mozambique", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{40., 25.05512817936909}}]},
+       "\"Myanmar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Myanmar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{108., 23.238259282195056`}}]},
+       "\"Namibia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Namibia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{36., 24.145617239690704`}}]},
+       "\"Nepal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nepal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 27.535688370546485`}}]},
+       "\"Netherlands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Netherlands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 21.70995801849128}}]},
+       "\"New Caledonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "New Caledonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{79., 26.05564044317914}}]},
+       "\"New Zealand\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "New Zealand", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{132., 23.250666306270805`}}]},
+       "\"Nicaragua\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nicaragua", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 23.282672563911962`}}]},
+       "\"Niger\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Niger", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 26.82832784765417}}]},
+       "\"Nigeria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nigeria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 21.00316772207923}}]},
+       "\"Northern Mariana Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Northern Mariana Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{42., 23.231088386449485`}}]},
+       "\"North Korea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "North Korea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{32., 26.723036699988874`}}]},
+       "\"Norway\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Norway", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{118., 25.066851688312862`}}]},
+       "\"Oman\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Oman", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{47., 26.351684855330163`}}]},
+       "\"Pakistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Pakistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 19.46446683821776}}]},
+       "\"Palau\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Palau", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{63., 24.924980893465204`}}]},
+       "\"Panama\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Panama", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{539., 23.940925379834212`}}]},
+       "\"Papua New Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Papua New Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{784., 24.364668099236393`}}]},
+       "\"Paraguay\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Paraguay", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{144., 26.14754625064356}}]},
+       "\"Peru\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Peru", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{169., 26.654968459937653`}}]},
+       "\"Philippines\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Philippines", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{41., 27.107050137142036`}}]},
+       "\"Poland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Poland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{23., 26.194216630020343`}}]},
+       "\"Portugal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Portugal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 25.37711760978106}}]},
+       "\"Puerto Rico\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Puerto Rico", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 25.93529633920687}}]},
+       "\"Qatar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Qatar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{19., 23.104716742027207`}}]},
+       "\"Republic of the Congo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Republic of the Congo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{28., 26.245036482906293`}}]},
+       "\"Romania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Romania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{621., 28.16157676369125}}]},
+       "\"Russia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Russia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 23.038023798054823`}}]},
+       "\"Rwanda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Rwanda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 20.531360726472762`}}]},
+       "\"Saint Vincent and the Grenadines\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Saint Vincent and the Grenadines", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 20.561517219177052`}}]},
+       "\"Samoa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Samoa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{137., 27.399047239499613`}}]},
+       "\"Saudi Arabia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Saudi Arabia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{9., 23.883583475659204`}}]},
+       "\"Senegal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Senegal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 24.663082346632027`}}]},
+       "\"Serbia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Serbia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 21.2532133050116}}]},
+       "\"Seychelles\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Seychelles", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 22.09482068081497}}]},
+       "\"Sierra Leone\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sierra Leone", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 25.381240072824028`}}]},
+       "\"Slovakia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Slovakia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 24.707463623861695`}}]},
+       "\"Slovenia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Slovenia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{34., 21.07748973757573}}]},
+       "\"Solomon Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Solomon Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{52., 22.275286561840115`}}]},
+       "\"Somalia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Somalia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{459., 26.58528107478325}}]},
+       "\"South Africa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "South Africa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{44., 28.127169484118202`}}]},
+       "\"South Korea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "South Korea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{58., 27.963281861492565`}}]},
+       "\"Spain\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Spain", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 25.15418719884744}}]},
+       "\"Sri Lanka\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sri Lanka", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{102., 23.662548623432762`}}]},
+       "\"Sudan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sudan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{42., 22.10586606752616}}]},
+       "\"Suriname\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Suriname", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 22.20681490880819}}]},
+       "\"Eswatini\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Eswatini", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{97., 26.99771313585842}}]},
+       "\"Sweden\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sweden", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{23., 27.278739984130073`}}]},
+       "\"Switzerland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Switzerland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{75., 24.422219525306694`}}]},
+       "\"Syria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Syria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 26.780049850175036`}}]},
+       "\"Taiwan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Taiwan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 22.817180485383133`}}]},
+       "\"Tajikistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tajikistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{116., 24.86920722691551}}]},
+       "\"Tanzania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tanzania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{41., 27.02157145054878}}]},
+       "\"Thailand\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Thailand", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 22.42071085685529}}]},
+       "\"Togo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Togo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 19.925542974631668`}}]},
+       "\"Tonga\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tonga", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 23.905486093745793`}}]},
+       "\"Trinidad and Tobago\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Trinidad and Tobago", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{16., 24.381627059247762`}}]},
+       "\"Tunisia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tunisia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{12., 27.349204088032046`}}]},
+       "\"Turkey\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turkey", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 24.430995083601257`}}]},
+       "\"Turkmenistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turkmenistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 20.74533257567741}}]},
+       "\"Turks and Caicos Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turks and Caicos Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 17.671417359130917`}}]},
+       "\"Tuvalu\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tuvalu", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{30., 24.260951096540232`}}]},
+       "\"Uganda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uganda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{236., 25.758795798783712`}}]},
+       "\"Ukraine\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ukraine", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 26.766236542136777`}}]},
+       "\"United Arab Emirates\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United Arab Emirates", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{199., 28.670277230872703`}}]},
+       "\"United Kingdom\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United Kingdom", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{9921., 30.695705593475914`}}]},
+       "\"United States\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United States", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{48., 24.749437065917306`}}]},
+       "\"Uruguay\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uruguay", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{27., 24.782350795418612`}}]},
+       "\"Uzbekistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uzbekistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{28., 20.63668220571495}}]},
+       "\"Vanuatu\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Vanuatu", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{275., 26.901955147890614`}}]},
+       "\"Venezuela\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Venezuela", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 26.291309703318984`}}]},
+       "\"Vietnam\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Vietnam", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{0., 17.909855120186375`}}]},
+       "\"Wallis and Futuna Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Wallis and Futuna Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{37., 24.040764953136446`}}]},
+       "\"Yemen\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Yemen", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{88., 23.861570120341685`}}]},
+       "\"Zambia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Zambia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{196., 23.788559564313783`}}]},
+       "\"Zimbabwe\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Zimbabwe", "Tooltip"]& ]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"UnpavedAirports\"", TraditionalForm], 
+    FormBox["\"GDP\"", TraditionalForm]},
+  AxesOrigin->{0, 16.652192891568678`},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{
+     Charting`ScaledTicks[{Log, Exp}], 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 249.}, {16.652192891568678`, 30.695705593475914`}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->FrontEndValueCache[{Automatic, 
+     Charting`ScaledTicks[{Log, Exp}]}, {Automatic, {{18.420680743952367`, 
+       FormBox[
+        TemplateBox[{"10", "8"}, "Superscript", SyntaxForm -> SuperscriptBox],
+         TraditionalForm], {0.01, 0.}}, {20.72326583694641, 
+       FormBox[
+        TemplateBox[{"10", "9"}, "Superscript", SyntaxForm -> SuperscriptBox],
+         TraditionalForm], {0.01, 0.}}, {23.025850929940457`, 
+       FormBox[
+        TemplateBox[{"10", "10"}, "Superscript", SyntaxForm -> 
+         SuperscriptBox], TraditionalForm], {0.01, 0.}}, {25.328436022934504`, 
+       FormBox[
+        TemplateBox[{"10", "11"}, "Superscript", SyntaxForm -> 
+         SuperscriptBox], TraditionalForm], {0.01, 0.}}, {27.631021115928547`, 
+       FormBox[
+        TemplateBox[{"10", "12"}, "Superscript", SyntaxForm -> 
+         SuperscriptBox], TraditionalForm], {0.01, 0.}}, {29.933606208922594`, 
+       FormBox[
+        TemplateBox[{"10", "13"}, "Superscript", SyntaxForm -> 
+         SuperscriptBox], TraditionalForm], {0.01, 0.}}, {16.11809565095832, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      16.811242831518264`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      17.216707939626428`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      17.50439001207821, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      17.72753356339242, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      17.909855120186375`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      18.064005800013632`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      18.197537192638155`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      18.31532022829454, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      19.11382792451231, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      19.519293032620475`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      19.806975105072254`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      20.030118656386467`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      20.21244021318042, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      20.36659089300768, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      20.5001222856322, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      20.617905321288585`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      21.416413017506358`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      21.82187812561452, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.1095601980663, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.33270374938051, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.515025306174465`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.669175986001726`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.80270737862625, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      22.920490414282632`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      23.7189981105004, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      24.124463218608568`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      24.412145291060348`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      24.635288842374557`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      24.81761039916851, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      24.97176107899577, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      25.10529247162029, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      25.223075507276675`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      26.021583203494448`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      26.42704831160261, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      26.714730384054395`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      26.937873935368604`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      27.12019549216256, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      27.274346171989816`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      27.40787756461434, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      27.525660600270722`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      28.324168296488494`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      28.729633404596658`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.017315477048438`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.240459028362647`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.4227805851566, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.576931264983862`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.710462657608385`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      29.82824569326477, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      30.626753389482538`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      31.032218497590705`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      31.319900570042485`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      31.543044121356694`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      31.72536567815065, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      31.879516357977906`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      32.01304775060243, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      32.13083078625881, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      32.23619130191664, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      32.92933848247659, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      33.33480359058475, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      33.62248566303653, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      33.84562921435074, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      34.027950771144695`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      34.182101450971956`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}}}]]], "Output",
+ CellChangeTimes->{3.827051433125333*^9, 3.8270514991941586`*^9, 
+  3.8270515880286427`*^9, 3.8270516566021*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"8b082107-35e5-4b96-8e79-36e9fc5b2fae"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+  "\:0417\:0430\:0432\:0438\:0441\:0438\:043c\:043e\:0441\:0442\:044c", " ", 
+   "\:043a\:043e\:043b\:0438\:0447\:0435\:0441\:0442\:0432\:0430", " ", 
+   "\:0433\:0440\:0443\:043d\:0442\:043e\:0432\:044b\:0439", " ", 
+   "\:0430\:044d\:0440\:043e\:043f\:043e\:0440\:0442\:043e\:0432", " ", 
+   "\:043e\:0442", " ", 
+   "\:0430\:044d\:0440\:043e\:043f\:043e\:0442\:043e\:0432", " ", "\:0432", 
+   " ", 
+   RowBox[{"\:0446\:0435\:043b\:043e\:043c", ".", " "}]}]}]], "Input",
+ CellChangeTimes->{{3.827052965977768*^9, 3.82705300896665*^9}, 
+   3.8270530457166033`*^9},ExpressionUUID->"8afc5368-7ab8-4166-9196-\
+5a6aab642ac2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Tooltip", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"CountryData", "[", 
+          RowBox[{"i", ",", " ", "\"\<Airports\>\""}], "]"}], ",", " ", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"i", ",", " ", "\"\<UnpavedAirports\>\""}], "]"}]}], "}"}], 
+       ",", " ", 
+       RowBox[{"CountryData", "[", 
+        RowBox[{"i", ",", " ", "\"\<Name\>\""}], "]"}]}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", " ", 
+       RowBox[{"CountryData", "[", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLogPlot", "[", 
+  RowBox[{"data", ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", " ", 
+    RowBox[{"{", 
+     RowBox[{"\"\<UnpavedAirports\>\"", ",", " ", "\"\<GDP\>\""}], "}"}]}]}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.8270529174954453`*^9, 3.8270529651202183`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"766c1dfd-f5c1-408c-a62f-05ffae8c47d6"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668], 
+     AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJx9VglQ1GUUX8ADQ4RQFhCJFcWLDRAUOaR9ICByBYjKIpvrBkJCoqBinH+U
+SxDicGhCbdDKA2W9BrlzM1GkwVEZ0XGakUZjSMu2wQjw6l//91Hft9p/Zmfn
+fcc7fu/33vtmq1Ii4/VFItEl/vf3/z8f5w+dQyarY7ZNBWHBFET//eo+hICO
+nzfDzbdx3ZDeF22CwKB9987JZ5B1+M1j7KWv44Dstee7KkHdH3q6otAa1+cx
++nLAzMiifaB9Oq4HwYE+o9GjS40EmfOFdTEu6lS7V4J+Lgz6jIsTR8OM8bwL
+bR/Cmft+UFiZ5JlpOxnllXDc57vOK1bkviXeH5aReCj3mksgwaYs9YaC+O/O
+6IsEj+ttdVf6Ecex03D5nfLobmcJnjdl8IkAP27Xi8VFBN9lMCqtyjqWPAXl
+WXS8Imc41nZH3D1rItoDcC379U8fDZ7/pQaye7wCdoqJf3YMvkw+uBV0/Fwo
+JPtWdEw7PE2QTXPA7USkIihTLMhnckFe23DYXIrxSUrA/lVp5ajVv/lMO+kl
+O3cEcZPEQewe15i7g2aCDBHw1bUvdxptR/11SrjWN/fps6kkfkcGHyUsDJsz
+w/9j3NckglnD7Y+0OYRvUWiP8HYRiNc0tp1N0kfZF6TnJ0xyK8f86OQ3Ew42
+PSm1mWKB+qMgYt9ihwkFE/B8BBgnmz0u3kb0z2LwZO25gL5k0ZjRyefIzxAa
+T/6+kUFDxqPq39H+cjrfnAoGnOxctywkeGTDkltl6fatJN55DB+CaXuiAIhx
+qAy8vgv5LnKj473LQUrZJ1bTq81xfy69D6tpfvH5EPg1ivrH61z0Wtk5FWo+
+3bK1vgDx5Pma/UVvu/hHA5QltP+ggOEStYXiKYlXSuOpkcPnF4+lr5Eif/j6
+7ZmpfbTf9C08Hw1b+4YubZyN+3U7wMFGbJWwEWXDAljVlmIxpGclyNo0uHGq
+Y++ePvSbk4Pty57v3bVEnx90dXqnb2/FOuH7Q0bu2LdJ9ZMEWaJk+qUXnFWn
+7HdcT+pqOdgGhnqI6xG//nhI6mr+preF5IPpT7z/1H5dIjTKNo1kJRNcXfE8
+2tfhry6fQpblNj1wNBjHi7bvD9rzN19km5P+ImH8cWf2vWk+gYquR77/Dr1s
+le+ePD43yD9+DL/4+nr8w/x8p93kPND55GKZfmjHxOehw08qXh3779H9mecr
+5U9XLTjZO4g3yGyA4Pn/9TSDxosLZvyPhvhDR/Uz64j/4WCc6uLVu5vMl1i4
+HK45wLUSPq9Ee4RP3kx9e9D9SPMBpJ09vTc8A/UrVfBw80LPF0VkXrLxBr8h
+fuJ/FLzr7Rh1cQD906yj+cIpoWnrUbmjOervV8EFbYXTzB7SzwyZeasAa8sH
+g5VVmN/iPLjVddfl5AKsv5FimBNU0xdzfCbqS8D+QPRvwXhJfW6AsFPl/vGN
+BL9wHX7S/dqS4bMX3f+5ALSP+TKsBjj46J66Bf3j80/3O0tcJx8zvzWb4RB3
+O8NETfBfgnzVQ9mTwV/K8EtCz0vOhznvrDPPho1b8p4vRb7w9bfqhLre/qCJ
+IJ/Jg4n6r9rt89FvzXpYEfXcbWIA5kujgtCAK50PvUn9uTJ8iISOq0X3R3IJ
+P4Npfoi0MhpfKY1/fzKMBP9kmBdC7r9P54tbC7GTj9Ra+5P+4cv0M3caD00c
+lJZ9bd9ggPiCnOGDhMHTksmfKdM/vOl+ytcrPZ88mfpj+6OWvAuFj69f6n2p
+TIA/mgpahu/hfOXf11S/0mRBYc9nVtFSYZ+L6wZXPfP5RxLshH3+PbSjLXy5
++wjmiwuCinyD5vsKMp9kNH81mQCqC3eq0vF9xvObxYOKn3+PdFz1fLLgAek3
+a0G5TfGse5DkIxH9NYe/AErRDro=
+      "]]}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668],
+       AbsoluteThickness[1.6]}, {}}, {
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.009166666666666668],
+       AbsoluteThickness[1.6]}, {}}, {
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{43., 3.5553480614894135`}}]},
+       "\"Afghanistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Afghanistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 0.}}]},
+       "\"Albania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Albania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{157., 4.454347296253507}}]},
+       "\"Algeria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Algeria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 0.}}]},
+       "\"American Samoa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "American Samoa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{176., 5.087596335232384}}]},
+       "\"Angola\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Angola", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.6931471805599453}}]},
+       "\"Anguilla\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Anguilla", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 0.}}]},
+       "\"Antigua and Barbuda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Antigua and Barbuda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1138., 6.881411303642535}}]},
+       "\"Argentina\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Argentina", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{11., 0.}}]},
+       "\"Armenia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Armenia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{480., 4.9344739331306915`}}]},
+       "\"Australia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Australia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{52., 3.4011973816621555`}}]},
+       "\"Austria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Austria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{37., 1.9459101490553132`}}]},
+       "\"Azerbaijan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Azerbaijan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{61., 3.6635616461296463`}}]},
+       "\"Bahamas\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bahamas", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 0.6931471805599453}}]},
+       "\"Bangladesh\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bangladesh", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{65., 3.4011973816621555`}}]},
+       "\"Belarus\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belarus", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{41., 2.8903717578961645`}}]},
+       "\"Belgium\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belgium", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{47., 3.6375861597263857`}}]},
+       "\"Belize\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Belize", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 1.3862943611198906`}}]},
+       "\"Benin\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Benin", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.}}]},
+       "\"Bhutan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bhutan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{855., 6.841615476477592}}]},
+       "\"Bolivia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bolivia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{24., 2.8903717578961645`}}]},
+       "\"Bosnia and Herzegovina\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bosnia and Herzegovina", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{74., 4.219507705176107}}]},
+       "\"Botswana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Botswana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4093., 8.095293776844649}}]},
+       "\"Brazil\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Brazil", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 0.6931471805599453}}]},
+       "\"British Virgin Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "British Virgin Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{68., 4.382026634673881}}]},
+       "\"Bulgaria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Bulgaria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{23., 3.1780538303479458`}}]},
+       "\"Burkina Faso\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Burkina Faso", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 1.9459101490553132`}}]},
+       "\"Burundi\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Burundi", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{16., 2.6390573296152584`}}]},
+       "\"Cambodia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cambodia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{33., 3.2188758248682006`}}]},
+       "\"Cameroon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cameroon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1467., 6.771935555839602}}]},
+       "\"Canada\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Canada", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{9., 0.}}]},
+       "\"Cape Verde\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cape Verde", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 0.}}]},
+       "\"Cayman Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cayman Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{39., 3.6375861597263857`}}]},
+       "\"Central African Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Central African Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{59., 3.828641396489095}}]},
+       "\"Chad\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Chad", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{481., 5.62040086571715}}]},
+       "\"Chile\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Chile", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{507., 4.04305126783455}}]},
+       "\"China\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "China", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{836., 6.775366090936392}}]},
+       "\"Colombia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Colombia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{11., 2.0794415416798357`}}]},
+       "\"Cook Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cook Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{161., 4.727387818712341}}]},
+       "\"Costa Rica\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Costa Rica", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{69., 3.8066624897703196`}}]},
+       "\"Croatia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Croatia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{133., 4.2626798770413155`}}]},
+       "\"Cuba\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cuba", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{15., 0.6931471805599453}}]},
+       "\"Cyprus\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Cyprus", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{128., 4.356708826689592}}]},
+       "\"Czech Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Czech Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{198., 5.123963979403259}}]},
+       "\"Democratic Republic of the Congo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Democratic Republic of the Congo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{80., 4.1588830833596715`}}]},
+       "\"Denmark\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Denmark", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 2.302585092994046}}]},
+       "\"Djibouti\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Djibouti", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{36., 2.9444389791664403`}}]},
+       "\"Dominican Republic\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Dominican Republic", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 1.3862943611198906`}}]},
+       "\"East Timor\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "East Timor", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{432., 5.75890177387728}}]},
+       "\"Ecuador\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ecuador", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{83., 2.5649493574615367`}}]},
+       "\"Egypt\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Egypt", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{68., 4.110873864173311}}]},
+       "\"El Salvador\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "El Salvador", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 0.}}]},
+       "\"Equatorial Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Equatorial Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13., 2.302585092994046}}]},
+       "\"Eritrea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Eritrea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 1.791759469228055}}]},
+       "\"Estonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Estonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{57., 3.828641396489095}}]},
+       "\"Ethiopia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ethiopia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 1.0986122886681098`}}]},
+       "\"Falkland Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Falkland Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{28., 3.1780538303479458`}}]},
+       "\"Fiji\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Fiji", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{148., 4.290459441148391}}]},
+       "\"Finland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Finland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{464., 5.181783550292085}}]},
+       "\"France\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "France", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{11., 1.9459101490553132`}}]},
+       "\"French Guiana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "French Guiana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{54., 1.791759469228055}}]},
+       "\"French Polynesia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "French Polynesia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{44., 3.4339872044851463`}}]},
+       "\"Gabon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Gabon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{22., 1.3862943611198906`}}]},
+       "\"Georgia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Georgia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{539., 5.393627546352362}}]},
+       "\"Germany\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Germany", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 1.3862943611198906`}}]},
+       "\"Ghana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ghana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{77., 2.6390573296152584`}}]},
+       "\"Greece\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Greece", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{15., 1.6094379124341003`}}]},
+       "\"Greenland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Greenland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 0.}}]},
+       "\"Guadeloupe\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guadeloupe", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 0.}}]},
+       "\"Guam\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guam", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{291., 5.8805329864007}}]},
+       "\"Guatemala\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guatemala", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{16., 2.4849066497880004`}}]},
+       "\"Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 1.9459101490553132`}}]},
+       "\"Guinea-Bissau\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guinea-Bissau", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{117., 4.48863636973214}}]},
+       "\"Guyana\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Guyana", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 2.302585092994046}}]},
+       "\"Haiti\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Haiti", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{103., 4.543294782270004}}]},
+       "\"Honduras\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Honduras", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{41., 3.258096538021482}}]},
+       "\"Hungary\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Hungary", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{96., 4.532599493153256}}]},
+       "\"Iceland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iceland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{346., 4.59511985013459}}]},
+       "\"India\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "India", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{673., 6.251903883165888}}]},
+       "\"Indonesia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Indonesia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{319., 5.209486152841421}}]},
+       "\"Iran\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iran", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{102., 3.367295829986474}}]},
+       "\"Iraq\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Iraq", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{40., 3.091042453358316}}]},
+       "\"Ireland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ireland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{47., 2.833213344056216}}]},
+       "\"Israel\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Israel", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{129., 3.5553480614894135`}}]},
+       "\"Italy\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Italy", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{27., 3.044522437723423}}]},
+       "\"Ivory Coast\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ivory Coast", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{28., 2.70805020110221}}]},
+       "\"Jamaica\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Jamaica", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{175., 3.4657359027997265`}}]},
+       "\"Japan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Japan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{18., 0.6931471805599453}}]},
+       "\"Jordan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Jordan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{96., 3.4657359027997265`}}]},
+       "\"Kazakhstan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kazakhstan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{197., 5.10594547390058}}]},
+       "\"Kenya\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kenya", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{19., 2.772588722239781}}]},
+       "\"Kiribati\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kiribati", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 1.3862943611198906`}}]},
+       "\"Kosovo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kosovo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 1.0986122886681098`}}]},
+       "\"Kuwait\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kuwait", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{28., 2.3978952727983707`}}]},
+       "\"Kyrgyzstan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Kyrgyzstan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{41., 3.4657359027997265`}}]},
+       "\"Laos\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Laos", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{42., 3.1354942159291497`}}]},
+       "\"Latvia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Latvia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 0.6931471805599453}}]},
+       "\"Lebanon\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lebanon", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{24., 3.1354942159291497`}}]},
+       "\"Lesotho\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lesotho", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{29., 3.4339872044851463`}}]},
+       "\"Liberia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Liberia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{146., 4.356708826689592}}]},
+       "\"Libya\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Libya", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{61., 4.007333185232471}}]},
+       "\"Lithuania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Lithuania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.}}]},
+       "\"Luxembourg\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Luxembourg", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{10., 1.3862943611198906`}}]},
+       "\"North Macedonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "North Macedonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{83., 4.127134385045092}}]},
+       "\"Madagascar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Madagascar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{32., 3.258096538021482}}]},
+       "\"Malawi\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Malawi", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{114., 4.382026634673881}}]},
+       "\"Malaysia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Malaysia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{9., 1.0986122886681098`}}]},
+       "\"Maldives\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Maldives", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{25., 2.6390573296152584`}}]},
+       "\"Mali\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mali", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{15., 2.3978952727983707`}}]},
+       "\"Marshall Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Marshall Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{2., 0.}}]},
+       "\"Martinique\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Martinique", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{30., 2.8903717578961645`}}]},
+       "\"Mauritania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mauritania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 1.3862943611198906`}}]},
+       "\"Mauritius\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mauritius", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1714., 7.311886164077165}}]},
+       "\"Mexico\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mexico", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 1.791759469228055}}]},
+       "\"Moldova\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Moldova", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{44., 3.4339872044851463`}}]},
+       "\"Mongolia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mongolia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 0.6931471805599453}}]},
+       "\"Montenegro\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Montenegro", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{55., 3.258096538021482}}]},
+       "\"Morocco\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Morocco", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{98., 4.406719247264253}}]},
+       "\"Mozambique\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Mozambique", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{64., 3.6888794541139363`}}]},
+       "\"Myanmar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Myanmar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{112., 4.68213122712422}}]},
+       "\"Namibia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Namibia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{47., 3.58351893845611}}]},
+       "\"Nepal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nepal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{29., 1.9459101490553132`}}]},
+       "\"Netherlands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Netherlands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{25., 2.5649493574615367`}}]},
+       "\"New Caledonia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "New Caledonia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{123., 4.3694478524670215`}}]},
+       "\"New Zealand\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "New Zealand", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{147., 4.882801922586371}}]},
+       "\"Nicaragua\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nicaragua", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{30., 2.8903717578961645`}}]},
+       "\"Niger\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Niger", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{54., 2.8903717578961645`}}]},
+       "\"Nigeria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Nigeria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{5., 0.6931471805599453}}]},
+       "\"Northern Mariana Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Northern Mariana Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{82., 3.7376696182833684`}}]},
+       "\"North Korea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "North Korea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{95., 3.4657359027997265`}}]},
+       "\"Norway\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Norway", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{132., 4.770684624465665}}]},
+       "\"Oman\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Oman", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{151., 3.8501476017100584`}}]},
+       "\"Pakistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Pakistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{3., 0.6931471805599453}}]},
+       "\"Palau\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Palau", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{117., 4.143134726391533}}]},
+       "\"Panama\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Panama", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{561., 6.289715570908998}}]},
+       "\"Papua New Guinea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Papua New Guinea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{799., 6.664409020350408}}]},
+       "\"Paraguay\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Paraguay", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{191., 4.969813299576001}}]},
+       "\"Peru\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Peru", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{247., 5.1298987149230735`}}]},
+       "\"Philippines\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Philippines", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{126., 3.713572066704308}}]},
+       "\"Poland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Poland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{64., 3.1354942159291497`}}]},
+       "\"Portugal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Portugal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{29., 2.5649493574615367`}}]},
+       "\"Puerto Rico\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Puerto Rico", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 0.6931471805599453}}]},
+       "\"Qatar\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Qatar", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{27., 2.9444389791664403`}}]},
+       "\"Republic of the Congo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Republic of the Congo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{45., 3.332204510175204}}]},
+       "\"Romania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Romania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1218., 6.431331081933479}}]},
+       "\"Russia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Russia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{7., 1.6094379124341003`}}]},
+       "\"Rwanda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Rwanda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 0.}}]},
+       "\"Saint Vincent and the Grenadines\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Saint Vincent and the Grenadines", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 0.6931471805599453}}]},
+       "\"Samoa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Samoa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{214., 4.919980925828125}}]},
+       "\"Saudi Arabia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Saudi Arabia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{20., 2.1972245773362196`}}]},
+       "\"Senegal\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Senegal", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{26., 2.8903717578961645`}}]},
+       "\"Serbia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Serbia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 1.791759469228055}}]},
+       "\"Seychelles\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Seychelles", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 2.0794415416798357`}}]},
+       "\"Sierra Leone\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sierra Leone", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{35., 2.8903717578961645`}}]},
+       "\"Slovakia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Slovakia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{16., 2.302585092994046}}]},
+       "\"Slovenia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Slovenia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{36., 3.5263605246161616`}}]},
+       "\"Solomon Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Solomon Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{61., 3.9512437185814275`}}]},
+       "\"Somalia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Somalia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{566., 6.129050210060545}}]},
+       "\"South Africa\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "South Africa", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{111., 3.784189633918261}}]},
+       "\"South Korea\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "South Korea", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{150., 4.060443010546419}}]},
+       "\"Spain\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Spain", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{19., 0.6931471805599453}}]},
+       "\"Sri Lanka\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sri Lanka", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{74., 4.624972813284271}}]},
+       "\"Sudan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sudan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{55., 3.7376696182833684`}}]},
+       "\"Suriname\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Suriname", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 0.6931471805599453}}]},
+       "\"Svalbard\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Svalbard", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{14., 2.5649493574615367`}}]},
+       "\"Eswatini\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Eswatini", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{231., 4.574710978503383}}]},
+       "\"Sweden\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Sweden", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{63., 3.1354942159291497`}}]},
+       "\"Switzerland\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Switzerland", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{90., 4.31748811353631}}]},
+       "\"Syria\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Syria", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{37., 1.3862943611198906`}}]},
+       "\"Taiwan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Taiwan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{24., 2.0794415416798357`}}]},
+       "\"Tajikistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tajikistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{166., 4.7535901911063645`}}]},
+       "\"Tanzania\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tanzania", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{101., 3.713572066704308}}]},
+       "\"Thailand\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Thailand", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 1.791759469228055}}]},
+       "\"Togo\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Togo", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 1.6094379124341003`}}]},
+       "\"Tonga\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tonga", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{4., 1.0986122886681098`}}]},
+       "\"Trinidad and Tobago\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Trinidad and Tobago", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{29., 2.772588722239781}}]},
+       "\"Tunisia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tunisia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{98., 2.4849066497880004`}}]},
+       "\"Turkey\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turkey", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{26., 1.9459101490553132`}}]},
+       "\"Turkmenistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turkmenistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{8., 0.6931471805599453}}]},
+       "\"Turks and Caicos Islands\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Turks and Caicos Islands", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{1., 0.}}]},
+       "\"Tuvalu\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Tuvalu", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{47., 3.4011973816621555`}}]},
+       "\"Uganda\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uganda", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{187., 5.4638318050256105`}}]},
+       "\"Ukraine\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Ukraine", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{43., 2.6390573296152584`}}]},
+       "\"United Arab Emirates\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United Arab Emirates", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{460., 5.293304824724492}}]},
+       "\"United Kingdom\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United Kingdom", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{13513., 9.202409001649903}}]},
+       "\"United States\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "United States", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{133., 3.871201010907891}}]},
+       "\"Uruguay\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uruguay", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{53., 3.295836866004329}}]},
+       "\"Uzbekistan\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Uzbekistan", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{31., 3.332204510175204}}]},
+       "\"Vanuatu\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Vanuatu", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{444., 5.616771097666572}}]},
+       "\"Venezuela\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Venezuela", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{45., 1.791759469228055}}]},
+       "\"Vietnam\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Vietnam", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{6., 1.0986122886681098`}}]},
+       "\"Western Sahara\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Western Sahara", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{57., 3.6109179126442243`}}]},
+       "\"Yemen\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Yemen", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{88., 4.477336814478207}}]},
+       "\"Zambia\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Zambia", "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       {Opacity[0.], PointBox[{{196., 5.278114659230517}}]},
+       "\"Zimbabwe\"",
+       TooltipStyle->"TextStyling"],
+      Annotation[#, "Zimbabwe", "Tooltip"]& ]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"UnpavedAirports\"", TraditionalForm], 
+    FormBox["\"GDP\"", TraditionalForm]},
+  AxesOrigin->{0, -0.7201407283250522},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{
+     Charting`ScaledTicks[{Log, Exp}], 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 403.}, {-0.7201407283250522, 9.202409001649903}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->FrontEndValueCache[{Automatic, 
+     Charting`ScaledTicks[{Log, Exp}]}, {Automatic, {{0., 
+       FormBox["1", TraditionalForm], {0.01, 0.}}, {2.302585092994046, 
+       FormBox["10", TraditionalForm], {0.01, 0.}}, {4.605170185988092, 
+       FormBox["100", TraditionalForm], {0.01, 0.}}, {6.907755278982137, 
+       FormBox["1000", TraditionalForm], {0.01, 0.}}, {9.210340371976184, 
+       FormBox[
+        TemplateBox[{"10", "4"}, "Superscript", SyntaxForm -> SuperscriptBox],
+         TraditionalForm], {0.01, 0.}}, {-2.3025850929940455`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-1.6094379124341003`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-1.2039728043259361`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.916290731874155, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.6931471805599453, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.5108256237659907, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.35667494393873245`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.2231435513142097, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}, {-0.10536051565782628`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      0.6931471805599453, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      1.0986122886681098`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      1.3862943611198906`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      1.6094379124341003`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      1.791759469228055, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      1.9459101490553132`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      2.0794415416798357`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      2.1972245773362196`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      2.995732273553991, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      3.4011973816621555`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      3.6888794541139363`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      3.912023005428146, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.0943445622221, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.248495242049359, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.382026634673881, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.499809670330265, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.298317366548036, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.703782474656201, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.991464547107982, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.214608098422191, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.396929655216146, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.551080335043404, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.684611727667927, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.802394763324311, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      7.600902459542082, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.006367567650246, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.294049640102028, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.517193191416238, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.699514748210191, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.85366542803745, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      8.987196820661973, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      9.104979856318357, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      9.903487552536127, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      10.308952660644293`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      10.596634733096073`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      10.819778284410283`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      11.002099841204238`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      11.156250521031495`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      11.289781913656018`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      11.407564949312402`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      11.512925464970229`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}}}]]], "Output",
+ CellChangeTimes->{{3.8270529405482435`*^9, 3.8270529685630636`*^9}},
+ CellLabel->"Out[12]=",ExpressionUUID->"b4980c24-88d1-4f19-bcbb-4f2087b6a85b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"plotFn", "[", 
+    RowBox[{
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"Tooltip", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"CountryData", "[", 
+            RowBox[{"i", ",", " ", "\"\<Airports\>\""}], "]"}], ",", " ", 
+           RowBox[{"CountryData", "[", 
+            RowBox[{"i", ",", " ", "property"}], "]"}]}], "}"}], ",", " ", 
+         RowBox[{"CountryData", "[", 
+          RowBox[{"i", ",", "\"\<Name\>\""}], "]"}]}], "]"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", " ", 
+         RowBox[{"CountryData", "[", "All", "]"}]}], "}"}]}], "]"}], ",", " ", 
+     RowBox[{"AxesLabel", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"\"\<GDP\>\"", ",", " ", "property"}], "}"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"property", ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<UnpavedAirports\>\"", ",", " ", "\"\<GDP\>\"", ",", " ", 
+       "\"\<LiteracyFraction\>\""}], "}"}]}], "}"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"plotFn", ",", " ", "ListLogLogPlot"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "ListPlot", ",", " ", "ListLogPlot", ",", " ", "ListLogLogPlot"}], 
+      "}"}]}], "}"}], ",", " ", 
+   RowBox[{"SaveDefinitions", "\[Rule]", " ", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8270531405918837`*^9, 3.8270532241193075`*^9}, {
+  3.8270532648972907`*^9, 3.8270532662823753`*^9}, {3.8270533061545258`*^9, 
+  3.827053447424961*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"b3d9cde9-2aab-4220-8202-6ecc532b11bc"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`plotFn$$ = 
+    ListPlot, $CellContext`property$$ = "LiteracyFraction", Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`property$$], {
+      "UnpavedAirports", "GDP", "LiteracyFraction"}}, {{
+       Hold[$CellContext`plotFn$$], ListLogLogPlot}, {
+      ListPlot, ListLogPlot, ListLogLogPlot}}}, Typeset`size$$ = {
+    220., {61., 66.78067845285867}}, Typeset`update$$ = 0, Typeset`initDone$$,
+     Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`plotFn$$ = 
+        ListLogLogPlot, $CellContext`property$$ = "UnpavedAirports"}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> $CellContext`plotFn$$[
+        Table[
+         Tooltip[{
+           CountryData[$CellContext`i, "Airports"], 
+           CountryData[$CellContext`i, $CellContext`property$$]}, 
+          CountryData[$CellContext`i, "Name"]], {$CellContext`i, 
+          CountryData[All]}], AxesLabel -> {"GDP", $CellContext`property$$}], 
+      "Specifications" :> {{$CellContext`property$$, {
+         "UnpavedAirports", "GDP", 
+          "LiteracyFraction"}}, {{$CellContext`plotFn$$, ListLogLogPlot}, {
+         ListPlot, ListLogPlot, ListLogLogPlot}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{457., {135., 141.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.8270534277443113`*^9, 3.8270534489033284`*^9}},
+ CellLabel->"Out[19]=",ExpressionUUID->"436e82f4-6777-4d8b-ba48-5a69a9600352"]
+}, Open  ]]
+},
+WindowSize->{574.8, 579.6},
+WindowMargins->{{Automatic, -4.7999999999999545`}, {Automatic, 0}},
+FrontEndVersion->"12.1 for Microsoft Windows (64-bit) (March 14, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b08bc809-70ee-456d-a1dc-b005bb965527"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 563, 11, 191, "Input",ExpressionUUID->"01adae49-81fa-430e-9126-d2870153ef69"],
+Cell[1124, 33, 603, 14, 84, "Input",ExpressionUUID->"61077aef-855d-425e-9883-c20edb95435a"],
+Cell[CellGroupData[{
+Cell[1752, 51, 1128, 30, 127, "Input",ExpressionUUID->"13ea1b7f-326e-4187-be84-f1b673802ce5"],
+Cell[2883, 83, 2550, 64, 106, "Output",ExpressionUUID->"9bd156ed-e18e-49d7-8bc3-2edb67e1dee1"],
+Cell[5436, 149, 3712, 107, 241, "Output",ExpressionUUID->"47748d7a-428f-41e2-83bb-818069b9d76c"]
+}, Open  ]],
+Cell[9163, 259, 342, 7, 49, "Input",ExpressionUUID->"f07d0869-b5a2-4e8e-b028-69ec090d312d"],
+Cell[CellGroupData[{
+Cell[9530, 270, 336, 8, 28, "Input",ExpressionUUID->"da19d53d-d9eb-4723-9189-1cbb502b1767"],
+Cell[9869, 280, 354, 8, 32, "Output",ExpressionUUID->"e46e2cae-a1fa-417a-bff1-9c0247f85918"]
+}, Open  ]],
+Cell[10238, 291, 201, 4, 37, "Input",ExpressionUUID->"99bd56ea-2468-45da-8ee9-71049d7314dd"],
+Cell[CellGroupData[{
+Cell[10464, 299, 2127, 50, 166, "Input",ExpressionUUID->"c53e8394-b94b-4495-9a6c-a4b741e9340a"],
+Cell[12594, 351, 7430, 182, 230, "Output",ExpressionUUID->"818f7f89-9c59-4c71-85d1-87246953e2a5"],
+Cell[20027, 535, 16350, 405, 212, "Output",ExpressionUUID->"e8d5c459-3aac-4ccb-ba25-b07601390e1e"]
+}, Open  ]],
+Cell[36392, 943, 393, 8, 49, "Input",ExpressionUUID->"10337ebf-51fa-4281-9af5-7561572ebdbe"],
+Cell[CellGroupData[{
+Cell[36810, 955, 365, 9, 28, "Input",ExpressionUUID->"99bb2492-30a4-4ce0-8f98-d20516441f52"],
+Cell[37178, 966, 699, 12, 32, "Output",ExpressionUUID->"f2f14b51-0f87-45bc-9233-b1624052b241"]
+}, Open  ]],
+Cell[37892, 981, 662, 14, 49, "Input",ExpressionUUID->"f2e860a9-3a27-49db-bc7f-efee811d19a3"],
+Cell[CellGroupData[{
+Cell[38579, 999, 1159, 29, 146, "Input",ExpressionUUID->"2ef2295e-f78b-4a19-bf27-82c497086bf1"],
+Cell[39741, 1030, 178, 2, 32, "Output",ExpressionUUID->"d0ca1094-36a3-49b1-bfc7-71500e04c816"],
+Cell[39922, 1034, 201, 3, 48, "Output",ExpressionUUID->"1bcf787a-ad44-4425-87f2-b89c2d9d2ecd"]
+}, Open  ]],
+Cell[40138, 1040, 404, 9, 49, "Input",ExpressionUUID->"078f139d-6c0e-42bf-8f7a-024847a0864c"],
+Cell[CellGroupData[{
+Cell[40567, 1053, 2774, 79, 341, "Input",ExpressionUUID->"91ae10fe-2484-44c0-aab7-2d0bfd2903d6"],
+Cell[43344, 1134, 5686, 149, 244, "Output",ExpressionUUID->"fd639a87-3b0a-4a61-a001-609f1229ade3"]
+}, Open  ]],
+Cell[49045, 1286, 597, 12, 49, "Input",ExpressionUUID->"c65deeb8-7ab4-4219-b493-264c75b601a6"],
+Cell[CellGroupData[{
+Cell[49667, 1302, 1336, 30, 107, "Input",ExpressionUUID->"09051941-a475-4429-b7ae-fcceb9b9fe95"],
+Cell[51006, 1334, 52475, 1470, 207, "Output",ExpressionUUID->"8b082107-35e5-4b96-8e79-36e9fc5b2fae"]
+}, Open  ]],
+Cell[103496, 2807, 680, 13, 68, "Input",ExpressionUUID->"8afc5368-7ab8-4166-9196-5a6aab642ac2"],
+Cell[CellGroupData[{
+Cell[104201, 2824, 1049, 27, 107, "Input",ExpressionUUID->"766c1dfd-f5c1-408c-a62f-05ffae8c47d6"],
+Cell[105253, 2853, 49050, 1398, 230, "Output",ExpressionUUID->"b4980c24-88d1-4f19-bcbb-4f2087b6a85b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[154340, 4256, 1706, 43, 185, "Input",ExpressionUUID->"b3d9cde9-2aab-4220-8202-6ecc532b11bc"],
+Cell[156049, 4301, 2346, 47, 295, "Output",ExpressionUUID->"436e82f4-6777-4d8b-ba48-5a69a9600352"]
+}, Open  ]]
+}
+]
+*)
+
