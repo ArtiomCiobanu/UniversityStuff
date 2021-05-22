@@ -1,0 +1,26 @@
+[
+  {
+    "Number": 812691,
+    "CreationYear": 15,
+    "HouseNumber": 5233,
+    "FirstName": "Vasily",
+    "LastName": "Pupkin",
+    "Description": "OHMYGOD"
+  },
+  {
+    "Number": 323223,
+    "CreationYear": 55,
+    "HouseNumber": 1283,
+    "FirstName": "Anakin",
+    "LastName": "Skywalker",
+    "Description": "TENNISANDNOTJUSTTIT"
+  },
+  {
+    "Number": 123455,
+    "CreationYear": 1872,
+    "HouseNumber": 10,
+    "FirstName": "Daria",
+    "LastName": "Vasilenko",
+    "Description": "TENNIS"
+  }
+]

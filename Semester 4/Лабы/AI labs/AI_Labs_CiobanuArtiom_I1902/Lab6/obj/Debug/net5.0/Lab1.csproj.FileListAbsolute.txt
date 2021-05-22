@@ -1,0 +1,16 @@
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.exe
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.deps.json
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.json
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.dev.json
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.dll
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\bin\Debug\net5.0\Lab1.pdb
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.csprojAssemblyReference.cache
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfoInputs.cache
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfo.cs
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.csproj.CoreCompileInputs.cache
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.dll
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.pdb
+D:\Projects\Labs\AI_Labs_CiobanuArtiom_I1902\Lab1\obj\Debug\net5.0\Lab1.genruntimeconfig.cache

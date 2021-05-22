@@ -1,0 +1,34 @@
+[
+  {
+    "Number": 128474,
+    "CreationYear": 1900,
+    "HouseNumber": 25,
+    "FirstName": "Artiom",
+    "LastName": "Ciobanu",
+    "Description": "SOMETHING"
+  },
+  {
+    "Number": 124112,
+    "CreationYear": 2000,
+    "HouseNumber": 14,
+    "FirstName": "Darth",
+    "LastName": "Vader",
+    "Description": "DarkSide"
+  },
+  {
+    "Number": 812746,
+    "CreationYear": 2001,
+    "HouseNumber": 22,
+    "FirstName": "Daria",
+    "LastName": "Vasilenko",
+    "Description": "TENNIS"
+  },
+  {
+    "Number": 912847,
+    "CreationYear": 1921,
+    "HouseNumber": 15,
+    "FirstName": "Elon",
+    "LastName": "Musk",
+    "Description": "SpaceX"
+  }
+]

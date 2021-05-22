@@ -1,0 +1,57 @@
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.exe
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Aircrafts.json
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.deps.json
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.json
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.dev.json
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.dll
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.pdb
+D:\Projects\Algorithms_Labs\Lab1\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csprojAssemblyReference.cache
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfoInputs.cache
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfo.cs
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CoreCompileInputs.cache
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CopyComplete
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.dll
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.pdb
+D:\Projects\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.genruntimeconfig.cache
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.exe
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Aircrafts.json
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.deps.json
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.json
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.dev.json
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.dll
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.pdb
+D:\Projects\Labs\Algorithms_Labs\Lab1\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csprojAssemblyReference.cache
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfoInputs.cache
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfo.cs
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CoreCompileInputs.cache
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CopyComplete
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.dll
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\ref\Lab1.dll
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.pdb
+D:\Projects\Labs\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.genruntimeconfig.cache
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.exe
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Aircrafts.json
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.deps.json
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.json
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.runtimeconfig.dev.json
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.dll
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\ref\Lab1.dll
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Lab1.pdb
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csprojAssemblyReference.cache
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfoInputs.cache
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.AssemblyInfo.cs
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CoreCompileInputs.cache
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.csproj.CopyComplete
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.dll
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\ref\Lab1.dll
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.pdb
+D:\Универ\Semester 4\labs\Algorithms\Algorithms_Labs\Lab1\obj\Debug\net5.0\Lab1.genruntimeconfig.cache
