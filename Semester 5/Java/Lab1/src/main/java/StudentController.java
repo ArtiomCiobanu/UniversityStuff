@@ -1,37 +1,66 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class StudentController
 {
-    private final Student model;
     private final StudentView view;
 
-    public StudentController(Student model, StudentView view)
+    private final List<Student> students;
+
+    public StudentController(Student[] defaultStudents)
     {
-        this.model = model;
+        this.students = Arrays.asList(defaultStudents);
+
+        view = null;
+    }
+
+    public StudentController(StudentView view)
+    {
         this.view = view;
+
+        students = new ArrayList<>();
     }
 
-    public void setStudentName(String name)
+    public void setStudentRollNo(String studentName, String rollNo)
     {
-        model.setName(name);
+        students.stream()
+                .filter(s -> Objects.equals(s.getName(), studentName))
+                .findFirst()
+                .ifPresent(student ->
+                {
+                    student.setRollNo(rollNo);
+                    view.SetStudentRollNo(rollNo, students.indexOf(student));
+                });
     }
 
-    public String getStudentName()
+    public String getStudentRollNo(String studentName)
     {
-        return model.getName();
+        var student = students.stream()
+                .filter(s -> Objects.equals(s.getName(), studentName))
+                .findFirst()
+                .orElse(null);
+
+        return student != null
+                ? student.getRollNo()
+                : null;
     }
 
-    public void setStudentRollNo(String rollNo)
+
+    public void addStudent(Student student)
     {
-        model.setRollNo(rollNo);
+        if (student != null)
+        {
+            view.AddStudent(student);
+        }
     }
 
-    public String getStudentRollNo()
+    public void setStudents(Student[] students)
     {
-        return model.getRollNo();
-    }
-
-    public void updateView()
-    {
-        view.printStudentDetailsInTable(model.getName(), model.getRollNo());
+        if (students != null && students.length > 0)
+        {
+            view.SetStudents(students);
+        }
     }
 }

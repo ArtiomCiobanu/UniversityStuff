@@ -8,16 +8,11 @@ public class Lab1
         //Create a view : to write student details
         StudentView view = new StudentView();
 
-        StudentController controller = new StudentController(model, view);
+        StudentController controller = new StudentController(view);
 
-        controller.updateView();
-
-        //update model data
-        controller.setStudentName("John");
-
-        controller.updateView();
+        controller.addStudent(new Student("2", "Wasea"));
+        controller.setStudentRollNo("Wasea", "1");
     }
-
 
     private static Student retrieveStudentFromDatabase()
     {
