@@ -22,11 +22,6 @@ public class StudentView
         infoTable.AddRow(dataRow);
     }
 
-    public void RemoveStudent()
-    {
-
-    }
-
     public void SetStudents(Student[] students)
     {
         var studentTableData = StudentsToStringTableData(students);
