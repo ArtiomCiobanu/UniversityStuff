@@ -49,3 +49,7 @@ print(txt.split())
 # print(stri[-5:])#From 5 from the end to the end
 # print(stri[:10:3])#Skips 3 in substring from begin to 10 character
 # print(stri[:10])#First 10 characters
+
+names = " Cathy,Erika"
+
+print(len(names[1:3]))
