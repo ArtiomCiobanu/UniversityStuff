@@ -10,7 +10,7 @@ namespace TestGraphicsApp
     /// </summary>
     partial class Form1
     {
-        double _e = 0.01;
+        double _e = 0.001;
 
         /// <summary>
         ///  Required designer variable.
@@ -58,29 +58,28 @@ namespace TestGraphicsApp
             e.Graphics.DrawLine(pen, 0, yCenter, Width, yCenter);
             e.Graphics.DrawLine(pen, xCenter, 0, xCenter, Height);
 
-            DrawFunction(x => F(x), e.Graphics);
+            DrawFunction(x => F(x), e.Graphics, Color.Green);
+            DrawFunction(x => Math.PI / 2 - Math.Atan(x), e.Graphics, Color.Red);
         }
 
-        private void DrawFunction(Func<double, double> function, Graphics graphics)
+        private void DrawFunction(
+            Func<double, double> function,
+            Graphics graphics,
+            Color color)
         {
-            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 2);
+            Pen pen = new Pen(color, 2);
 
             var xCenter = Width / 2;
             var yCenter = Height / 2;
 
             double x, y;
 
-            double a = -10;
-            double b = 10;
+            double a = -0.99;
+            double b = 0.99;
 
-            double s = 0.00001;
+            double s = 0.0001;
 
-            /*double scx = 100.0;
-            double scy = 10.0;*/
-
-            //double e = 0.0001;
-
-            double multiplier = 2;
+            double multiplier = 100;
 
             x = a;
 
