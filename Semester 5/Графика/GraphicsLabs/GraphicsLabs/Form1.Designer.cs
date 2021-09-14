@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace TestGraphicsApp
@@ -58,15 +59,18 @@ namespace TestGraphicsApp
             e.Graphics.DrawLine(pen, 0, yCenter, Width, yCenter);
             e.Graphics.DrawLine(pen, xCenter, 0, xCenter, Height);
 
-            DrawFunction(x => F(x), e.Graphics, Color.Green);
-            DrawFunction(x => Math.PI / 2 - Math.Atan(x), e.Graphics, Color.Red);
+            DrawFunction(x => F(x), e.Graphics, Color.Green, "Graph1.txt");
+            DrawFunction(x => Math.PI / 2 - Math.Atan(x), e.Graphics, Color.Red, "Graph2.txt");
         }
 
         private void DrawFunction(
             Func<double, double> function,
             Graphics graphics,
-            Color color)
+            Color color,
+            string fileName)
         {
+            File.WriteAllText(fileName, "");
+
             Pen pen = new Pen(color, 2);
 
             var xCenter = Width / 2;
@@ -92,6 +96,8 @@ namespace TestGraphicsApp
                 int currentY = yCenter - (int)(y * multiplier); //Чтобы график был над Ox
 
                 graphics.FillRectangle(pen.Brush, currentX, currentY, 1, 1);
+
+                File.AppendAllText(fileName, $"F({x}) = {y}; ");
             }
         }
 
@@ -128,6 +134,11 @@ namespace TestGraphicsApp
             }
 
             return result;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
         }
     }
 }
