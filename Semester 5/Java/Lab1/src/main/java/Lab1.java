@@ -10,8 +10,9 @@ public class Lab1
 
         StudentController controller = new StudentController(view);
 
-        controller.addStudent(new Student("2", "Wasea"));
-        controller.setStudentRollNo("Wasea", "1");
+        controller.addStudent(new Student("2", "Artiom"));
+        controller.addStudent(new Student("3", "Anastasia"));
+        controller.setStudentRollNo("Artiom", "1");
     }
 
     private static Student retrieveStudentFromDatabase()
