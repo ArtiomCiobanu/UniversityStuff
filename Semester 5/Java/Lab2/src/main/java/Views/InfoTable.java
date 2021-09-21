@@ -3,7 +3,7 @@ package Views;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class InfoTable<TEntity>
+public class InfoTable
 {
     private final Object[] columnNames =
             {

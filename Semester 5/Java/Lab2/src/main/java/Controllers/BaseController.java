@@ -4,7 +4,7 @@ import Views.MainView;
 
 public class BaseController
 {
-    private final MainView MainView;
+    protected final MainView MainView;
 
     public BaseController(MainView mainView)
     {

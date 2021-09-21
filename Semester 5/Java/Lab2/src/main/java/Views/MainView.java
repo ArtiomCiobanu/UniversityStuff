@@ -6,13 +6,13 @@ import Entities.Manager;
 
 public class MainView
 {
-    private final InfoTable<Client> clientInfoTable;
-    private final InfoTable<GymPass> gymPassInfoTable;
-    private final InfoTable<Manager> managerInfoTable;
+    public final EntityInfoTable<Client> clientInfoTable;
+    public final EntityInfoTable<GymPass> gymPassInfoTable;
+    public final EntityInfoTable<Manager> managerInfoTable;
 
     public MainView()
     {
-        this.clientInfoTable = new InfoTable<>(
+        this.clientInfoTable = new EntityInfoTable<>(
                 "Clients",
                 new String[]
                         {
@@ -22,7 +22,7 @@ public class MainView
                                 "GymPassId",
                                 "ManagerId"
                         });
-        this.gymPassInfoTable = new InfoTable<>(
+        this.gymPassInfoTable = new EntityInfoTable<>(
                 "GymPasses",
                 new String[]
                         {
@@ -30,7 +30,7 @@ public class MainView
                                 "Price",
                                 "MonthAmount"
                         });
-        this.managerInfoTable = new InfoTable<>(
+        this.managerInfoTable = new EntityInfoTable<>(
                 "Managers",
                 new String[]
                         {

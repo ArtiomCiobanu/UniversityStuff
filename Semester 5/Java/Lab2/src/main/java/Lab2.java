@@ -39,7 +39,7 @@ class Lab2
         var mainView = new MainView();
 
         var managerController = new ManagerController(managerRepository, mainView);
-        var clientController = new ClientController(clientRepository, mainView);
+        var clientController = new ClientController(clientRepository, mainView.clientInfoTable);
         var gymPassController = new GymPassController(gymPassRepository, mainView);
 
 
