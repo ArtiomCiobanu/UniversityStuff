@@ -4,6 +4,7 @@ import Entities.Manager;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class ManagerMapper implements SqlMapper<Manager>
@@ -25,5 +26,16 @@ public class ManagerMapper implements SqlMapper<Manager>
             sqlException.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public ArrayList<NameValuePair> GetEntityFields(Manager manager)
+    {
+        ArrayList<NameValuePair> result = new ArrayList<>();
+
+        result.add(new NameValuePair("Id", manager.Id.toString()));
+        result.add(new NameValuePair("Name", manager.Name));
+
+        return result;
     }
 }

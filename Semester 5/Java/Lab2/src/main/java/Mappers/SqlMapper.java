@@ -1,8 +1,13 @@
 package Mappers;
 
-import java.sql.ResultSet;
+import Entities.BaseEntity;
 
-public interface SqlMapper<TEntity>
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public interface SqlMapper<TEntity extends BaseEntity>
 {
     TEntity CreateEntity(ResultSet sql);
+
+    ArrayList<NameValuePair> GetEntityFields(TEntity entity);
 }

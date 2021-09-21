@@ -1,10 +1,13 @@
-import Entities.Manager;
-import Mappers.ManagerMapper;
-import Repositories.BaseRepository;
+import Controllers.ClientController;
+import Controllers.GymPassController;
+import Controllers.ManagerController;
+import Repositories.ClientRepository;
+import Repositories.GymPassRepository;
 import Repositories.ManagerRepository;
+import Views.MainView;
 
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.UUID;
 
 class Lab2
 {
@@ -15,17 +18,8 @@ class Lab2
         var a = new ConnectionFactory();
         var connection = a.getConnection(connectionString);
 
-        var managerRepository = new ManagerRepository(connection);
+        Launch(connection);
 
-        //var manager1 = managerRepository.Read(UUID.fromString("EB0A6BCB-78B3-49F3-8843-641AC614F225"));
-        //System.out.println(manager1.Name);
-
-        var managers = managerRepository.ReadTop(2);
-        for (var manager : managers)
-        {
-            System.out.println(manager.Name);
-        }
-        
         try
         {
             connection.close();
@@ -34,6 +28,30 @@ class Lab2
         {
             throwables.printStackTrace();
         }
+    }
 
+    private static void Launch(Connection connection)
+    {
+        var managerRepository = new ManagerRepository(connection);
+        var clientRepository = new ClientRepository(connection);
+        var gymPassRepository = new GymPassRepository(connection);
+
+        var mainView = new MainView();
+
+        var managerController = new ManagerController(managerRepository, mainView);
+        var clientController = new ClientController(clientRepository, mainView);
+        var gymPassController = new GymPassController(gymPassRepository, mainView);
+
+
+
+        //var manager1 = managerRepository.Read(UUID.fromString("EB0A6BCB-78B3-49F3-8843-641AC614F225"));
+        //System.out.println(manager1.Name);
+
+        /*managerRepository.Create(new Manager(UUID.randomUUID(), "Alexandr"));
+        var managers = managerRepository.ReadTop(2, 2);
+        for (var manager : managers)
+        {
+            System.out.println(manager.Name);
+        }*/
     }
 }

@@ -1,10 +1,7 @@
 package Entities;
 
-import java.util.UUID;
-
-public class GymPass
+public class GymPass extends BaseEntity
 {
-    public UUID Id;
     public int Price;
     public int MonthAmount;
 }
