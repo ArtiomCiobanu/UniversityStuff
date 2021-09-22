@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class BaseRepository<TEntity extends BaseEntity>
+public class BaseRepository<TEntity extends BaseEntity> implements Repository<TEntity>
 {
     private final String tableName;
     private final SqlMapper<TEntity> sqlMapper;

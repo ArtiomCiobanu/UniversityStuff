@@ -5,20 +5,32 @@ import javax.swing.table.DefaultTableModel;
 
 public class InfoTable
 {
-    private final Object[] columnNames =
-            {
-                    "Name",
-                    "Roll Number"
-            };
+    private final Object[] columnNames;
 
-    private final JFrame frame;
-    private JScrollPane scrollPane;
-    private JTable studentInfoTable;
+    private final JFrame Frame;
+    private JScrollPane ScrollPane;
+    private JTable StudentInfoTable;
 
-    InfoTable(String title, String[] columns)
+    InfoTable(
+            String title,
+            String[] columns,
+            String topButtonLabel,
+            String bottomButtonLabel)
     {
-        frame = new JFrame();
-        frame.setTitle(title);
+        Frame = new JFrame();
+        Frame.setTitle(title);
+
+        var topButton = new JButton(topButtonLabel);
+        topButton.setSize(100, 20);
+        topButton.setLocation(10, 110);
+
+        var bottomButton = new JButton(bottomButtonLabel);
+        bottomButton.setSize(100, 20);
+        bottomButton.setLocation(10, 140);
+
+        Frame.add(topButton);
+        Frame.add(bottomButton);
+
 
         DefaultTableModel tableModel = new DefaultTableModel();
 
@@ -27,30 +39,31 @@ public class InfoTable
             tableModel.addColumn(column);
         }
 
-        studentInfoTable = new JTable(tableModel);
-        studentInfoTable.setBounds(30, 40, 200, 300);
+        columnNames = columns;
 
-        JScrollPane scrollPane = new JScrollPane(studentInfoTable);
-        frame.add(scrollPane);
-        frame.setSize(500, 200);
-        frame.setVisible(true);
+        StudentInfoTable = new JTable(tableModel);
+        StudentInfoTable.setBounds(30, 40, 200, 300);
+
+        ScrollPane = new JScrollPane(StudentInfoTable);
+        Frame.add(ScrollPane);
+        Frame.setSize(500, 400);
     }
 
     public void SetTableData(String[][] tableData)
     {
-        studentInfoTable = new JTable(tableData, columnNames);
-        studentInfoTable.setBounds(30, 40, 200, 300);
+        StudentInfoTable = new JTable(tableData, columnNames);
+        StudentInfoTable.setBounds(30, 40, 200, 300);
 
-        frame.remove(scrollPane);
-        scrollPane = new JScrollPane(studentInfoTable);
-        frame.add(scrollPane);
+        Frame.remove(ScrollPane);
+        ScrollPane = new JScrollPane(StudentInfoTable);
+        Frame.add(ScrollPane);
 
-        frame.update(frame.getGraphics());
+        Frame.update(Frame.getGraphics());
     }
 
     public void AddRow(String[] row)
     {
-        var model = (DefaultTableModel) studentInfoTable.getModel();
+        var model = (DefaultTableModel) StudentInfoTable.getModel();
 
         var rowAmount = model.getDataVector().size();
         model.addRow(row);
@@ -59,9 +72,19 @@ public class InfoTable
 
     public String[] GetRowAt(int index, int column)
     {
-        var model = (DefaultTableModel) studentInfoTable.getModel();
+        var model = (DefaultTableModel) StudentInfoTable.getModel();
         var result = model.getValueAt(index, column);
 
         return (String[]) result;
+    }
+
+    public void Show()
+    {
+        Frame.setVisible(true);
+    }
+
+    public void Hide()
+    {
+        Frame.setVisible(false);
     }
 }

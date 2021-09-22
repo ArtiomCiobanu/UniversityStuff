@@ -38,20 +38,11 @@ class Lab2
 
         var mainView = new MainView();
 
-        var managerController = new ManagerController(managerRepository, mainView);
+        var managerController = new ManagerController(managerRepository, mainView.managerInfoTable);
         var clientController = new ClientController(clientRepository, mainView.clientInfoTable);
-        var gymPassController = new GymPassController(gymPassRepository, mainView);
+        var gymPassController = new GymPassController(gymPassRepository, mainView.gymPassInfoTable);
 
-
-
-        //var manager1 = managerRepository.Read(UUID.fromString("EB0A6BCB-78B3-49F3-8843-641AC614F225"));
-        //System.out.println(manager1.Name);
-
-        /*managerRepository.Create(new Manager(UUID.randomUUID(), "Alexandr"));
-        var managers = managerRepository.ReadTop(2, 2);
-        for (var manager : managers)
-        {
-            System.out.println(manager.Name);
-        }*/
+        managerController.LoadPage(0);
+        managerController.Show();
     }
 }

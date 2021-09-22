@@ -1,18 +1,15 @@
 package Controllers;
 
+import Entities.GymPass;
 import Repositories.GymPassRepository;
-import Views.MainView;
+import Views.EntityInfoTable;
 
-public class GymPassController extends BaseController
+public class GymPassController extends BaseController<GymPass>
 {
-    private GymPassRepository GymPassRepository;
-
     public GymPassController(
             GymPassRepository gymPassRepository,
-            MainView mainView)
+            EntityInfoTable<GymPass> gymPassInfoTable)
     {
-        super(mainView);
-        
-        GymPassRepository = gymPassRepository;
+        super(gymPassRepository, gymPassInfoTable);
     }
 }

@@ -3,7 +3,6 @@ package Views;
 import Entities.BaseEntity;
 import Mappers.SqlMapper;
 
-import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public class EntityInfoTable<TEntity extends BaseEntity>
@@ -14,17 +13,23 @@ public class EntityInfoTable<TEntity extends BaseEntity>
     EntityInfoTable(
             String title,
             String[] columns,
-            SqlMapper<TEntity> sqlMapper)
+            SqlMapper<TEntity> sqlMapper,
+            String topButtonLabel,
+            String bottomButtonLabel)
     {
         SqlMapper = sqlMapper;
 
-        InfoTable = new InfoTable(title, columns);
+        InfoTable = new InfoTable(
+                title,
+                columns,
+                topButtonLabel,
+                bottomButtonLabel);
     }
 
     public void SetTableData(ArrayList<TEntity> tableData)
     {
         var fields = SqlMapper.GetFieldNames();
-        String[][] stringTableData = new String[fields.length][tableData.size()];
+        String[][] stringTableData = new String[tableData.size()][fields.length];
 
         int i = 0;
         for (var entity : tableData)
@@ -60,12 +65,14 @@ public class EntityInfoTable<TEntity extends BaseEntity>
         InfoTable.AddRow(rowData);
     }
 
-    /*public TEntity GetEntityAt(int index)
+
+    public void Show()
     {
+        InfoTable.Show();
+    }
 
-        var res = InfoTable.GetRowAt(index, column);
-
-        var entity = SqlMapper.
-
-    }*/
+    public void Hide()
+    {
+        InfoTable.Hide();
+    }
 }

@@ -25,7 +25,10 @@ public class MainView
                                 "GymPassId",
                                 "ManagerId"
                         },
-                new ClientMapper());
+                new ClientMapper(),
+                "Gym Passes",
+                "Managers");
+
         this.gymPassInfoTable = new EntityInfoTable<>(
                 "GymPasses",
                 new String[]
@@ -34,7 +37,10 @@ public class MainView
                                 "Price",
                                 "MonthAmount"
                         },
-                new GymPassMapper());
+                new GymPassMapper(),
+                "Managers",
+                "Clients");
+
         this.managerInfoTable = new EntityInfoTable<>(
                 "Managers",
                 new String[]
@@ -42,7 +48,9 @@ public class MainView
                                 "Id",
                                 "Name"
                         },
-                new ManagerMapper());
+                new ManagerMapper(),
+                "Clients",
+                "GymPasses");
 
     }
 }

@@ -1,13 +1,36 @@
 package Controllers;
 
-import Views.MainView;
+import Entities.BaseEntity;
+import Repositories.Repository;
+import Views.EntityInfoTable;
 
-public class BaseController
+public class BaseController<TEntity extends BaseEntity>
 {
-    protected final MainView MainView;
+    private final EntityInfoTable<TEntity> EntityTable;
+    private final Repository<TEntity> EntityRepository;
 
-    public BaseController(MainView mainView)
+    public BaseController(
+            Repository<TEntity> entityRepository,
+            EntityInfoTable<TEntity> entityTable)
     {
-        MainView = mainView;
+        EntityRepository = entityRepository;
+        EntityTable = entityTable;
+    }
+
+    public void LoadPage(int pageNumber)
+    {
+        var page = EntityRepository.ReadTop(5, pageNumber * 5);
+
+        EntityTable.SetTableData(page);
+    }
+
+    public void Show()
+    {
+        EntityTable.Show();
+    }
+
+    public void Hide()
+    {
+        EntityTable.Hide();
     }
 }

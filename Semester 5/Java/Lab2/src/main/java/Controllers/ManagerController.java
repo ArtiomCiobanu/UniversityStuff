@@ -1,18 +1,15 @@
 package Controllers;
 
+import Entities.Manager;
 import Repositories.ManagerRepository;
-import Views.MainView;
+import Views.EntityInfoTable;
 
-public class ManagerController extends BaseController
+public class ManagerController extends BaseController<Manager>
 {
-    private final ManagerRepository ManagerRepository;
-
     public ManagerController(
             ManagerRepository managerRepository,
-            MainView mainView)
+            EntityInfoTable<Manager> managerInfoTable)
     {
-        super(mainView);
-
-        ManagerRepository = managerRepository;
+        super(managerRepository, managerInfoTable);
     }
 }
