@@ -32,7 +32,7 @@ public class BaseRepository<TEntity extends BaseEntity>
     {
         StringBuilder sqlQuery = new StringBuilder(String.format("insert into %s values(", tableName));
 
-        var fields = sqlMapper.GetEntityFields(entity);
+        var fields = sqlMapper.GetFields(entity);
 
         for (var field : fields)
         {
@@ -87,7 +87,7 @@ public class BaseRepository<TEntity extends BaseEntity>
         {
             StringBuilder sqlQuery = new StringBuilder(String.format("update %s set ", tableName));
 
-            var fields = sqlMapper.GetEntityFields(entity);
+            var fields = sqlMapper.GetFields(entity);
 
             for (var field : fields)
             {

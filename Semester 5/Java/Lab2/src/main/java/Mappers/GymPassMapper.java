@@ -30,8 +30,25 @@ public class GymPassMapper implements SqlMapper<GymPass>
     }
 
     @Override
-    public ArrayList<NameValuePair> GetEntityFields(GymPass entity)
+    public ArrayList<NameValuePair> GetFields(GymPass gymPass)
     {
-        return null;
+        ArrayList<NameValuePair> result = new ArrayList<>();
+
+        result.add(new NameValuePair("Id", gymPass.Id.toString()));
+        result.add(new NameValuePair("MonthAmount", Integer.toString(gymPass.MonthAmount)));
+        result.add(new NameValuePair("Price", Integer.toString(gymPass.Price)));
+
+        return result;
+    }
+
+    @Override
+    public String[] GetFieldNames()
+    {
+        return new String[]
+                {
+                        "Id",
+                        "MonthAmount",
+                        "Price"
+                };
     }
 }

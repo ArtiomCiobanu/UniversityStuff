@@ -29,7 +29,7 @@ public class ManagerMapper implements SqlMapper<Manager>
     }
 
     @Override
-    public ArrayList<NameValuePair> GetEntityFields(Manager manager)
+    public ArrayList<NameValuePair> GetFields(Manager manager)
     {
         ArrayList<NameValuePair> result = new ArrayList<>();
 
@@ -37,5 +37,15 @@ public class ManagerMapper implements SqlMapper<Manager>
         result.add(new NameValuePair("Name", manager.Name));
 
         return result;
+    }
+
+    @Override
+    public String[] GetFieldNames()
+    {
+        return new String[]
+                {
+                        "Id",
+                        "Name"
+                };
     }
 }

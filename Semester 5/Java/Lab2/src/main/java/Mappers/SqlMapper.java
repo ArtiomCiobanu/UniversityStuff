@@ -9,5 +9,7 @@ public interface SqlMapper<TEntity extends BaseEntity>
 {
     TEntity CreateEntity(ResultSet sql);
 
-    ArrayList<NameValuePair> GetEntityFields(TEntity entity);
+    ArrayList<NameValuePair> GetFields(TEntity entity);
+
+    String[] GetFieldNames();
 }

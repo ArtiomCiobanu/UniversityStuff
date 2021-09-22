@@ -33,13 +33,30 @@ public class ClientMapper implements SqlMapper<Client>
     }
 
     @Override
-    public ArrayList<NameValuePair> GetEntityFields(Client entity)
+    public ArrayList<NameValuePair> GetFields(Client client)
     {
         ArrayList<NameValuePair> result = new ArrayList<>();
 
-        result.add(new NameValuePair("Id", entity.Id.toString()));
-        result.add(new NameValuePair("Name", entity.Name));
+        result.add(new NameValuePair("Id", client.Id.toString()));
+        result.add(new NameValuePair("Name", client.Name));
+        result.add(new NameValuePair("RegistrationDate", client.RegistrationDate.toString()));
+
+        result.add(new NameValuePair("ManagerId", client.ManagerId.toString()));
+        result.add(new NameValuePair("GymPassId", client.GymPassId.toString()));
 
         return result;
+    }
+
+    @Override
+    public String[] GetFieldNames()
+    {
+        return new String[]
+                {
+                        "Id",
+                        "Name",
+                        "RegistrationDate",
+                        "ManagerId",
+                        "GymPassId"
+                };
     }
 }
