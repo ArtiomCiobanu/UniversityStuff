@@ -2,14 +2,19 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
 
 public class InfoTable
 {
     private final Object[] columnNames;
-
     private final JFrame Frame;
+
+    private final JButton TopButton;
+    private final JButton BottomButton;
+
     private JScrollPane ScrollPane;
     private JTable StudentInfoTable;
+
 
     InfoTable(
             String title,
@@ -20,17 +25,16 @@ public class InfoTable
         Frame = new JFrame();
         Frame.setTitle(title);
 
-        var topButton = new JButton(topButtonLabel);
-        topButton.setSize(100, 20);
-        topButton.setLocation(10, 110);
+        TopButton = new JButton(topButtonLabel);
+        TopButton.setSize(100, 20);
+        TopButton.setLocation(10, 110);
 
-        var bottomButton = new JButton(bottomButtonLabel);
-        bottomButton.setSize(100, 20);
-        bottomButton.setLocation(10, 140);
+        BottomButton = new JButton(bottomButtonLabel);
+        BottomButton.setSize(100, 20);
+        BottomButton.setLocation(10, 140);
 
-        Frame.add(topButton);
-        Frame.add(bottomButton);
-
+        Frame.add(TopButton);
+        Frame.add(BottomButton);
 
         DefaultTableModel tableModel = new DefaultTableModel();
 
@@ -86,5 +90,15 @@ public class InfoTable
     public void Hide()
     {
         Frame.setVisible(false);
+    }
+
+    public void SetTopButtonAction(ActionListener actionListener)
+    {
+        TopButton.addActionListener(actionListener);
+    }
+
+    public void SetBottomButtonAction(ActionListener actionListener)
+    {
+        BottomButton.addActionListener(actionListener);
     }
 }

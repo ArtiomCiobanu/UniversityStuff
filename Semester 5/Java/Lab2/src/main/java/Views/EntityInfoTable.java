@@ -3,6 +3,7 @@ package Views;
 import Entities.BaseEntity;
 import Mappers.SqlMapper;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class EntityInfoTable<TEntity extends BaseEntity>
@@ -10,7 +11,7 @@ public class EntityInfoTable<TEntity extends BaseEntity>
     private final InfoTable InfoTable;
     private final SqlMapper<TEntity> SqlMapper;
 
-    EntityInfoTable(
+    public EntityInfoTable(
             String title,
             String[] columns,
             SqlMapper<TEntity> sqlMapper,
@@ -74,5 +75,15 @@ public class EntityInfoTable<TEntity extends BaseEntity>
     public void Hide()
     {
         InfoTable.Hide();
+    }
+
+    public void SetTopButtonAction(ActionListener actionListener)
+    {
+        InfoTable.SetTopButtonAction(actionListener);
+    }
+
+    public void SetBottomButtonAction(ActionListener actionListener)
+    {
+        InfoTable.SetBottomButtonAction(actionListener);
     }
 }

@@ -4,24 +4,20 @@ import Entities.Client;
 import Repositories.ClientRepository;
 import Views.EntityInfoTable;
 
-public class ClientController
+public class ClientController extends BaseController<Client>
 {
-    private final ClientRepository ClientRepository;
-    private final EntityInfoTable<Client> ClientTable;
-
     public ClientController(
             ClientRepository clientRepository,
             EntityInfoTable<Client> clientTable)
     {
-        ClientRepository = clientRepository;
-        ClientTable = clientTable;
+        super(clientRepository, clientTable);
     }
 
     public void LoadPage(int pageNumber)
     {
-        var page = ClientRepository.ReadTop(5, pageNumber * 5);
+        var page = EntityRepository.ReadTop(5, pageNumber * 5);
 
-        ClientTable.SetTableData(page);
+        EntityTable.SetTableData(page);
     }
 
     public void RegisterClient(Client client)

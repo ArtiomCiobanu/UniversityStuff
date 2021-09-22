@@ -6,8 +6,8 @@ import Views.EntityInfoTable;
 
 public class BaseController<TEntity extends BaseEntity>
 {
-    private final EntityInfoTable<TEntity> EntityTable;
-    private final Repository<TEntity> EntityRepository;
+    protected final EntityInfoTable<TEntity> EntityTable;
+    protected final Repository<TEntity> EntityRepository;
 
     public BaseController(
             Repository<TEntity> entityRepository,
