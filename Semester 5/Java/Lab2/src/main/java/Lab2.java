@@ -20,8 +20,9 @@ class Lab2
 
     public static void main(String[] args)
     {
-        var connectionString = "jdbc:sqlserver://localhost\\SQLEXPRESS;database=Lab2Database;username=Lab2Login;password=Lab2Password";
-
+        var connectionString = "jdbc:sqlserver://localhost\\SQLEXPRESS:1434;integratedSecurity=true";
+        //database=Lab2Database;username=Lab2Login;password=Lab2Password";
+//"jdbc:sqlserver://localhost\SQLEXPRESS:1434;database=Lab2Database"
         var a = new ConnectionFactory();
         var connection = a.getConnection(connectionString);
 
