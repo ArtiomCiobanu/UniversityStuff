@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cl-lab-2
+  labels:
+    lang: sharp
+spec:
+  containers:
+    - name: cl-lab-2
+      image: artiomciobanu/cloud_lab_2:v1
