@@ -53,6 +53,8 @@ public class BaseController<TEntity extends BaseEntity>
     {
         var removeEntityView = new RemoveEntityView();
 
+        var id = removeEntityView.EntityId;
 
+        EntityRepository.Delete(id);
     }
 }
