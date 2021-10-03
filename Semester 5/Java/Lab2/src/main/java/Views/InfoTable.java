@@ -12,6 +12,9 @@ public class InfoTable
     private final JButton TopButton;
     private final JButton BottomButton;
 
+    private final JButton AddButton;
+    private final JButton RemoveButton;
+
     private JScrollPane ScrollPane;
     private JTable StudentInfoTable;
 
@@ -33,8 +36,18 @@ public class InfoTable
         BottomButton.setSize(100, 20);
         BottomButton.setLocation(10, 140);
 
+        AddButton = new JButton("Add");
+        AddButton.setSize(100, 20);
+        AddButton.setLocation(150, 110);
+
+        RemoveButton = new JButton("Remove");
+        RemoveButton.setSize(100, 20);
+        RemoveButton.setLocation(150, 140);
+
         Frame.add(TopButton);
         Frame.add(BottomButton);
+        Frame.add(AddButton);
+        Frame.add(RemoveButton);
 
         DefaultTableModel tableModel = new DefaultTableModel();
 
@@ -100,5 +113,15 @@ public class InfoTable
     public void SetBottomButtonAction(ActionListener actionListener)
     {
         BottomButton.addActionListener(actionListener);
+    }
+
+    public void SetAddButtonAction(ActionListener actionListener)
+    {
+        AddButton.addActionListener(actionListener);
+    }
+
+    public void SetRemoveButtonAction(ActionListener actionListener)
+    {
+        RemoveButton.addActionListener(actionListener);
     }
 }

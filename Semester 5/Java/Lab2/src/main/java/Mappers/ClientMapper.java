@@ -1,10 +1,15 @@
 package Mappers;
 
 import Entities.Client;
+import Entities.GymPass;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class ClientMapper implements SqlMapper<Client>
@@ -27,6 +32,26 @@ public class ClientMapper implements SqlMapper<Client>
         {
             sqlException.printStackTrace();
             return null;
+        }
+
+        return client;
+    }
+
+    @Override
+    public Client CreateEntity(HashMap<String, String> stringHashMap)
+    {
+        Client client = new Client();
+
+        client.Id = UUID.fromString(stringHashMap.get("Id"));
+        client.GymPassId = UUID.fromString(stringHashMap.get("GymPassId"));
+        client.ManagerId = UUID.fromString(stringHashMap.get("ManagerId"));
+
+        try
+        {
+            client.RegistrationDate = new SimpleDateFormat().parse(stringHashMap.get("RegistrationDate"));
+        } catch (ParseException e)
+        {
+            e.printStackTrace();
         }
 
         return client;

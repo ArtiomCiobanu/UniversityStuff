@@ -66,7 +66,6 @@ public class EntityInfoTable<TEntity extends BaseEntity>
         InfoTable.AddRow(rowData);
     }
 
-
     public void Show()
     {
         InfoTable.Show();
@@ -85,5 +84,15 @@ public class EntityInfoTable<TEntity extends BaseEntity>
     public void SetBottomButtonAction(ActionListener actionListener)
     {
         InfoTable.SetBottomButtonAction(actionListener);
+    }
+
+    public void SetAddButtonAction(ActionListener actionListener)
+    {
+        InfoTable.SetAddButtonAction(actionListener);
+    }
+
+    public void SetRemoveButtonAction(ActionListener actionListener)
+    {
+        InfoTable.SetRemoveButtonAction(actionListener);
     }
 }

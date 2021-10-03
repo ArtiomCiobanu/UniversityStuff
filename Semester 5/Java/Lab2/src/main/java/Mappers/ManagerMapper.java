@@ -5,6 +5,7 @@ import Entities.Manager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class ManagerMapper implements SqlMapper<Manager>
@@ -26,6 +27,17 @@ public class ManagerMapper implements SqlMapper<Manager>
             sqlException.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Manager CreateEntity(HashMap<String, String> stringHashMap)
+    {
+        Manager manager = new Manager();
+
+        manager.Id = UUID.fromString(stringHashMap.get("Id"));
+        manager.Name = stringHashMap.get("Name");
+
+        return manager;
     }
 
     @Override

@@ -5,6 +5,7 @@ import Entities.GymPass;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class GymPassMapper implements SqlMapper<GymPass>
@@ -25,6 +26,18 @@ public class GymPassMapper implements SqlMapper<GymPass>
             sqlException.printStackTrace();
             return null;
         }
+
+        return gymPass;
+    }
+
+    @Override
+    public GymPass CreateEntity(HashMap<String, String> stringHashMap)
+    {
+        GymPass gymPass = new GymPass();
+
+        gymPass.Id = UUID.fromString(stringHashMap.get("Id"));
+        gymPass.MonthAmount = Integer.parseInt(stringHashMap.get("MonthAmount"));
+        gymPass.Price = Integer.parseInt(stringHashMap.get("Price"));
 
         return gymPass;
     }

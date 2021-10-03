@@ -1,6 +1,7 @@
 import Controllers.ClientController;
 import Controllers.GymPassController;
 import Controllers.ManagerController;
+import Entities.Manager;
 import Mappers.ClientMapper;
 import Mappers.GymPassMapper;
 import Mappers.ManagerMapper;
@@ -45,6 +46,10 @@ class Lab2
         var clientRepository = new ClientRepository(connection);
         var gymPassRepository = new GymPassRepository(connection);
 
+        var clientMapper = new ClientMapper();
+        var gymPassMapper = new GymPassMapper();
+        var managerMapper = new ManagerMapper();
+
         var clientInfoTable = new EntityInfoTable<>(
                 "Clients",
                 new String[]
@@ -55,7 +60,7 @@ class Lab2
                                 "GymPassId",
                                 "ManagerId"
                         },
-                new ClientMapper(),
+                clientMapper,
                 "Gym Passes",
                 "Managers");
         var gymPassInfoTable = new EntityInfoTable<>(
@@ -66,7 +71,7 @@ class Lab2
                                 "Price",
                                 "MonthAmount"
                         },
-                new GymPassMapper(),
+                gymPassMapper,
                 "Managers",
                 "Clients");
         var managerInfoTable = new EntityInfoTable<>(
@@ -76,22 +81,29 @@ class Lab2
                                 "Id",
                                 "Name"
                         },
-                new ManagerMapper(),
+                managerMapper,
                 "Clients",
                 "GymPasses");
 
+
+        managerController = new ManagerController(managerRepository, managerInfoTable, managerMapper);
+        clientController = new ClientController(clientRepository, clientInfoTable, clientMapper);
+        gymPassController = new GymPassController(gymPassRepository, gymPassInfoTable, gymPassMapper);
+
         clientInfoTable.SetTopButtonAction(e -> GymPassesButton_Click());
         clientInfoTable.SetBottomButtonAction(e -> ManagersButton_Click());
+        clientInfoTable.SetAddButtonAction(e -> clientController.Add());
+        clientInfoTable.SetRemoveButtonAction(e -> clientController.Remove());
 
         gymPassInfoTable.SetTopButtonAction(e -> ManagersButton_Click());
         gymPassInfoTable.SetBottomButtonAction(e -> ClientsButton_Click());
+        gymPassInfoTable.SetAddButtonAction(e -> gymPassController.Add());
+        gymPassInfoTable.SetRemoveButtonAction(e -> gymPassController.Remove());
 
         managerInfoTable.SetTopButtonAction(e -> ClientsButton_Click());
         managerInfoTable.SetBottomButtonAction(e -> GymPassesButton_Click());
-
-        managerController = new ManagerController(managerRepository, managerInfoTable);
-        clientController = new ClientController(clientRepository, clientInfoTable);
-        gymPassController = new GymPassController(gymPassRepository, gymPassInfoTable);
+        managerInfoTable.SetAddButtonAction(e -> managerController.Add());
+        managerInfoTable.SetRemoveButtonAction(e -> managerController.Remove());
 
         managerController.LoadPage(0);
         managerController.Show();
