@@ -51,7 +51,7 @@ public class BaseController<TEntity extends BaseEntity>
 
     public void Remove()
     {
-        var removeEntityView = new RemoveEntityView<TEntity>(EntitySqlMapper);
+        var removeEntityView = new RemoveEntityView();
 
 
     }

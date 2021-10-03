@@ -4,7 +4,6 @@ import Entities.BaseEntity;
 import Mappers.SqlMapper;
 
 import javax.swing.*;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -13,7 +12,6 @@ public class AddEntityView<TEntity extends BaseEntity>
     private final JFrame Frame;
     private final HashMap<String, JTextField> TextFields;
     private final String[] FieldNames;
-
     private final SqlMapper<TEntity> EntitySqlMapper;
 
     public TEntity Result;
