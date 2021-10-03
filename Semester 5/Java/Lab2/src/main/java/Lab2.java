@@ -23,7 +23,7 @@ class Lab2
         //docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=yourStrong(!)Password" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
 
         var connectionString = "jdbc:sqlserver://localhost:1433;username=sa;password=yourStrong(!)Password";
-        
+
         var a = new ConnectionFactory();
         var connection = a.getConnection(connectionString);
 
