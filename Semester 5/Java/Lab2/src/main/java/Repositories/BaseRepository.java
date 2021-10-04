@@ -1,5 +1,6 @@
 package Repositories;
 
+import Connections.ConnectionFactory;
 import Entities.BaseEntity;
 import Mappers.SqlMapper;
 
@@ -14,14 +15,19 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
     private final String tableName;
     private final SqlMapper<TEntity> sqlMapper;
 
-    protected final Connection connection;
+    private final String connectionString;
+
+    protected final ConnectionFactory ConnectionFactory = new ConnectionFactory();
+
+    //Should be disposed after every query
+    private Connection connection;
 
     public BaseRepository(
-            Connection connection,
+            String connectionString,
             String tableName,
             SqlMapper<TEntity> sqlMapper)
     {
-        this.connection = connection;
+        this.connectionString = connectionString;
         this.sqlMapper = sqlMapper;
 
         this.tableName = tableName;
@@ -43,6 +49,8 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
         sqlQuery.append(")");
 
         Execute(sqlQuery.toString());
+
+        CloseConnection();
     }
 
     public TEntity Read(UUID id)
@@ -52,6 +60,9 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
         var queryResult = ExecuteQuery(sqlQuery);
 
         var entity = queryResult != null ? GetNextEntity(queryResult) : null;
+
+        CloseConnection();
+
         return entity;
     }
 
@@ -78,6 +89,8 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
             result.add(entity);
         }
 
+        CloseConnection();
+
         return result;
     }
 
@@ -97,13 +110,17 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
 
             sqlQuery.append(String.format("where Id = %s", entity.Id));
         }
+
+        CloseConnection();
     }
 
     public void Delete(UUID id)
     {
-        var sqlQuery = String.format("delete from %s where Id = ", tableName, id);
+        var sqlQuery = String.format("delete from %s where Id = \'%s\'", tableName, id);
 
         Execute(sqlQuery);
+
+        CloseConnection();
     }
 
     public boolean ExistsWithId(UUID id)
@@ -121,11 +138,16 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
 
             var exists = resultSet.getBoolean("Exists");
 
+            CloseConnection();
+
             return exists;
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
+
+            CloseConnection();
+
             return false;
         }
     }
@@ -142,18 +164,24 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
         catch (SQLException ex)
         {
             ex.printStackTrace();
+
             return null;
         }
     }
 
     private ResultSet ExecuteQuery(String sqlQuery)
     {
+        System.out.println(sqlQuery);
+
         try
         {
+            var connection = ConnectionFactory.getConnection(connectionString);
             var statement = connection.prepareStatement(sqlQuery);
 
-            var queryResult = statement.executeQuery();
-            return queryResult;
+            var result= statement.executeQuery();
+
+
+            return result;
         }
         catch (SQLException ex)
         {
@@ -164,15 +192,35 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
 
     private void Execute(String sqlQuery)
     {
+        System.out.println(sqlQuery);
+
         try
         {
+            var connection = ConnectionFactory.getConnection(connectionString);
             var statement = connection.prepareStatement(sqlQuery);
 
             statement.execute();
+
+            connection.close();
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
+        }
+    }
+
+    private void CloseConnection()
+    {
+        try
+        {
+            if(connection != null && !connection.isClosed())
+            {
+                connection.close();
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
         }
     }
 }

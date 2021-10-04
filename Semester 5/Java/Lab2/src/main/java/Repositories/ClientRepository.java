@@ -7,8 +7,8 @@ import java.sql.Connection;
 
 public class ClientRepository extends BaseRepository<Client>
 {
-    public ClientRepository(Connection connection)
+    public ClientRepository(String connectionString)
     {
-        super(connection, "Clients", new ClientMapper());
+        super(connectionString, "Clients", new ClientMapper());
     }
 }

@@ -7,11 +7,16 @@ import Views.AddEntityView;
 import Views.EntityInfoTable;
 import Views.RemoveEntityView;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class BaseController<TEntity extends BaseEntity>
 {
     protected final EntityInfoTable<TEntity> EntityTable;
     protected final Repository<TEntity> EntityRepository;
     protected final SqlMapper<TEntity> EntitySqlMapper;
+
+    private int currentPage;
 
     public BaseController(
             Repository<TEntity> entityRepository,
@@ -25,7 +30,9 @@ public class BaseController<TEntity extends BaseEntity>
 
     public void LoadPage(int pageNumber)
     {
-        var page = EntityRepository.ReadTop(5, pageNumber * 5);
+        currentPage = pageNumber;
+
+        var page = EntityRepository.ReadTop(5, currentPage * 5);
 
         EntityTable.SetTableData(page);
     }
@@ -42,19 +49,28 @@ public class BaseController<TEntity extends BaseEntity>
 
     public void Add()
     {
-        var addEntityView = new AddEntityView<TEntity>(EntitySqlMapper);
+        var addEntityView = new AddEntityView<>(EntitySqlMapper);
 
-        var entity = addEntityView.Result;
+        addEntityView.SetExitAction(() ->
+        {
+            var entity = addEntityView.Result;
 
-        EntityRepository.Create(entity);
+            EntityRepository.Create(entity);
+
+            LoadPage(currentPage);
+        });
     }
 
     public void Remove()
     {
         var removeEntityView = new RemoveEntityView();
+        removeEntityView.SetExitAction(() ->
+        {
+            var id = removeEntityView.EntityId;
 
-        var id = removeEntityView.EntityId;
+            EntityRepository.Delete(id);
 
-        EntityRepository.Delete(id);
+            LoadPage(currentPage);
+        });
     }
 }

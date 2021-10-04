@@ -1,18 +1,22 @@
-create table GymPass
+create --drop
+table GymPasses
 (
 	Id uniqueidentifier primary key,
 	Price int,
 	MonthAmount int
 );
 
-create table Managers
+
+create --drop
+table Managers
 (
 	Id uniqueidentifier primary key,
 	Name nvarchar(50)
 );
 
 
-create table Clients
+create --drop
+table Clients
 (
 	Id uniqueidentifier primary key,
 	Name nvarchar(50) not null,

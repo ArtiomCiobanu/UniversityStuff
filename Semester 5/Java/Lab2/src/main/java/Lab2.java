@@ -1,7 +1,7 @@
+import Connections.ConnectionFactory;
 import Controllers.ClientController;
 import Controllers.GymPassController;
 import Controllers.ManagerController;
-import Entities.Manager;
 import Mappers.ClientMapper;
 import Mappers.GymPassMapper;
 import Mappers.ManagerMapper;
@@ -25,26 +25,14 @@ class Lab2
 
         var connectionString = "jdbc:sqlserver://localhost:1433;username=sa;password=yourStrong(!)Password";
 
-        var a = new ConnectionFactory();
-        var connection = a.getConnection(connectionString);
-
-        Launch(connection);
-
-        try
-        {
-            connection.close();
-        }
-        catch (SQLException throwables)
-        {
-            throwables.printStackTrace();
-        }
+        Launch(connectionString);
     }
 
-    private static void Launch(Connection connection)
+    private static void Launch(String connectionString)
     {
-        var managerRepository = new ManagerRepository(connection);
-        var clientRepository = new ClientRepository(connection);
-        var gymPassRepository = new GymPassRepository(connection);
+        var managerRepository = new ManagerRepository(connectionString);
+        var clientRepository = new ClientRepository(connectionString);
+        var gymPassRepository = new GymPassRepository(connectionString);
 
         var clientMapper = new ClientMapper();
         var gymPassMapper = new GymPassMapper();

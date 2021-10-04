@@ -7,8 +7,8 @@ import java.sql.Connection;
 
 public class GymPassRepository extends BaseRepository<GymPass>
 {
-    public GymPassRepository(Connection connection)
+    public GymPassRepository(String connectionString)
     {
-        super(connection, "GymPasses", new GymPassMapper());
+        super(connectionString, "GymPasses", new GymPassMapper());
     }
 }

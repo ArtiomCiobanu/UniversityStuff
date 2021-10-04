@@ -7,8 +7,8 @@ import java.sql.Connection;
 
 public class ManagerRepository extends BaseRepository<Manager>
 {
-    public ManagerRepository(Connection connection)
+    public ManagerRepository(String connectionString)
     {
-        super(connection, "Managers", new ManagerMapper());
+        super(connectionString, "Managers", new ManagerMapper());
     }
 }

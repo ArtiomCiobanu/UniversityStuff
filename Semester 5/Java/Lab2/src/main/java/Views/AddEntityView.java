@@ -1,11 +1,12 @@
 package Views;
-
+import Actions.ActionToPerform;
 import Entities.BaseEntity;
 import Mappers.SqlMapper;
-
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AddEntityView<TEntity extends BaseEntity>
 {
@@ -13,6 +14,9 @@ public class AddEntityView<TEntity extends BaseEntity>
     private final HashMap<String, JTextField> TextFields;
     private final String[] FieldNames;
     private final SqlMapper<TEntity> EntitySqlMapper;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private ActionToPerform exitAction;
 
     public TEntity Result;
 
@@ -48,6 +52,8 @@ public class AddEntityView<TEntity extends BaseEntity>
             Frame.add(label);
             Frame.add(textField);
 
+            TextFields.put(fieldName, textField);
+
             y += 30;
         }
 
@@ -59,6 +65,11 @@ public class AddEntityView<TEntity extends BaseEntity>
         Frame.add(saveButton);
 
         Frame.setVisible(true);
+    }
+
+    public void SetExitAction(ActionToPerform actionListener)
+    {
+        exitAction = actionListener;
     }
 
     private void SaveButton_Click()
@@ -82,5 +93,7 @@ public class AddEntityView<TEntity extends BaseEntity>
         Result = EntitySqlMapper.CreateEntity(hashMap);
 
         Frame.setVisible(false);
+
+        executorService.execute(() -> exitAction.PerformAction());
     }
 }

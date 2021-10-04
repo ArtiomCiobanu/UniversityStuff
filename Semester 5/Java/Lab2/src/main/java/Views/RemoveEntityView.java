@@ -1,15 +1,19 @@
 package Views;
 
-import Entities.BaseEntity;
-
+import Actions.ActionToPerform;
 import javax.swing.*;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RemoveEntityView
 {
     private final JFrame Frame;
 
     private final JTextField TextField;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private ActionToPerform exitAction;
 
     public UUID EntityId;
 
@@ -26,9 +30,10 @@ public class RemoveEntityView
 
         TextField = new JTextField();
         TextField.setSize(100, 20);
-        TextField.setLocation(70, 40);
+        TextField.setLocation(70, 10);
 
         Frame.add(label);
+        Frame.add(TextField);
 
         var saveButton = new JButton("Remove");
         saveButton.setSize(100, 20);
@@ -40,10 +45,17 @@ public class RemoveEntityView
         Frame.setVisible(true);
     }
 
+    public void SetExitAction(ActionToPerform actionListener)
+    {
+        exitAction = actionListener;
+    }
+
     private void RemoveButton_Click()
     {
         EntityId = UUID.fromString(TextField.getText());
 
         Frame.setVisible(false);
+
+        executorService.execute(() -> exitAction.PerformAction());
     }
 }
