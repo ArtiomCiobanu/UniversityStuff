@@ -41,6 +41,7 @@ public class EntityInfoTable<TEntity extends BaseEntity>
             for (var field : entityFields)
             {
                 stringTableData[i][j] = field.Value;
+
                 j++;
             }
 

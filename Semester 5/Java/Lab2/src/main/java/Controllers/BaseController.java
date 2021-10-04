@@ -7,6 +7,7 @@ import Views.AddEntityView;
 import Views.EntityInfoTable;
 import Views.RemoveEntityView;
 
+import javax.swing.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

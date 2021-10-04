@@ -94,6 +94,7 @@ public class AddEntityView<TEntity extends BaseEntity>
 
         Frame.setVisible(false);
 
+        //SwingUtilities.invokeLater(() -> exitAction.PerformAction());
         executorService.execute(() -> exitAction.PerformAction());
     }
 }

@@ -178,10 +178,7 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
             var connection = ConnectionFactory.getConnection(connectionString);
             var statement = connection.prepareStatement(sqlQuery);
 
-            var result= statement.executeQuery();
-
-
-            return result;
+            return statement.executeQuery();
         }
         catch (SQLException ex)
         {

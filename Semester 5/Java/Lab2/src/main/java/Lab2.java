@@ -1,4 +1,3 @@
-import Connections.ConnectionFactory;
 import Controllers.ClientController;
 import Controllers.GymPassController;
 import Controllers.ManagerController;
@@ -9,9 +8,6 @@ import Repositories.ClientRepository;
 import Repositories.GymPassRepository;
 import Repositories.ManagerRepository;
 import Views.EntityInfoTable;
-
-import java.sql.Connection;
-import java.sql.SQLException;
 
 class Lab2
 {

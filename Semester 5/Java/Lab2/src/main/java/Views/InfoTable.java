@@ -76,6 +76,8 @@ public class InfoTable
         Frame.add(ScrollPane);
 
         Frame.update(Frame.getGraphics());
+        Frame.revalidate();
+        Frame.repaint();
     }
 
     public void AddRow(String[] row)
