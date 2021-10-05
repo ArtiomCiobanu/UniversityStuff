@@ -15,9 +15,9 @@
 
 //static int maxSum;
 
-void CountMaxSum(int *, int *, int *, MPI_Datatype *);
+void SendMaxElement(int *, int *, int *, MPI_Datatype *);
 
-void CountMaxSum(int *invec, int *inoutvec, int *len, MPI_Datatype *dtype)
+void SendMaxElement(int *invec, int *inoutvec, int *len, MPI_Datatype *dtype)
 {
     for(int i = 0; i < *len; i++)
     {
@@ -30,8 +30,7 @@ void CountMaxSum(int *invec, int *inoutvec, int *len, MPI_Datatype *dtype)
 
 int main(int argc, char *argv[])
 {
-    int size;
-    int currentRank, rootRank = 0;
+    int size, currentRank, rootRank = 0;
 
     MPI_Op op;
     MPI_Init(&argc, &argv);
@@ -40,10 +39,12 @@ int main(int argc, char *argv[])
 
     if (currentRank == rootRank)
     {
-        printf("===== Results '%s' =====\n", argv[0]);
+        printf("\n===== Results '%s' =====\n", argv[0]);
     }
 
-    printf("Process %i initializes its row. \n", currentRank);
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    printf("\nProcess %i initializes its row. \n", currentRank);
 
     int Row[size];
     for (int i = 0; i < size; i++)
@@ -53,28 +54,33 @@ int main(int argc, char *argv[])
     }
     printf("\n");
 
-    int sum = 0;
-    for(int i = 0; i < size; i++)
+    int maxIndex = 0;
+    int rowMax = Row[maxIndex];
+    for(int i = 1; i < size; i++)
     {
-        sum += Row[i];
+        if(Row[i] > rowMax)
+        {
+            rowMax = Row[i];
+            maxIndex = i;
+        }
     }
-
-    printf("%i rank\'s row sum: %i\n", currentRank, sum);
+    printf("The max element is: M[%i,%i] = %i\n", currentRank, maxIndex, Row[maxIndex]);
 
     sleep(2 * currentRank);
 
-    int data = sum;
-    int maxSum = 0;
-    MPI_Op_create((MPI_User_function *) CountMaxSum, 1, &op);
-    MPI_Reduce(&data, &maxSum, 1, MPI_INT, op, 0, MPI_COMM_WORLD);
+    int max;
+    MPI_Op_create((MPI_User_function *) SendMaxElement, 1, &op);
+    MPI_Reduce(&rowMax, &max, 1, MPI_INT, op, 0, MPI_COMM_WORLD);
 
-    if(currentRank == rootRank)
-    {
-        printf("\nMax sum: %i\n", maxSum);
-    }
-    
     MPI_Op_free(&op);
-    
+
+    MPI_Bcast(&max, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+    if(Row[maxIndex] == max)
+    {
+        printf("\nMax element %i is in %i process\n", max, currentRank);
+    }
+   
     MPI_Finalize();
     return 0;
 }
