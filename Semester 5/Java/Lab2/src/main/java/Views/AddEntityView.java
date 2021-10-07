@@ -78,7 +78,7 @@ public class AddEntityView<TEntity extends BaseEntity>
 
         for(var fieldName : FieldNames)
         {
-            if(fieldName == "Id")
+            if(fieldName.equals("Id"))
             {
                 continue;
             }

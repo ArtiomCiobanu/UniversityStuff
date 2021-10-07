@@ -14,6 +14,7 @@ import java.util.concurrent.Executors;
 public class BaseController<TEntity extends BaseEntity>
 {
     protected final EntityInfoTable<TEntity> EntityTable;
+
     protected final Repository<TEntity> EntityRepository;
     protected final SqlMapper<TEntity> EntitySqlMapper;
 
