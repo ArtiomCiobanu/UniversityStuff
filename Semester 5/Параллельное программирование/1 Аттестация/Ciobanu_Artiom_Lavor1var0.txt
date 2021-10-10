@@ -1,0 +1,53 @@
+3) Как распараллеливаются данные при использовании функции MPI_Scatter?
+Объясните фрагмент кода, где используется это фунция.
+
+MPI_Scatter отправляет данные от корневого процесса, разделяя их на одинаковые части - 
+т.е. каждому процессу достаётся часть данных одинакового размера.
+
+В данном фрагменте кода инициализируется квадратная матрица размером size * size, где size - 
+количество процессов. Функция MPI_Scatter отправляет каждому процессу по одной строке.
+
+int rootRank = 0;
+double *matrix;
+if(currentRank == rootRank)
+{
+    matrix = (double*) malloc(size * size * sizeof(double));
+}
+
+MPI_Scatter(matrix, size, MPI_DOUBLE, matrixRow, size, MPI_DOUBLE, rootRank, MPI_COMM_WORLD);
+
+
+4) Как распараллеливаются данные если функции MPI_Scatter не используется?
+Объясните фрагмент кода, где используется это фунция.
+
+Существует возможность использования MPI_Send и MPI_Recv. В этом случае каждому процессу необходимо
+отправлять данные отдельно, вызывая функцию специально для каждого.
+
+В данном фрагменте кода корневой процесс передаёт каждому процессу строку матрицы, используя 
+MPI_Send. Для этого, данная функция вызывается в цикле, в которой счётчик на каждой итерации является 
+индексом одного из процессов. То есть от 0 до количества процессов.
+
+if (currentRank == rootRank)
+{
+   for (int i = 0; i < size; i++)
+   {
+        MPI_Send(matrix, size, MPI_DOUBLE, i, 10, MPI_COMM_WORLD);               
+   }
+}
+
+MPI_Recv(matrixRow, size, MPI_INT, 0, 10, MPI_COMM_WORLD);
+
+7) Какие типы данных используются в функции MPI_Reduce для операции 
+MPI_MAX_LOC? Объясните фрагмент кода, в котором используется этот тип данных.
+
+MPI_DOUBLE_INT
+MPI_LONG_INT 
+MPI_FLOAT_INT 
+MPI_SHORT_INT 
+MPI_LONG_DOUBLE_INT 
+MPI_2INT 
+
+В данном фрагменте кода используется MPI_2INT для передачи двух переменных типа int
+
+int reduction_result[2];
+MPI_Reduce(data_pair, reduction_result, 1, MPI_2INT, MPI_MAXLOC, root_rank, MPI_COMM_WORLD);
