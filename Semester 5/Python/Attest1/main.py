@@ -5,10 +5,10 @@ def read_dishes_from_file(file_name):
     dishes_from_file = dict()
 
     if not isfile(file_name):
-        dishes_file = open(file_name, "r+")
+        dishes_file = open(file_name, "w+")
         dishes_file.close()
-    else:
-        dishes_file = open(file_name, "r")
+
+    dishes_file = open(file_name, "r")
 
     file_lines = dishes_file.readlines()
     for line in file_lines:
