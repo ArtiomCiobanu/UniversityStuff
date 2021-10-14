@@ -14,6 +14,7 @@ namespace Lab2
     public partial class Form1 : Form
     {
         private Dictionary<string, int> _data = new Dictionary<string, int>();
+        private Dictionary<string, int> _sunchartData = new Dictionary<string, int>();
 
         private Point _leftPoint = new Point(90, 350);
         private Point _topPoint = new Point(150, 320);
@@ -39,72 +40,83 @@ namespace Lab2
                     _data.Add(words[0], int.Parse(words[1]));
                 }
             }
+
+            using (StreamReader streamReader = new StreamReader("SunchartData.txt"))
+            {
+                while (!streamReader.EndOfStream)
+                {
+                    var line = streamReader.ReadLine();
+
+                    var words = line.Split();
+                    _sunchartData.Add(words[0], int.Parse(words[1]));
+                }
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            DrawBackgroundLines(e.Graphics);
-            DrawValues(e.Graphics);
+            DrawFirstChart(e.Graphics);
+            DrawSecondChart(e.Graphics);
+        }
 
+        private void DrawSecondChart(Graphics graphics)
+        {
+            var pen = new Pen(Color.Black, 2);
 
-            /*Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 2);
-            var brush = new SolidBrush(Color.Yellow);*/
+            var rightRectangle = new Rectangle(new Point(850, 100), new Size(100, 170));
+            graphics.DrawRectangle(pen, rightRectangle);
 
+            var rightPoint = new Point(860, 110);
 
-            /*e.Graphics.DrawPolygon(pen, new PointF[4]
+            var mainRectangle = new Rectangle(new Point(600, 100), new Size(200, 200));
+
+            var colors = new[]
             {
-                new PointF(100, 100),
-                new PointF(200, 100),
-                new PointF(200, 200),
-                new PointF(150, 200)
-            });*/
+                Color.Red,
+                Color.Blue,
+                Color.Green,
+                Color.Yellow,
+                Color.BlueViolet
+            };
 
-            /*e.Graphics.FillPolygon(brush, new PointF[4]
+            float previous = 0;
+            var colorIndex = 0;
+            foreach (var (key, value) in _sunchartData)
             {
-                new PointF(100, 100),
-                new PointF(200, 100),
-                new PointF(200, 200),
-                new PointF(150, 200)
-            });*/
+                var coloredBrush = new SolidBrush(colors[colorIndex]);
 
-            /*e.Graphics.DrawClosedCurve(pen, new PointF[3] 
-            {
-                new PointF(200, 300),
-                new PointF(400, 500),
-                new PointF(700, 600)
-            });*/
-
-            /*e.Graphics.FillClosedCurve(brush, new PointF[4]
-            {
-                new PointF(100, 100),
-                new PointF(200, 100),
-                new PointF(200, 200),
-                new PointF(150, 200)
-            });*/
-
-            /*e.Graphics.draw
-            e.Graphics.DrawArc(pen, new Rectangle(100, 100, 300, 300), 200, 90);*/
+                var angle = (float)3.6 * value;
+                graphics.DrawPie(pen, mainRectangle, previous, angle);
+                graphics.FillPie(coloredBrush, mainRectangle, previous, angle);
 
 
-            /*var region = new Region();
-            region.Union();
-           
-            e.Graphics.FillRegion(brush);*/
+                var currentColoredPoint = rightPoint;
+                currentColoredPoint.Y += colorIndex * 35;
 
-            // Create location and size of ellipse.
-            /*float x = 0.0F;
-            float y = 0.0F;
-            float width = 200.0F;
-            float height = 100.0F;
+                var coloredRectangle = new Rectangle(currentColoredPoint, new Size(10, 10));
+                graphics.DrawRectangle(pen, coloredRectangle);
+                graphics.FillRectangle(coloredBrush, coloredRectangle);
 
-            // Create start and sweep angles.
-            float startAngle = 0.0F;
-            float sweepAngle = 45.0F;
+                var labelPoint = currentColoredPoint;
+                labelPoint.X += 20;
+                labelPoint.Y -= 5;
+                graphics.DrawString(key, Font, new SolidBrush(Color.Black), labelPoint);
 
-            // Draw pie to screen.
-            e.Graphics.DrawPie(pen, x, y, width, height, startAngle, sweepAngle);*/
+                previous += angle;
+                colorIndex++;
+            }
+
+            var innerRectangle = new Rectangle(new Point(650, 150), new Size(100, 100));
+            graphics.FillEllipse(new SolidBrush(BackColor), innerRectangle);
+            graphics.DrawEllipse(pen, innerRectangle);
+        }
+
+        private void DrawFirstChart(Graphics graphics)
+        {
+            DrawBackgroundLines(graphics);
+            DrawValues(graphics);
         }
 
         private void DrawBackgroundLines(Graphics graphics)
@@ -143,7 +155,6 @@ namespace Lab2
         {
             var fontBrush = new SolidBrush(Color.Black);
             var brush = new SolidBrush(Color.Blue);
-            var darkBrush = new SolidBrush(Color.DarkBlue);
 
             var length = GetDistance(_leftPoint, _bottomPoint);
 
@@ -159,7 +170,6 @@ namespace Lab2
 
             var previousTopPoint = beginningLeftPoint;
             var previousBottomPoint = beginningLeftPoint;
-            var previousDarkPartPoint = previousTopPoint;
 
             int currentIndex = 0;
             foreach (var (key, value) in _data)
@@ -167,33 +177,21 @@ namespace Lab2
                 var currentX = currentIndex * distance;
                 var currentY = currentIndex * 7;
 
-                var currentLabelPoint = beginningLeftPoint;
-                currentLabelPoint.X += (int)currentX;
-                currentLabelPoint.Y += currentY + 5;
+                var currentPoint = beginningLeftPoint;
+                currentPoint.X += (int)currentX;
+                currentPoint.Y += currentY + 5;
 
-                graphics.DrawString(key, font, fontBrush, currentLabelPoint);
+                var labelPoint = currentPoint;
+                labelPoint.Y += 20;
+
+                graphics.DrawString(key, font, fontBrush, labelPoint);
 
 
                 var currentTopY = beginningLeftPoint.Y - value * 2;
-                var currentTopPoint = new Point(currentLabelPoint.X, currentTopY);
+                var currentTopPoint = new Point(currentPoint.X, currentTopY);
 
                 var currentBottomPoint = previousBottomPoint;
                 currentBottomPoint.Y += 2;
-
-                var currentDarkPartPoint = currentTopPoint;
-                currentDarkPartPoint.X += 10;
-                currentDarkPartPoint.Y += 20;
-
-                /*graphics.FillPolygon(
-                    darkBrush,
-                    new[]
-                    {
-                        previousTopPoint,
-                        previousDarkPartPoint,
-                        currentDarkPartPoint,
-                        currentTopPoint
-                    });*/
-
 
                 graphics.FillPolygon(
                     brush,
@@ -202,13 +200,11 @@ namespace Lab2
                         previousBottomPoint,
                         previousTopPoint,
                         currentTopPoint,
-                        currentLabelPoint
+                        currentPoint
                     });
 
                 previousTopPoint = currentTopPoint;
                 previousBottomPoint = currentBottomPoint;
-
-                previousDarkPartPoint = currentDarkPartPoint;
 
                 currentIndex++;
             }

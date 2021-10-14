@@ -1,0 +1,5 @@
+Alpha 24
+Beta 6
+Gamma 30
+Delta 23
+Sigma 17
