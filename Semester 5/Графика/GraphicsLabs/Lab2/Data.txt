@@ -1,0 +1,5 @@
+﻿Alpha 60
+Beta 40
+Gamma 80
+Delta 60
+Sigma 20
