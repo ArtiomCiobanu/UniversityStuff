@@ -1,10 +1,9 @@
+import re
 from os.path import isfile
-####################
-### From Attest1 ###
-####################
 
-def read_dishes_from_file(file_name):
-    dishes_from_file = dict()
+
+def read_from_file(file_name):
+    file_data = dict()
 
     if not isfile(file_name):
         dishes_file = open(file_name, "w+")
@@ -14,33 +13,28 @@ def read_dishes_from_file(file_name):
 
     file_lines = dishes_file.readlines()
     for line in file_lines:
-        words = line.split()
+        words = line.strip().split()
 
-        dish_name = words.pop(0)
-        dish_ingredients = []
+        full_name = words.pop(0) + " " + words.pop(0)
 
-        for i in words:
-            dish_ingredients.append(i)
+        kid_amount = int(words.pop(0))
 
-        dishes_from_file[dish_name] = dish_ingredients
+        file_data[full_name] = kid_amount
 
     dishes_file.close()
 
-    return dishes_from_file
+    return file_data
 
 
-def write_dishes_to_file(file_name, dishes_to_write):
+def write_to_file(file_name, data_to_write):
     dishes_file = open(file_name, "w+")
 
     lines = []
 
-    for dish_name in dishes_to_write.keys():
-        current_dish = dishes_to_write[dish_name]
+    for full_name in data_to_write.keys():
+        kid_amount = data_to_write[full_name]
 
-        line = dish_name
-        for i in current_dish:
-            line += f" {i}"
-        lines.append(line + "\n")
+        lines.append(f"{full_name} {kid_amount} \n")
 
     dishes_file.writelines(lines)
     dishes_file.close()
@@ -48,7 +42,7 @@ def write_dishes_to_file(file_name, dishes_to_write):
 
 def input_with_length(min_length, max_length, return_type):
     while 1:
-        input_string = input()
+        input_string = input().strip()
 
         try:
             input_value = return_type(input_string)
@@ -63,60 +57,64 @@ def input_with_length(min_length, max_length, return_type):
             print(f"Please enter a value with length between {min_length} and {max_length} characters: ")
 
 
-dishes = read_dishes_from_file("items.txt")
+def input_only_characters(min_length, max_length):
+    pattern = re.compile("^[a-zA-z]*$")
 
-print("Initial Dishes: ")
-for dish in dishes.keys():
-    ingredients = dishes[dish]
-    print(f"{dish} : {ingredients}")
+    while 1:
+        input_string = input_with_length(min_length, max_length, str)
+
+        if pattern.match(input_string):
+            return input_string
+        else:
+            print("Please enter only character string:")
+
+
+data = read_from_file("items.txt")
+
+
+def create_record_from_keyboard():
+    print("Enter the first name: ")
+    first_name = input_only_characters(1, 50)
+
+    print("Enter the last name: ")
+    last_name = input_only_characters(1, 50)
+
+    print("Enter the amount of kids: ")
+    kid_amount = input_with_length(1, 10, int)
+
+    full_name = f"{first_name} {last_name}"
+    data[full_name] = kid_amount
+
+
+def print_records():
+    for full_name in data.keys():
+        kid_amount = data[full_name]
+        print(f"{full_name} : {kid_amount}")
+
+
+print("Initial Data: ")
+print_records()
 
 actionNumber = 0
 while actionNumber != 3:
     print("\nChoose an option:")
-    print("1 - Find an ingredient in a dish")
-    print("2 - Add an ingredient")
+    print("1 - Print all records")
+    print("2 - Add a record")
     print("3 - Exit")
 
     actionNumber = input_with_length(1, 50, int)
 
     if actionNumber == 1:
-        print("Enter the ingredient name: ")
-        ingredientName = input_with_length(3, 15, str)
-
-        foundDishes = dict()
-        for dish in dishes.keys():
-            ingredients = dishes[dish]
-
-            for ingredient in ingredients:
-                if ingredient.upper() == ingredientName.upper():
-                    foundDishes[dish] = dishes[dish]
-
-        foundDishAmount = len(foundDishes)
-        if foundDishAmount > 0:
-            dishText = "dishes" if foundDishAmount > 1 else "dish"
-
-            print(f"The ingredient was found in {foundDishAmount} {dishText}:")
-            for dishName in foundDishes.keys():
-                print(f"{dishName}. Ingredients: {foundDishes[dishName]}")
-        else:
-            print("No dish with this ingredient was found")
+        print("\nAll the records: ")
+        print_records()
 
     elif actionNumber == 2:
-        print("Enter the dish to add the ingredient to:")
-        dishName = input_with_length(3, 10, str)
-
-        if dishName not in dishes.keys():
-            dishes[dishName] = []
-
-        print("Enter the ingredient to add to the entered dish:")
-        ingredientName = input_with_length(3, 15, str)
-
-        dishes[dishName].append(ingredientName)
+        create_record_from_keyboard()
 
     elif actionNumber == 3:
-        print("Writing the dishes into the file...")
+        print("Writing data into the file...")
 
-        write_dishes_to_file("items.txt", dishes)
+        write_to_file("items.txt", data)
 
         print("Exiting...")
         break
