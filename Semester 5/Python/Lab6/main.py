@@ -21,6 +21,11 @@ hourly_employee = HourlyEmployee("Alex",
 
 hourly_salary = hourly_employee.calculate_salary()
 
+print(salary_employee.name)
+salary_employee.name = "aaaaaaaaaaaaaaaaa"
+print(salary_employee.name)
+#del salary_employee
+
 # del dep1.calculate_age
 
 ##print(dep1.__name)

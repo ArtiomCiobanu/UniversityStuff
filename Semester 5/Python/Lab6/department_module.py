@@ -1,3 +1,6 @@
+from datetime import date
+
+
 def print_salary(func):
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)

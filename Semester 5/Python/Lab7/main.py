@@ -80,7 +80,7 @@ def create_record_from_keyboard():
     last_name = input_only_characters(1, 50)
 
     print("Enter the amount of kids: ")
-    kid_amount = input_with_length(1, 10, int)
+    kid_amount = input_with_length(1, 1, int)
 
     full_name = f"{first_name} {last_name}"
     data[full_name] = kid_amount
@@ -92,15 +92,24 @@ def print_records():
         print(f"{full_name} : {kid_amount}")
 
 
+def count_children():
+    amount = 0
+    for employee_name in data.keys():
+        amount += data[employee_name]
+
+    return amount
+
+
 print("Initial Data: ")
 print_records()
 
 actionNumber = 0
-while actionNumber != 3:
+while actionNumber != 4:
     print("\nChoose an option:")
     print("1 - Print all records")
     print("2 - Add a record")
-    print("3 - Exit")
+    print("3 - Count all children")
+    print("4 - Exit")
 
     actionNumber = input_with_length(1, 50, int)
 
@@ -112,11 +121,15 @@ while actionNumber != 3:
         create_record_from_keyboard()
 
     elif actionNumber == 3:
+        childrenAmount = count_children()
+        print(f"Children amount: {childrenAmount}")
+
+    elif actionNumber == 4:
         print("Writing data into the file...")
 
         write_to_file("items.txt", data)
 
         print("Exiting...")
         break
-    else:
-        print("Please select a correct option:")
+else:
+    print("Please select a correct option:")
