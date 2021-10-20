@@ -1,6 +1,8 @@
 package com.example.lab3;
 
 import java.io.*;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -16,24 +18,42 @@ Nℬ. В IDE надо установит сервер, работающий с J
 
 Тема: Тестирование знаний по астрономии (космос, планеты, солнечная система).
  */
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
-    private String message;
 
-    public void init() {
-        message = "Hello World!yugihvi";
+//@WebServlet(name = "helloServlet", value = "/hello")
+@WebServlet(urlPatterns = "/hello")
+public class HelloServlet extends HttpServlet
+{
+    public HelloServlet()
+    {
+
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void init(ServletConfig servletConfig)
+    {
+        try {
+            super.init(servletConfig);
+        } catch (ServletException servletException) {
+            servletException.printStackTrace();
+        }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
         response.setContentType("text/html");
 
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
+        out.println("<h1>" + "message" + "</h1>");
         out.println("</body></html>");
     }
 
-    public void destroy() {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+
+    }
+
+    public void destroy()
+    {
     }
 }
