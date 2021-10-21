@@ -19,7 +19,6 @@ Nℬ. В IDE надо установит сервер, работающий с J
 Тема: Тестирование знаний по астрономии (космос, планеты, солнечная система).
  */
 
-//@WebServlet(name = "helloServlet", value = "/hello")
 @WebServlet(urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet
 {
