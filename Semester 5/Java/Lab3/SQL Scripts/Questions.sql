@@ -1,7 +1,7 @@
 
-create table Questions
+create --drop 
+table Questions
 (
 	Id uniqueidentifier,
-	Name nvarchar(50),
-	Text nvarchar(50)
+	Name nvarchar(50)
 )

@@ -18,7 +18,6 @@ public class QuestionMapper implements SqlMapper<Question>
         try
         {
             question.Id = UUID.fromString(sql.getString("Id"));
-            question.Text = sql.getString("Text");
             question.Name = sql.getString("Name");
         }
         catch (SQLException sqlException)
@@ -36,7 +35,6 @@ public class QuestionMapper implements SqlMapper<Question>
         Question question = new Question();
 
         question.Id = UUID.fromString(stringHashMap.get("Id"));
-        question.Text = stringHashMap.get("Text");
         question.Name = stringHashMap.get("Name");
 
         return question;
@@ -48,8 +46,7 @@ public class QuestionMapper implements SqlMapper<Question>
         ArrayList<NameValuePair> result = new ArrayList<>();
 
         result.add(new NameValuePair("Id", question.Id.toString()));
-        result.add(new NameValuePair("Text", question.Text));
-        result.add(new NameValuePair("Name", question.Text));
+        result.add(new NameValuePair("Name", question.Name));
 
         return result;
     }
@@ -60,7 +57,6 @@ public class QuestionMapper implements SqlMapper<Question>
         return new String[]
                 {
                         "Id",
-                        "Text",
                         "Name"
                 };
     }

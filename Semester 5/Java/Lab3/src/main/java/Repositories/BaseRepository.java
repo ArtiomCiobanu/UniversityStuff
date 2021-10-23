@@ -143,7 +143,7 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
     }
 
 
-    private TEntity GetNextEntity(ResultSet resultSet)
+    protected TEntity GetNextEntity(ResultSet resultSet)
     {
         try {
             var exists = resultSet.next();
@@ -156,7 +156,7 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
         }
     }
 
-    private ResultSet ExecuteQuery(String sqlQuery)
+    protected ResultSet ExecuteQuery(String sqlQuery)
     {
         System.out.println(sqlQuery);
 
@@ -187,7 +187,7 @@ public class BaseRepository<TEntity extends BaseEntity> implements Repository<TE
         }
     }
 
-    private void CloseConnection()
+    protected void CloseConnection()
     {
         try {
             if (connection != null && !connection.isClosed()) {
