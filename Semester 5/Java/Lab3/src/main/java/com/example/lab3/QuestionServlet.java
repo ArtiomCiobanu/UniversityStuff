@@ -20,31 +20,36 @@ public class QuestionServlet extends HttpServlet
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
 
+    String[] QuestionNames = new String[]
+            {
+                    "question1",
+                    "question2",
+                    "question3",
+                    "question4"
+            };
+
     public QuestionServlet()
     {
         var connectionString = "jdbc:sqlserver://localhost:1433;username=sa;password=yourStrong(!)Password";
 
-        questionRepository = new QuestionRepository(connectionString, "Questions", new QuestionMapper());
-        answerRepository = new AnswerRepository(connectionString, "Answers", new AnswerMapper());
+        questionRepository = new QuestionRepository(connectionString);
+        answerRepository = new AnswerRepository(connectionString);
     }
 
     public void init()
     {
     }
 
-    /*public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + "message" + "</h1>");
-        out.println("</body></html>");
-    }*/
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
+        var questions = questionRepository.ReadTop(QuestionNames.length, 0);
+
+        for (var question : questions)
+        {
+            var currentAnswer = request.getParameter(question.Name);
+        }
+
+
         response.setContentType("text/html");
 
         // Hello

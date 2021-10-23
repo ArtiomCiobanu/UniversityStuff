@@ -1,6 +1,9 @@
 package Entities;
 
+import java.util.UUID;
+
 public class Answer extends BaseEntity
 {
-    public String AnswerText;
+    public UUID QuestionId;
+    public String Text;
 }

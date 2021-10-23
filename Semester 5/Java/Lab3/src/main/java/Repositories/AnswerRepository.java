@@ -1,12 +1,13 @@
 package Repositories;
 
 import Entities.Answer;
+import Mappers.AnswerMapper;
 import Mappers.SqlMapper;
 
 public class AnswerRepository extends BaseRepository<Answer>
 {
-    public AnswerRepository(String connectionString, String tableName, SqlMapper<Answer> sqlMapper)
+    public AnswerRepository(String connectionString)
     {
-        super(connectionString, tableName, sqlMapper);
+        super(connectionString, "Answers", new AnswerMapper());
     }
 }

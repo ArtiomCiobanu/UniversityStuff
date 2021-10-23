@@ -10,9 +10,13 @@ public class ConnectionFactory
 
     public Connection getConnection(String url)
     {
-        try {
+        try
+        {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url);
-        } catch (SQLException throwables) {
+        }
+        catch (SQLException | ClassNotFoundException throwables)
+        {
             throwables.printStackTrace();
         }
 

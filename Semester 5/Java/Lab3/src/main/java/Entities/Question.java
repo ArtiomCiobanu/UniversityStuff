@@ -2,5 +2,6 @@ package Entities;
 
 public class Question extends BaseEntity
 {
-    public String QuestionText;
+    public String Name;
+    public String Text;
 }

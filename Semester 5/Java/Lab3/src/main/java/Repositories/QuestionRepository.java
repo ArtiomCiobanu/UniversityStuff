@@ -1,12 +1,12 @@
 package Repositories;
 
 import Entities.Question;
-import Mappers.SqlMapper;
+import Mappers.QuestionMapper;
 
 public class QuestionRepository extends BaseRepository<Question>
 {
-    public QuestionRepository(String connectionString, String tableName, SqlMapper<Question> sqlMapper)
+    public QuestionRepository(String connectionString)
     {
-        super(connectionString, tableName, sqlMapper);
+        super(connectionString, "Questions", new QuestionMapper());
     }
 }

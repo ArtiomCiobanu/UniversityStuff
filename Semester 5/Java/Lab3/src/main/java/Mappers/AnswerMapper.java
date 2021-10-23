@@ -13,34 +13,52 @@ public class AnswerMapper implements SqlMapper<Answer>
     @Override
     public Answer CreateEntity(ResultSet sql)
     {
-        Answer question = new Answer();
+        Answer answer = new Answer();
 
         try {
-            question.Id = UUID.fromString(sql.getString("Id"));
-            question.AnswerText = sql.getString("AnswerText");
+            answer.Id = UUID.fromString(sql.getString("Id"));
+            answer.Text = sql.getString("Text");
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return null;
         }
 
-        return question;
+        return answer;
     }
 
     @Override
     public Answer CreateEntity(HashMap<String, String> stringHashMap)
     {
-        return null;
+        Answer answer = new Answer();
+
+        answer.Id = UUID.fromString(stringHashMap.get("Id"));
+        answer.QuestionId = UUID.fromString(stringHashMap.get("QuestionId"));
+
+        answer.Text = stringHashMap.get("Text");
+
+        return answer;
     }
 
     @Override
-    public ArrayList<NameValuePair> GetFields(Answer entity)
+    public ArrayList<NameValuePair> GetFields(Answer answer)
     {
-        return null;
+        ArrayList<NameValuePair> result = new ArrayList<>();
+
+        result.add(new NameValuePair("Id", answer.Id.toString()));
+        result.add(new NameValuePair("QuestionId", answer.QuestionId.toString()));
+        result.add(new NameValuePair("Text", answer.Text));
+
+        return result;
     }
 
     @Override
     public String[] GetFieldNames()
     {
-        return new String[0];
+        return new String[]
+                {
+                        "Id",
+                        "QuestionId",
+                        "Text"
+                };
     }
 }
