@@ -1,136 +1,156 @@
-#include<mpi.h>
-#include<stdio.h>
-#include<stdlib.h>
+#include <mpi.h>
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 
-/*i- linia j- coloana
- Paralelizarea la nivel de date se face astfel:
- Procesul cu rankul rootRank initializeaza cu valori matricele A si B
-*/
-// void invertMatrix(double *m, int mRows, int mCols, double *rez)
-// {
-//     for (int i = 0; i < mRows; ++i)
-//         for (int j = 0; j < mCols; ++j)
-//             rez[j * mRows + i] = m[i * mCols + j];
-// }
-
-//static int maxSum;
-
-void SendMaxElement(int *, int *, int *, MPI_Datatype *);
-
-void SendMaxElement(int *invec, int *inoutvec, int *len, MPI_Datatype *dtype)
+void PrintMatrix(double *matrix, int rowAmount, int columnAmount)
 {
-    for(int i = 0; i < *len; i++)
+    for(int i = 0; i < rowAmount; i++)
     {
-        if(inoutvec[i] < invec[i])
+        for(int j = 0; j < columnAmount; j++)
         {
-            inoutvec[i] = invec[i];
+            printf("M[%i, %i] = %4.4f; ", i, j, matrix[i * columnAmount + j]); 
         }
+
+        cout << endl;
     }
 }
 
 int main(int argc, char *argv[])
 {
-    int size, currentRank, rootRank = 0;
-    MPI_Status status;
+    int size, receiveCount;
+    int currentRank, rootRank = 0;
+    
+    int rowAmount, columnAmount;
 
-    MPI_Op op;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &currentRank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    int rowAmount, columnAmount;
+    int displacements[size];
+    int elementsToSend[size];
+
+    double *currentProcessData;
 
     if (currentRank == rootRank)
     {
-        printf("\n===== Results '%s' =====\n", argv[0]);
+        printf("\n========== Program '%s' ==========\n", argv[0]);
+    }
 
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    if(currentRank == rootRank)
+    {
         cout << "Enter line amount: ";
         cin >> rowAmount;
         cout << "Enter column amount: ";
         cin >> columnAmount;
-
-        
-       
-        int rowAmountPerProcess = rowAmount / size;
-        int rowsLeft = rowAmount % size;
-
-        int* rowAmountForEachProcess = new int[size]; //(int *) malloc(size * sizeof(int));
-        for(int i = 0; i < rowsLeft; i++)
-        {
-            rowAmountForEachProcess[i] = rowAmountPerProcess + 1;
-        }
-
-        for(int i = rowsLeft; i < size; i++)
-        {
-            rowAmountForEachProcess[i] = rowAmountPerProcess;
-        }
-
-        for(int i = 0; i < size; i++)
-        {
-            MPI_Send(
-                &(rowAmountForEachProcess[i]),
-                1,
-                MPI_INT,
-                i,
-                0,
-                MPI_COMM_WORLD);
-        }
     }
-
-    int rowAmountForCurrentProcess;
-    MPI_Recv(
-        &rowAmountForCurrentProcess,
-        1,
-        MPI_INT,
-        0,
-        0,
-        MPI_COMM_WORLD,
-        &status
-    );
-
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    printf("\nProcess %i initializes %i rows. \n", currentRank, rowAmountForCurrentProcess);
+    MPI_Bcast(&rowAmount, 1, MPI_INT, rootRank, MPI_COMM_WORLD);
+    MPI_Bcast(&columnAmount, 1, MPI_INT, rootRank, MPI_COMM_WORLD);
 
-    // int Row[size];
-    // for (int i = 0; i < size; i++)
-    // {
-    //     Row[i] = 1;//i + currentRank;
-    //     printf("M[%i,%i] = %i;  ", currentRank, i, Row[i]);
-    // }
-    // printf("\n");
+    int rowsPerProcess = rowAmount / size;
+    int rowsLeft = rowAmount % size;
 
-    // int maxIndex = 0;
-    // int rowMax = Row[maxIndex];
-    // for(int i = 1; i < size; i++)
-    // {
-    //     if(Row[i] > rowMax)
-    //     {
-    //         rowMax = Row[i];
-    //         maxIndex = i;
-    //     }
-    // }
-    // printf("The max element is: M[%i,%i] = %i\n", currentRank, maxIndex, Row[maxIndex]);
+    int displacement = 0;
+    for (int i = 0; i < size; i++)
+    {
+        displacements[i] = displacement;
 
-    // sleep(2 * currentRank);
+        if (i < rowsLeft)
+            elementsToSend[i] = (rowsPerProcess + 1) * columnAmount;
+        else
+            elementsToSend[i] = rowsPerProcess * columnAmount;
+        
+        displacement += elementsToSend[i];
+    }
 
-    // int max;
-    // MPI_Op_create((MPI_User_function *) SendMaxElement, 1, &op);
-    // MPI_Reduce(&rowMax, &max, 1, MPI_INT, op, 0, MPI_COMM_WORLD);
+    receiveCount = elementsToSend[currentRank];
+    currentProcessData = new double[receiveCount];
 
-    // MPI_Op_free(&op);
+    printf("\nThe process with rank %i has received %i elements", 
+        currentRank, receiveCount);
+    printf("\nThe received column(s):\n");
 
-    // MPI_Bcast(&max, 1, MPI_INT, 0, MPI_COMM_WORLD);
+    for (int i = 0; i < receiveCount; i++)
+    {
+        currentProcessData[i] = i + currentRank;
 
-    // if(Row[maxIndex] == max)
-    // {
-    //     printf("\nMax element %i is in %i process\n", max, currentRank);
-    // }
-   
+        cout << "M[" << i << "] = " << currentProcessData[i] << "; ";
+
+        if(i > 0 && (i + 1) % columnAmount == 0)
+        {
+            cout << endl;
+        }
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    int sendLength = receiveCount;
+    double *finalMatrix = (double *) malloc(rowAmount * columnAmount * sizeof(double));
+
+    MPI_Gatherv(currentProcessData, 
+        sendLength, 
+        MPI_DOUBLE, 
+        finalMatrix, 
+        elementsToSend,  
+        displacements,
+        MPI_DOUBLE,
+        rootRank, 
+        MPI_COMM_WORLD);
+
+    sleep(2 * currentRank);
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    if(currentRank == rootRank)
+    {
+        cout << "The root rank receives the columns:" << endl;
+
+        for (int i = 0; i < rowAmount; i++)
+        {
+            for(int j = 0; j < columnAmount; j++)
+            {
+                printf("FinalMatrix[%i, %i] = %4.4f; ", i, j, finalMatrix[i * columnAmount + j]);
+            }
+
+            cout << endl;
+        }
+
+        struct
+        {
+            int columnIndex;
+            int value;
+        } indexValuePairs[rowAmount];
+        
+        for (int i = 0; i < rowAmount; i++)
+        {
+            indexValuePairs[i].columnIndex = 0;
+            indexValuePairs[i].value = finalMatrix[i * columnAmount];
+
+            for(int j = 1; j < columnAmount; j++)
+            {
+                int currentIndex = i * columnAmount + j;
+
+                int currentValue = finalMatrix[currentIndex];
+                if(indexValuePairs[i].value < currentValue)
+                {
+                    indexValuePairs[i].value = currentValue;
+                    indexValuePairs[i].columnIndex = j;
+                }
+            }
+
+            printf("Row %i has the max element: %i in the column with index: %i", 
+                i, indexValuePairs[i].value, indexValuePairs[i].columnIndex);
+            cout << endl;
+        }
+    }
+
     MPI_Finalize();
+
     return 0;
 }
-
