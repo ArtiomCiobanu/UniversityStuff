@@ -18,35 +18,35 @@ void PrintMatrix(double *matrix, int rowAmount, int columnAmount)
     }
 }
 
-struct Index
-{
-    double val;
-    int rank;
-};
-
-Index *maxIndices;    
-int rowAmount, columnAmount, sendingRowAmount;
+int *MaxValues;    
+int rowAmount, columnAmount, SendingRowAmount;
+int currentRank, rootRank = 0;
 
 void MaxElements(int *invec, int *inoutvec, int *len, MPI_Datatype *dtype)
 {
-    printf("\n");
-    for (int i = 0; i < *len; i++ )
+    //printf("\n");
+    for (int i = 0; i < *len; i++)
     {
         int currentRow = i / columnAmount;
-        printf("invec[%i] = %i; inoutvec[%i] = %i; row: %i\n", i, invec[i], i, inoutvec[i], currentRow);
+        int currentColumn = i % columnAmount;
+        //printf("invec[%i] = %i; inoutvec[%i] = %i; row: %i; column: %i\n", i, invec[i], i, inoutvec[i], currentRow, currentColumn);
+
+        int biggerElement = invec[i] > inoutvec[i] ? invec[i] : inoutvec[i];
+
+        if(MaxValues[currentColumn] == -1 || MaxValues[currentColumn] < biggerElement)
+        {
+            MaxValues[currentColumn] = biggerElement; 
+        }
     } 
 }
 
 int main(int argc, char *argv[])
 {
     int size, receiveCount;
-    int currentRank, rootRank = 0;
 
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &currentRank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
-
-    maxIndices = new Index[size];
 
     int displacements[size];
     int elementsToSend[size];
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
 
     receiveCount = elementsToSend[currentRank];
     int length = maxElementsToSend;
-    sendingRowAmount = maxElementsToSend;
+    SendingRowAmount = maxElementsToSend;
     currentProcessData = new int[length];
 
     for (int i = 0; i < receiveCount; i++)
@@ -130,12 +130,15 @@ int main(int argc, char *argv[])
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    //int sendLength = receiveCount;
-    //double *finalMatrix = (double *) malloc(rowAmount * columnAmount * sizeof(double));
-
     MPI_Op op;
     MPI_Op_create((MPI_User_function *)MaxElements, 1, &op);
 
+    MaxValues = new int[columnAmount];
+    for(int i = 0; i < columnAmount; i++)
+    {
+        MaxValues[i] = -1;
+    }
+    
     int result;
     MPI_Reduce(
         currentProcessData,
@@ -147,9 +150,16 @@ int main(int argc, char *argv[])
         MPI_COMM_WORLD
     );
 
+    if(currentRank == rootRank)
+    {
+        printf("\n");
+        for(int i = 0; i < columnAmount; i++)
+        {
+            printf("max for column %i is %i. ", i, MaxValues[i]);
+            printf("\n");
+        }
+    }
 
-   
     MPI_Finalize();
-
     return 0;
 }
