@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < receiveCount; i++)
     {
-        currentProcessData[i] = i + currentRank;
+        currentProcessData[i] = i + currentRank; //
 
         cout << "M[" << i << "] = " << currentProcessData[i] << "; ";
 
@@ -108,6 +108,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    sleep(2 * currentRank);
     MPI_Barrier(MPI_COMM_WORLD);
 
     int sendLength = receiveCount;
@@ -122,8 +123,7 @@ int main(int argc, char *argv[])
         MPI_INT,
         rootRank, 
         MPI_COMM_WORLD);
-
-    sleep(2 * currentRank);
+        
     MPI_Barrier(MPI_COMM_WORLD);
 
     if(currentRank == rootRank)
@@ -164,10 +164,21 @@ int main(int argc, char *argv[])
                     indexValuePairs[i].columnIndex = j;
                 }
             }
+        }
 
-            printf("Row %i has the max element: %i in the row with index: %i", 
-                i, indexValuePairs[i].value, indexValuePairs[i].columnIndex);
-            cout << endl;
+        for (int i = 0; i < rowAmount; i++)
+        {
+            for(int j = 1; j < columnAmount; j++)
+            {                
+                int currentIndex = i * columnAmount + j;
+
+                int currentValue = finalMatrix[currentIndex];
+                if(indexValuePairs[i].value == currentValue)
+                {
+                    printf("M[%i,%i] = %i is the max element\n", 
+                        i, j, currentValue);
+                }
+            }
         }
     }
 
