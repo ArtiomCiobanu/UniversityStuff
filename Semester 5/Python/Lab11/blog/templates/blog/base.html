@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--<link href="{% static 'css\blog.css' %}" rel="stylesheet" type="text/css">-->
+</head>
+<body>
+<div class="header"><h1>My Blog's posts</h1></div>
+<div id="content">{% block content %}{% endblock %}</div>
+<div id="sidebar">
+    <h2>Artiom Ciobanu's blog</h2>
+    <img src="{% static 'images\img.jpg' %}" alt="Image">
+    <p>This is my blog.</p>
+</div>
+<footer class="footer">
+    <p>Created by Artiom Ciobanu I1902</p>
+</footer>
+</body>
+</html>
