@@ -18,7 +18,7 @@
         <div class="card">
             <h5 class="card-title py-1 text-center"> Ответьте на следующие вопросы: </h5>
             <div class="card-body">
-                <form method="POST" action="question">
+                <form method="POST" action="Lab4-results.jsp">
                     <div class="form-group">
                         <label>Какая планета солнечной системы является самой большой?</label>
                         <input name="question1" type="text" class="form-control" id="question1-input"/>
@@ -42,14 +42,14 @@
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Range Rover" name="question3"/>
+                                <input type="radio" class="form-check-input" value="Солнце" name="question3"/>
                                 Солнце
                             </label>
                         </div>
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Mercedes Benz"
+                                <input type="radio" class="form-check-input" value="Бетельгейзе"
                                        name="question3"/>
                                 Бетельгейзе
                             </label>
@@ -57,7 +57,7 @@
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Volkswagen" name="question3"/>
+                                <input type="radio" class="form-check-input" value="Сириус" name="question3"/>
                                 Сириус
                             </label>
                         </div>
@@ -78,7 +78,7 @@
                             </label>
                         </div>
                     </div>
-                    <a href="Lab4.jsp" style="text-align: left">Lab4</a>
+
                     <button type="submit" class="btn float-right"
                             style="background-color: darkcyan; color: white;">Отправить
                     </button>
