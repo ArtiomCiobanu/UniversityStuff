@@ -1,0 +1,21 @@
+
+body {
+    text-align: center;
+}
+
+
+.main-image {
+    width: 300px;
+}
+
+.header {
+    background-color: aquamarine;
+}
+
+.post-title {
+    text-decoration: none;
+}
+
+.date {
+    background-color: aliceblue;
+}
