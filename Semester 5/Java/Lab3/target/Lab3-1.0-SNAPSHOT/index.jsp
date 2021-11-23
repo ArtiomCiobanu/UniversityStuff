@@ -42,14 +42,14 @@
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Range Rover" name="question3"/>
+                                <input type="radio" class="form-check-input" value="Солнце" name="question3"/>
                                 Солнце
                             </label>
                         </div>
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Mercedes Benz"
+                                <input type="radio" class="form-check-input" value="Бетельгейзе"
                                        name="question3"/>
                                 Бетельгейзе
                             </label>
@@ -57,7 +57,7 @@
 
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="Volkswagen" name="question3"/>
+                                <input type="radio" class="form-check-input" value="Сириус" name="question3"/>
                                 Сириус
                             </label>
                         </div>
