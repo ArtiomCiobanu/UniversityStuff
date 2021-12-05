@@ -9,7 +9,7 @@ from .models import Post, Poll
 def poll_list(request):
     object_list = Poll.objects.all()
 
-    return render(request, 'blog/poll/poll_list.html')
+    return render(request, 'blog/poll/poll_list.html', {'polls': object_list})
 
 
 def post_list(request):
