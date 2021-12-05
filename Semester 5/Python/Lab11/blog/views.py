@@ -3,7 +3,13 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
 
 from .forms import CommentForm
-from .models import Post
+from .models import Post, Poll
+
+
+def poll_list(request):
+    object_list = Poll.objects.all()
+
+    return render(request, 'blog/poll/poll_list.html')
 
 
 def post_list(request):

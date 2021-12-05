@@ -4,6 +4,16 @@ from django.urls import reverse
 from django.utils import timezone
 
 
+class Poll(models.Model):
+    text = models.CharField(max_length=50)
+
+
+class PollAnswer(models.Model):
+    text = models.CharField(max_length=50)
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name='polls')
+    IsCorrect = models.BooleanField(default=False)
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
