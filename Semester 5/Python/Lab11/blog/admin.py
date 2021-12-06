@@ -22,8 +22,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Poll)
 class PollAdmin(admin.ModelAdmin):
-    list_display = ('text',)
-    search_fields = ('text',)
+    list_display = ('text', 'slug')
+    search_fields = ('text', 'slug')
 
 
 @admin.register(PollAnswer)

@@ -12,6 +12,13 @@ def poll_list(request):
     return render(request, 'blog/poll/poll_list.html', {'polls': object_list})
 
 
+def poll_detail(request, poll_slug):
+    poll = get_object_or_404(Poll, slug=poll_slug)
+    poll_answers = poll.answers.all()
+
+    return render(request, 'blog/poll/poll.html', {'poll': poll, 'answers': poll_answers})
+
+
 def post_list(request):
     object_list = Post.objects.all()
     paginator = Paginator(object_list, 3)

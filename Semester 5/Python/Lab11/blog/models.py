@@ -6,11 +6,15 @@ from django.utils import timezone
 
 class Poll(models.Model):
     text = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=250, default='default')
+
+    def get_url(self):
+        return reverse("blog:poll_detail", args=[self.slug])
 
 
 class PollAnswer(models.Model):
     text = models.CharField(max_length=50)
-    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name='polls')
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name='answers')
     IsCorrect = models.BooleanField(default=False)
 
 

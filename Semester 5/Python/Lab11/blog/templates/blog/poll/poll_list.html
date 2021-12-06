@@ -2,6 +2,6 @@
 {% block title %}Polls{% endblock %}
 {% block content %}
     {% for poll in polls %}
-        <h2> - {{ poll.text }}</h2>asdasd
+        <h2><a href="{{ poll.get_url }}">- {{ poll.text }} </a></h2>
     {% endfor %}
 {% endblock %}
