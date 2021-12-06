@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Post, Comment, Poll, PollAnswer
+from .models import Post, Comment, Poll, PollAnswer, UserAnswer
 
 
 @admin.register(Post)
@@ -28,5 +28,11 @@ class PollAdmin(admin.ModelAdmin):
 
 @admin.register(PollAnswer)
 class PollAnswerAdmin(admin.ModelAdmin):
-    list_display = ('text', 'IsCorrect')
-    search_fields = ('text', 'IsCorrect')
+    list_display = ('text',)
+    search_fields = ('text',)
+
+
+@admin.register(UserAnswer)
+class UserAnswerAdmin(admin.ModelAdmin):
+    list_display = ('text', 'email')
+    search_fields = ('text', 'email')

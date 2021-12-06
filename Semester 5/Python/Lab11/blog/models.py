@@ -15,7 +15,17 @@ class Poll(models.Model):
 class PollAnswer(models.Model):
     text = models.CharField(max_length=50)
     poll = models.ForeignKey(Poll, on_delete=models.CASCADE, related_name='answers')
-    IsCorrect = models.BooleanField(default=False)
+
+    def get_answers_amount(self):
+        answers = self.userAnswers.all()
+
+        return len(answers)
+
+
+class UserAnswer(models.Model):
+    text = models.CharField(max_length=50, default='')
+    email = models.EmailField(default='')
+    pollAnswer = models.ForeignKey(PollAnswer, on_delete=models.CASCADE, related_name='userAnswers')
 
 
 class Post(models.Model):

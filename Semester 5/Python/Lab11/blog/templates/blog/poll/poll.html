@@ -2,10 +2,15 @@
 {% block title %}Polls{% endblock %}
 {% block content %}
     <h1>{{ poll.text }}</h1>
-    <h4>Choose the correct answers:</h4>
+    <h4>Choose the correct option:</h4>
     {% for answer in answers %}
-        <input id="{{ answer.text }}" type="checkbox">
         <label for="{{ answer.text }}">{{ answer.text }}</label>
+        - {{ answer.get_answers_amount }} users choose this option
         <br>
     {% endfor %}
+    <br>
+    <form action="./answer" method="post">
+        {{ user_answer_form.as_p }} {% csrf_token %}
+        <input type="submit" value="Submit answer">
+    </form>
 {% endblock %}
