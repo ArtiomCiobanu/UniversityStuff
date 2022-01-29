@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -18,18 +20,21 @@ public class MainActivity extends AppCompatActivity {
             new FlagQuestion("\uD83C\uDDF7\uD83C\uDDFA", "Russia")
     };
 
-    private ScrollView questionScrollView;
+    private LinearLayout linearLayout;
+    private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        linearLayout = this.findViewById(R.id.linearLayout);
+        resultTextView = this.findViewById(R.id.resultTextView);
 
         InitializeFlagQuestions();
         CreateQuestionList();
 
-        questionScrollView = findViewById(R.id.QuestionScrollView);
+        UpdateResults();
     }
 
     private void InitializeFlagQuestions() {
@@ -41,20 +46,55 @@ public class MainActivity extends AppCompatActivity {
     private void CreateQuestionList() {
         for (int i = 0; i < flagQuestions.length; i++) {
             Button button = GetButtonFromQuestion(flagQuestions[i], i);
-            questionScrollView.addView(button);
+            linearLayout.addView(button);
         }
-
     }
 
-    private Button GetButtonFromQuestion(FlagQuestion flagQuestion, int questionNumber) {
+    private Button GetButtonFromQuestion(FlagQuestion flagQuestion, int questionId) {
         Button button = new Button(this);
-        button.setText("Question " + questionNumber);
+        button.setText("Question " + questionId);
+        button.setWidth(300);
+        button.setHeight(100);
 
         button.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("flag", flagQuestion.Flag);
+            bundle.putStringArray("answers", flagQuestion.Answers);
+            bundle.putInt("questionId", questionId);
+
             Intent intent = new Intent(MainActivity.this, StatisticActivity.class);
+            intent.putExtras(bundle);
             startActivityForResult(intent, 1);
         });
 
         return button;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        String flag = data.getStringExtra("flag");
+        String answer = data.getStringExtra("answer");
+
+        for (FlagQuestion flagQuestion : flagQuestions) {
+            if (flagQuestion.Flag.equals(flag)
+             && flagQuestion.CorrectAnswer.equals(answer)) {
+                flagQuestion.AnsweredCorrectly = true;
+            }
+        }
+
+        UpdateResults();
+    }
+
+    private void UpdateResults() {
+        int total = 0;
+
+        for (FlagQuestion flagQuestion : flagQuestions) {
+            if (flagQuestion.AnsweredCorrectly) {
+                total++;
+            }
+        }
+
+        resultTextView.setText("Total correct answers: " + total);
     }
 }

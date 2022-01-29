@@ -6,6 +6,8 @@ public class FlagQuestion {
 
     public String[] Answers;
 
+    public boolean AnsweredCorrectly;
+
     public FlagQuestion(String flag, String correctAnswer) {
         Flag = flag;
         CorrectAnswer = correctAnswer;
