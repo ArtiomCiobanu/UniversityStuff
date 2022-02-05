@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-
+//Создать приложение “Светофор”, содержащее кнопки,
+// отвечающие за смену фона.
+// Создаются 3 кнопки и при нажатии меняем фон приложения на соответствующий.
 public class MainActivity extends AppCompatActivity {
 
     @Override

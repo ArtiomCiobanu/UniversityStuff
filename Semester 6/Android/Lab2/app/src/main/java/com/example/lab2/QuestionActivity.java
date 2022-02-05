@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class StatisticActivity extends AppCompatActivity {
+public class QuestionActivity extends AppCompatActivity {
 
     private String flag;
 

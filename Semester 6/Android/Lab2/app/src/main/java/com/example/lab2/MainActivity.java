@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-
+/*Создать игру «Флаги» – есть набор стран,
+есть набор флагов, на экране появляется флаг и 4 кнопки со странами,
+по выбору правильной кнопки – переход к следующему из N экранов.
+Дополнительные возможности: статистика выигрышей/проигрышей, экран настройки количества экранов.*/
 public class MainActivity extends AppCompatActivity {
 
     private final FlagQuestion[] flagQuestions = {
@@ -57,13 +57,16 @@ public class MainActivity extends AppCompatActivity {
         button.setHeight(100);
 
         button.setOnClickListener(view -> {
-            Bundle bundle = new Bundle();
+            /*Bundle bundle = new Bundle();
             bundle.putString("flag", flagQuestion.Flag);
             bundle.putStringArray("answers", flagQuestion.Answers);
-            bundle.putInt("questionId", questionId);
+            bundle.putInt("questionId", questionId);*/
 
-            Intent intent = new Intent(MainActivity.this, StatisticActivity.class);
-            intent.putExtras(bundle);
+            Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+            //intent.putExtras(bundle);
+            intent.putExtra("flag", flagQuestion.Flag);
+            intent.putExtra("answers", flagQuestion.Answers);
+            intent.putExtra("questionId", questionId);
             startActivityForResult(intent, 1);
         });
 
