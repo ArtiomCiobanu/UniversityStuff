@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RC6", "CryptographyLabs\RC6.csproj", "{601BB6C0-2AEA-4303-90B1-AE2682917ED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHA1", "SHA1\SHA1.csproj", "{2EF23CBA-FBDF-4ECC-83AE-CB38A195BAB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHA1", "SHA1\SHA1.csproj", "{2EF23CBA-FBDF-4ECC-83AE-CB38A195BAB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lamport", "Lamport\Lamport.csproj", "{0AE17663-DFD0-48B8-991E-374814006C74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2EF23CBA-FBDF-4ECC-83AE-CB38A195BAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EF23CBA-FBDF-4ECC-83AE-CB38A195BAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EF23CBA-FBDF-4ECC-83AE-CB38A195BAB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AE17663-DFD0-48B8-991E-374814006C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AE17663-DFD0-48B8-991E-374814006C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AE17663-DFD0-48B8-991E-374814006C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AE17663-DFD0-48B8-991E-374814006C74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
