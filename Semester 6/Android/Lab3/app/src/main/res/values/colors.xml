@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryLight">#6FCAEF</color>
+    <color name="colorPrimary">#1E74A5</color>
+    <color name="colorPrimaryDark">#074568</color>
+    <color name="colorSingleChoice">#7986cb</color>
+    <color name="colorMultiChoice">#ff8a65</color>
+    <color name="colorFillAnswer">#69f0ae</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="colorWhiteHint">#BFFFFFFF</color>
+</resources>

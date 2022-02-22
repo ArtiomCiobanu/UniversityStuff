@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Musiquiz</string>
+
+    <!--Question Titles-->
+    <string name="title_question_1">This is not a type of guitar</string>
+    <string name="title_question_2">In an electric guitar, these are the "microphones"</string>
+    <string name="title_question_3">This man was a pioneer and designer of the electric guitar</string>
+    <string name="title_question_4">Complete the phrase: "While ___ Guitar Gently Weeps"</string>
+    <string name="title_question_5">How many strings can an electric guitar have?</string>
+    <string name="title_question_6">What are the classical guitar strings made of?</string>
+    <string name="title_question_7">What artist plays has a signature guitar named "Lucille"?</string>
+    <string name="title_question_8">Two of these people designed the first ever electrically amplified stringed instrument</string>
+    <string name="title_question_9">This is an ancestral father of the guitar</string>
+    <string name="title_question_10">What was the name of the first electrically amplified stringed instrument?</string>
+    <!---->
+    <string name="hint_quiz_answer">Your answer…</string>
+    <string name="action_play">Play</string>
+    <string name="error_wrong_answer">Wrong answer, try again</string>
+    <string name="error_unknown_error_occurred">Unknown error occurred</string>
+    <string name="message_answer_correct">The answer is correct!</string>
+</resources>

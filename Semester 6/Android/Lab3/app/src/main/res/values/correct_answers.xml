@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--possible answers-->
+    <string-array name="solution_question_1">
+        <item>Fife</item>
+    </string-array>
+    <string-array name="solution_question_2">
+        <item>Pickups</item>
+    </string-array>
+    <string-array name="solution_question_3">
+        <item>Les Paul</item>
+    </string-array>
+    <string-array name="solution_question_4">
+        <item>My</item>
+    </string-array>
+    <string-array name="solution_question_5">
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="solution_question_6">
+        <item>Nylon</item>
+    </string-array>
+    <string-array name="solution_question_7">
+        <item>B.B. King</item>
+        <item>B B King</item>
+    </string-array>
+    <string-array name="solution_question_8">
+        <item>George Beauchamp</item>
+        <item>Paul Barth</item>
+    </string-array>
+    <string-array name="solution_question_9">
+        <item>Lute</item>
+    </string-array>
+    <string-array name="solution_question_10">
+        <item>Rickenbacker Frying Pan</item>
+        <item>Rickenbacker</item>
+        <item>Frying Pan</item>
+    </string-array>
+</resources>

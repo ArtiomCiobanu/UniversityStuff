@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--possible answers-->
+    <string-array name="answers_question_1">
+        <item>Bass</item>
+        <item>Acoustic</item>
+        <item>Electric</item>
+        <item>Fife</item>
+    </string-array>
+    <string-array name="answers_question_2">
+        <item>Bridge</item>
+        <item>Cans</item>
+        <item>Pickups</item>
+        <item>Potentiometers</item>
+    </string-array>
+    <string-array name="answers_question_3">
+        <item>Ty Tabor</item>
+        <item>Ace Frehley</item>
+        <item>Les Paul</item>
+        <item>Yngwie Malmsteen</item>
+    </string-array>
+    <string-array name="answers_question_4">
+        <item>My</item>
+    </string-array>
+    <string-array name="answers_question_5">
+        <item>6</item>
+        <item>4</item>
+        <item>7</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="answers_question_6">
+        <item>Plastic</item>
+        <item>Steel</item>
+        <item>Nylon</item>
+        <item>Nickel</item>
+    </string-array>
+    <string-array name="answers_question_7">
+        <item>B.B. King</item>
+        <item>Bo Diddley</item>
+        <item>Gatemouth Brown</item>
+        <item>Albert Collins</item>
+    </string-array>
+    <string-array name="answers_question_8">
+        <item>George Beauchamp</item>
+        <item>Ken Roberts</item>
+        <item>Paul Barth</item>
+        <item>Les Paul</item>
+    </string-array>
+    <string-array name="answers_question_9">
+        <item>Liar</item>
+        <item>Harp</item>
+        <item>Lute</item>
+        <item>Dulcian</item>
+    </string-array>
+    <string-array name="answers_question_10">
+        <item>Rickenbacker Frying Pan</item>
+        <item>Rickenbacker</item>
+        <item>Frying Pan</item>
+    </string-array>
+</resources>
