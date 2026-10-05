@@ -14,8 +14,8 @@
 #include <time.h>
 #include <math.h>
 
-// ========== СТРУКТУРА ЗОНЫ ==========
-typedef struct {
+typedef struct
+{
     int rank;
     int row_start;
     int row_end;
@@ -25,16 +25,14 @@ typedef struct {
     int cols;
 } Zone;
 
-// ========== ФУНКЦИИ РАБОТЫ С ЗОНАМИ ==========
-
-/**
- * Создает информацию о зонах для 2D разбиения матрицы
- */
-Zone* create_zones(int global_rows, int global_cols,
+//Создает информацию о зонах для 2D разбиения матрицы
+Zone *create_zones(int global_rows, int global_cols,
                    int proc_grid_rows, int proc_grid_cols,
-                   int total_procs) {
-    Zone* zones = (Zone*)malloc(total_procs * sizeof(Zone));
-    if (!zones) {
+                   int total_procs)
+{
+    Zone *zones = (Zone *)malloc(total_procs * sizeof(Zone));
+    if (!zones)
+    {
         fprintf(stderr, "Ошибка выделения памяти для зон\n");
         return NULL;
     }
@@ -47,8 +45,10 @@ Zone* create_zones(int global_rows, int global_cols,
 
     int rank = 0;
 
-    for (int i = 0; i < proc_grid_rows; i++) {
-        for (int j = 0; j < proc_grid_cols; j++) {
+    for (int i = 0; i < proc_grid_rows; i++)
+    {
+        for (int j = 0; j < proc_grid_cols; j++)
+        {
             Zone *z = &zones[rank];
 
             // Вычисляем границы строк
@@ -70,18 +70,20 @@ Zone* create_zones(int global_rows, int global_cols,
     return zones;
 }
 
-/**
- * Выделяет подматрицу (зону) из глобальной матрицы
- */
-double* extract_zone(double* global_matrix, Zone* zone, int global_cols) {
-    double* zone_matrix = (double*)malloc(zone->rows * zone->cols * sizeof(double));
-    if (!zone_matrix) {
+//Выделяет подматрицу (зону) из глобальной матрицы
+double *extract_zone(double *global_matrix, Zone *zone, int global_cols)
+{
+    double *zone_matrix = (double *)malloc(zone->rows * zone->cols * sizeof(double));
+    if (!zone_matrix)
+    {
         fprintf(stderr, "Ошибка выделения памяти для зоны\n");
         return NULL;
     }
 
-    for (int i = 0; i < zone->rows; i++) {
-        for (int j = 0; j < zone->cols; j++) {
+    for (int i = 0; i < zone->rows; i++)
+    {
+        for (int j = 0; j < zone->cols; j++)
+        {
             int global_row = zone->row_start + i;
             int global_col = zone->col_start + j;
             zone_matrix[i * zone->cols + j] =
@@ -91,8 +93,6 @@ double* extract_zone(double* global_matrix, Zone* zone, int global_cols) {
 
     return zone_matrix;
 }
-
-// ========== ОСНОВНАЯ ПРОГРАММА ==========
 
 int main(int argc, char *argv[])
 {
@@ -111,8 +111,6 @@ int main(int argc, char *argv[])
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     MPI_Comm_size(MPI_COMM_WORLD, &numtask);
-
-    // ========== ОПРЕДЕЛЕНИЕ РАЗМЕРОВ И ПАРАМЕТРОВ ==========
 
     if (myrank == root)
     {
@@ -157,8 +155,10 @@ int main(int argc, char *argv[])
     int proc_grid_cols = numtask / proc_grid_rows;
 
     // Проверка, что количество процессов подходит для 2D сетки
-    if (proc_grid_rows * proc_grid_cols != numtask) {
-        if (myrank == root) {
+    if (proc_grid_rows * proc_grid_cols != numtask)
+    {
+        if (myrank == root)
+        {
             fprintf(stderr, "Ошибка: количество процессов (%d) не подходит для 2D сетки.\n", numtask);
             fprintf(stderr, "Используйте количество процессов: 1, 4, 9, 16, 25, ...\n");
         }
@@ -176,16 +176,15 @@ int main(int argc, char *argv[])
 
     // ========== СОЗДАНИЕ ЗОН ==========
 
-    Zone* zones = create_zones(matrixSize, matrixSize,
+    Zone *zones = create_zones(matrixSize, matrixSize,
                                proc_grid_rows, proc_grid_cols, numtask);
-    if (!zones) {
+    if (!zones)
+    {
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
 
     Zone my_zone = zones[myrank];
     int localValueCount = my_zone.rows * my_zone.cols;
-
-    // ========== ИНИЦИАЛИЗАЦИЯ ЛОКАЛЬНЫХ БУФЕРОВ ==========
 
     localZone = (double *)malloc((localValueCount > 0 ? localValueCount : 1) * sizeof(double));
     localRowMin = (double *)malloc((my_zone.rows > 0 ? my_zone.rows : 1) * sizeof(double));
@@ -196,8 +195,6 @@ int main(int argc, char *argv[])
         fprintf(stderr, "Процесс %d: ошибка выделения памяти для локальных данных.\n", myrank);
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
-
-    // ========== ИНИЦИАЛИЗАЦИЯ ГЛОБАЛЬНОЙ МАТРИЦЫ ==========
 
     if (myrank == root)
     {
@@ -218,8 +215,7 @@ int main(int argc, char *argv[])
             const double presetMatrix[9] = {
                 4.0, 2.0, 1.0,
                 3.0, 5.0, 1.0,
-                2.0, 4.0, 0.0
-            };
+                2.0, 4.0, 0.0};
             memcpy(Matr_Init, presetMatrix, sizeof(presetMatrix));
         }
         else
@@ -243,15 +239,13 @@ int main(int argc, char *argv[])
         printf("\n\n");
     }
 
-    // ========== РАСПРЕДЕЛЕНИЕ ЗОН ==========
-
     if (myrank == root)
     {
         // Отправляем каждому процессу его зону
         for (int rank = 0; rank < numtask; rank++)
         {
             Zone *z = &zones[rank];
-            double* zone_data = extract_zone(Matr_Init, z, matrixSize);
+            double *zone_data = extract_zone(Matr_Init, z, matrixSize);
 
             if (rank == 0)
             {
@@ -276,8 +270,6 @@ int main(int argc, char *argv[])
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    // ========== ВЫВОД ПОЛУЧЕННОЙ ЗОНЫ ==========
-
     printf("\nПроцесс %d получил зону [строки %d-%d, столбцы %d-%d]:\n",
            myrank, my_zone.row_start, my_zone.row_end - 1,
            my_zone.col_start, my_zone.col_end - 1);
@@ -291,8 +283,7 @@ int main(int argc, char *argv[])
         printf("\n");
     }
 
-    // ========== ПОИСК МИНИМУМОВ ПО СТРОКАМ ==========
-
+    // Поиск минимумов по строкам в локальной зоне
     for (int i = 0; i < my_zone.rows; i++)
     {
         localRowMin[i] = DBL_MAX;
@@ -304,8 +295,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    // ========== ПОИСК МАКСИМУМОВ ПО СТОЛБЦАМ ==========
-
+    // Поиск максимумов по столбцам в локальной зоне
     for (int j = 0; j < my_zone.cols; j++)
     {
         localColMax[j] = -DBL_MAX;
@@ -316,8 +306,6 @@ int main(int argc, char *argv[])
                 localColMax[j] = value;
         }
     }
-
-    // ========== СИНХРОНИЗАЦИЯ РЕЗУЛЬТАТОВ ==========
 
     // Собираем минимумы строк (каждый процесс имеет полные строки, поэтому используем Gather)
     if (myrank == root)
@@ -379,8 +367,6 @@ int main(int argc, char *argv[])
 
     MPI_Barrier(MPI_COMM_WORLD);
 
-    // ========== АНАЛИЗ РЕЗУЛЬТАТОВ ==========
-
     if (myrank == root)
     {
         printf("\n===== Результаты анализа =====\n");
@@ -410,21 +396,23 @@ int main(int argc, char *argv[])
         printf("\nmax min по строкам (MAXMIN) = %5.2f\n", lowerValue);
         printf("min max по столбцам (MINMAX) = %5.2f\n", upperValue);
 
-        // ========== ПОИСК РАВНОВЕСНЫХ ИСХОДОВ ==========
-
         int maximinRowCount = 0;
         int minimaxColumnCount = 0;
 
         for (int i = 0; i < matrixSize; i++)
         {
             if (allRowMin[i] == lowerValue)
+            {
                 maximinRows[maximinRowCount++] = i;
+            }
         }
 
         for (int j = 0; j < matrixSize; j++)
         {
             if (allColMax[j] == upperValue)
+            {
                 minimaxColumns[minimaxColumnCount++] = j;
+            }
         }
 
         printf("\n===== РАВНОВЕСНЫЕ ИСХОДЫ =====\n");
@@ -440,7 +428,8 @@ int main(int argc, char *argv[])
             {
                 for (int col = 0; col < minimaxColumnCount; col++)
                 {
-                    if (!firstPair) printf(", ");
+                    if (!firstPair)
+                        printf(", ");
                     printf("(%d,%d)", maximinRows[row] + 1, minimaxColumns[col] + 1);
                     firstPair = 0;
                 }
@@ -451,7 +440,8 @@ int main(int argc, char *argv[])
             printf("  Игрок 1 (строки): ");
             for (int row = 0; row < maximinRowCount; row++)
             {
-                if (row > 0) printf(", ");
+                if (row > 0)
+                    printf(", ");
                 printf("%d", maximinRows[row] + 1);
             }
             printf("\n");
@@ -459,7 +449,8 @@ int main(int argc, char *argv[])
             printf("  Игрок 2 (столбцы): ");
             for (int col = 0; col < minimaxColumnCount; col++)
             {
-                if (col > 0) printf(", ");
+                if (col > 0)
+                    printf(", ");
                 printf("%d", minimaxColumns[col] + 1);
             }
             printf("\n");
@@ -471,8 +462,6 @@ int main(int argc, char *argv[])
             printf("  MAXMIN = %5.2f < MINMAX = %5.2f\n", lowerValue, upperValue);
         }
     }
-
-    // ========== ОСВОБОЖДЕНИЕ ПАМЯТИ ==========
 
     free(localZone);
     free(localRowMin);
