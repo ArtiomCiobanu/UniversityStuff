@@ -1,0 +1,17 @@
+id,denumire,activitate,caem,angajati
+1,Brutaria Nord,productie paine si produse de patiserie,1071,42
+2,Vinaria Sud,productie de vin din struguri,1102,65
+3,Agrocereale SRL,cultivarea cerealelor,0111,18
+4,Ferma Lactis,cresterea bovinelor pentru lapte,0141,12
+5,Magazin Univers,comert cu amanuntul in magazine nespecializate,4711,120
+6,Pizzeria Roma,restaurante,5610,28
+7,SoftLab,activitati de dezvoltare software,6201,85
+8,ConsultIT,consultanta in tehnologia informatiei,6202,22
+9,Clinica Dentara,activitati de asistenta stomatologica,8623,9
+10,Spital Raional,activitati ale spitalelor,8610,310
+11,TaxiExpress,exploatarea taxiurilor,4932,35
+12,Hotel Central,hoteluri,5510,54
+13,Birou Juridic,activitati juridice,6910,6
+14,ConstructPlus,constructii de cladiri,4120,150
+15,Gimnaziul 5,invatamant primar,8520,48
+16,Firma X,activitate neclara,4400,7
