@@ -1,8 +1,7 @@
 // mpiCC -o Lab2_txt Lab2_txt_fileonly.cpp
 //
-// Запуск (n берется из первой строки файла):
-//   mpirun -np 4 ./Lab2_txt data_ex61.txt
-//   mpirun -np 4 ./Lab2_txt data_ex62.txt
+// Запуск (n читается из первой строки файла):
+//   mpirun -np 4 ./Lab2_txt <файл>
 //
 // Формат текстового файла (фиксированная ширина полей):
 //   строка 1: n, выровненное по правому краю в 10 символах, затем '\n' (11 байт)
@@ -19,7 +18,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
-#include <limits.h>
 #include <math.h>
 
 #define HEADER_BYTES 11   // "%10d\n"
@@ -29,7 +27,6 @@
 
 typedef struct
 {
-    int rank;
     int row_start;
     int row_end;
     int col_start;
@@ -82,7 +79,6 @@ Zone *create_zones(int global_rows, int global_cols,
             z->cols = base_cols + (j < extra_cols ? 1 : 0);
             z->col_end = z->col_start + z->cols;
 
-            z->rank = rank;
             rank++;
         }
     }
@@ -205,8 +201,7 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Не удалось прочитать заголовок файла %s\n", fname);
             MPI_Abort(MPI_COMM_WORLD, 1);
         }
-        if (f)
-            fclose(f);
+        fclose(f);
         if (n < 1)
         {
             fprintf(stderr, "Некорректный заголовок файла.\n");
@@ -226,7 +221,7 @@ int main(int argc, char *argv[])
         if (myrank == root)
         {
             fprintf(stderr, "Ошибка: количество процессов (%d) не подходит для 2D сетки.\n", numtask);
-            fprintf(stderr, "Используйте количество процессов: 1, 4, 9, 16, 25, ...\n");
+            fprintf(stderr, "Количество процессов должно делиться на floor(sqrt(p)), например 1, 2, 3, 4, 6, 8, 9, 12, 16.\n");
         }
         MPI_Finalize();
         return 1;
