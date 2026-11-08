@@ -1,4 +1,4 @@
-// mpiCC -o Lab2_txt Lab2_txt_fileonly.cpp
+// mpiCC -o Lab2_txt Lab2_txt_values.cpp
 //
 // Запуск (n читается из первой строки файла):
 //   mpirun -np 4 ./Lab2_txt <файл>
@@ -9,6 +9,8 @@
 //   далее n строк матрицы B в том же формате
 //
 // Каждый процесс читает только строки своей зоны (MPI_File_read_at).
+// Прочитанные значения своей зоны выводятся по очереди (для n <= 10).
+// Для каждого равновесия выводятся индексы и выигрыши обоих игроков.
 // Проверка перебором выполняется на процессе 0 только если n <= 1000.
 //
 // Индексы в выводе - с нуля, как в методичке.
@@ -35,11 +37,21 @@ typedef struct
     int cols;
 } Zone;
 
+// Индексы равновесия (передаются через MPI_INT)
 typedef struct
 {
     int i;
     int j;
 } Pair;
+
+// Равновесие с выигрышами игроков (формируется на процессе 0)
+typedef struct
+{
+    int i;
+    int j;
+    double a; // выигрыш первого игрока
+    double b; // выигрыш второго игрока
+} Equilibrium;
 
 // ========== ЗОНЫ ==========
 
@@ -129,10 +141,10 @@ static void read_zone_txt(MPI_File fh, int n, const Zone *z, MPI_Offset base, do
 
 // ========== ВСПОМОГАТЕЛЬНЫЕ ==========
 
-static int cmp_pair(const void *a, const void *b)
+static int cmp_eq(const void *a, const void *b)
 {
-    const Pair *p = (const Pair *)a;
-    const Pair *q = (const Pair *)b;
+    const Equilibrium *p = (const Equilibrium *)a;
+    const Equilibrium *q = (const Equilibrium *)b;
     if (p->i != q->i)
         return p->i - q->i;
     return p->j - q->j;
@@ -275,6 +287,36 @@ int main(int argc, char *argv[])
     MPI_File_close(&fh);
     double io_time = MPI_Wtime() - t_io0;
 
+    // ========== ВЫВОД ПРОЧИТАННЫХ ДАННЫХ (по очереди, для n <= 10) ==========
+
+    if (myrank == root && n > 10)
+        printf("\nВывод прочитанных данных пропущен (n > 10).\n");
+
+    for (int r = 0; r < numtask; r++)
+    {
+        MPI_Barrier(MPI_COMM_WORLD);
+        if (myrank == r && n <= 10)
+        {
+            printf("\nПроцесс %d прочитал зону [строки %d-%d, столбцы %d-%d]:\n",
+                   myrank,
+                   my_zone.row_start, my_zone.row_end - 1,
+                   my_zone.col_start, my_zone.col_end - 1);
+
+            for (int i = 0; i < my_zone.rows; i++)
+            {
+                printf("  A: ");
+                for (int j = 0; j < my_zone.cols; j++)
+                    printf("%10.4f", localA[i * my_zone.cols + j]);
+                printf("   |   B: ");
+                for (int j = 0; j < my_zone.cols; j++)
+                    printf("%10.4f", localB[i * my_zone.cols + j]);
+                printf("\n");
+            }
+            fflush(stdout);
+        }
+        MPI_Barrier(MPI_COMM_WORLD);
+    }
+
     // ========== ПАРАЛЛЕЛЬНАЯ ЧАСТЬ ==========
 
     MPI_Barrier(MPI_COMM_WORLD);
@@ -320,8 +362,9 @@ int main(int argc, char *argv[])
 
     MPI_Allreduce(rowMaxLocal, rowMaxGlobal, n, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 
-    // Шаг 3. Проверка клеток своей зоны
+    // Шаг 3. Проверка клеток своей зоны; сохраняем индексы и выигрыши
     Pair *localNE = (Pair *)malloc((localCount > 0 ? localCount : 1) * sizeof(Pair));
+    double *localVal = (double *)malloc((localCount > 0 ? 2 * localCount : 2) * sizeof(double));
     int localNECount = 0;
 
     for (int i = 0; i < my_zone.rows; i++)
@@ -337,16 +380,19 @@ int main(int argc, char *argv[])
             {
                 localNE[localNECount].i = gi;
                 localNE[localNECount].j = gj;
+                localVal[2 * localNECount] = a;
+                localVal[2 * localNECount + 1] = b;
                 localNECount++;
             }
         }
     }
 
-    // Шаг 4. Сбор равновесий на процессе 0
+    // Шаг 4. Сбор равновесий и их выигрышей на процессе 0
     int *counts = NULL;
     int *recvcounts = NULL;
     int *displs = NULL;
     Pair *allNE = NULL;
+    double *allVal = NULL;
     int totalNE = 0;
 
     if (myrank == root)
@@ -362,15 +408,22 @@ int main(int argc, char *argv[])
     {
         for (int r = 0; r < numtask; r++)
         {
+            // recvcounts и displs заданы в единицах ints; для Pair это 2 int на равновесие.
+            // Для MPI_DOUBLE те же числа означают 2 double на равновесие, то есть то же смещение.
             recvcounts[r] = 2 * counts[r];
             displs[r] = 2 * totalNE;
             totalNE += counts[r];
         }
         allNE = (Pair *)malloc((totalNE > 0 ? totalNE : 1) * sizeof(Pair));
+        allVal = (double *)malloc((totalNE > 0 ? 2 * totalNE : 2) * sizeof(double));
     }
 
     MPI_Gatherv(localNE, 2 * localNECount, MPI_INT,
                 (int *)allNE, recvcounts, displs, MPI_INT,
+                root, MPI_COMM_WORLD);
+
+    MPI_Gatherv(localVal, 2 * localNECount, MPI_DOUBLE,
+                allVal, recvcounts, displs, MPI_DOUBLE,
                 root, MPI_COMM_WORLD);
 
     double compute_time = MPI_Wtime() - t0;
@@ -379,18 +432,14 @@ int main(int argc, char *argv[])
     MPI_Reduce(&io_time, &max_io, 1, MPI_DOUBLE, MPI_MAX, root, MPI_COMM_WORLD);
     MPI_Reduce(&compute_time, &max_compute, 1, MPI_DOUBLE, MPI_MAX, root, MPI_COMM_WORLD);
 
-    // ========== ВЫВОД ЗОН (по очереди, только для малых n) ==========
+    // ========== ВЫВОД РАВНОВЕСИЙ ПО ЗОНАМ (по очереди, для n <= 10) ==========
 
     for (int r = 0; r < numtask; r++)
     {
         MPI_Barrier(MPI_COMM_WORLD);
         if (myrank == r && n <= 10)
         {
-            printf("Процесс %d: строки %d-%d, столбцы %d-%d, равновесий в зоне: %d\n",
-                   myrank,
-                   my_zone.row_start, my_zone.row_end - 1,
-                   my_zone.col_start, my_zone.col_end - 1,
-                   localNECount);
+            printf("Процесс %d: равновесий в зоне: %d\n", myrank, localNECount);
             fflush(stdout);
         }
         MPI_Barrier(MPI_COMM_WORLD);
@@ -400,7 +449,16 @@ int main(int argc, char *argv[])
 
     if (myrank == root)
     {
-        qsort(allNE, totalNE, sizeof(Pair), cmp_pair);
+        // Объединяем индексы и выигрыши в один массив и сортируем
+        Equilibrium *eqs = (Equilibrium *)malloc((totalNE > 0 ? totalNE : 1) * sizeof(Equilibrium));
+        for (int k = 0; k < totalNE; k++)
+        {
+            eqs[k].i = allNE[k].i;
+            eqs[k].j = allNE[k].j;
+            eqs[k].a = allVal[2 * k];
+            eqs[k].b = allVal[2 * k + 1];
+        }
+        qsort(eqs, totalNE, sizeof(Equilibrium), cmp_eq);
 
         printf("\n===== Равновесия Нэша в чистых стратегиях =====\n");
         if (totalNE == 0)
@@ -410,10 +468,13 @@ int main(int argc, char *argv[])
         else
         {
             printf("Найдено равновесий: %d\n", totalNE);
-        }
-        for (int k = 0; k < totalNE; k++)
-        {
-            printf("(%d,%d)\n", allNE[k].i, allNE[k].j);
+            printf("%-10s %14s %14s\n", "(i,j)", "P1", "P2");
+            for (int k = 0; k < totalNE; k++)
+            {
+                char idx[24];
+                snprintf(idx, sizeof(idx), "(%d,%d)", eqs[k].i, eqs[k].j);
+                printf("%-10s %14.4f %14.4f\n", idx, eqs[k].a, eqs[k].b);
+            }
         }
 
         // Проверка последовательным перебором (только для небольших n)
@@ -445,7 +506,7 @@ int main(int argc, char *argv[])
                 int serialCount = serial_nash(n, fA, fB, isNE);
 
                 for (int k = 0; k < totalNE; k++)
-                    parFlag[allNE[k].i * n + allNE[k].j] = 1;
+                    parFlag[eqs[k].i * n + eqs[k].j] = 1;
 
                 int mismatch = 0;
                 for (int k = 0; k < n * n; k++)
@@ -474,6 +535,8 @@ int main(int argc, char *argv[])
 
         printf("\nВремя чтения файла (max по процессам): %.6f с\n", max_io);
         printf("Время вычислений (max по процессам):   %.6f с\n", max_compute);
+
+        free(eqs);
     }
 
     // ========== ОСВОБОЖДЕНИЕ ПАМЯТИ ==========
@@ -481,6 +544,7 @@ int main(int argc, char *argv[])
     free(localA);
     free(localB);
     free(localNE);
+    free(localVal);
     free(colMaxLocal);
     free(colMaxGlobal);
     free(rowMaxLocal);
@@ -493,6 +557,7 @@ int main(int argc, char *argv[])
         free(recvcounts);
         free(displs);
         free(allNE);
+        free(allVal);
         printf("\nКонец\n");
     }
 
