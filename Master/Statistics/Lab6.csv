@@ -1,0 +1,32 @@
+
+id,denumire,activitate,caem,angajati
+1,Agro Pro SRL,Cultivarea cerealelor,0111,25
+2,Ferma Verde SA,Cultivarea legumelor,0113,18
+3,Panificatie Dunarea SRL,Productia de paine,1071,64
+4,Lactate Munte SRL,Fabricarea produselor lactate,1051,42
+5,Textile Rapid SRL,Fabricarea articolelor de imbracaminte,1413,55
+6,Constructii Solide SRL,Lucrari de constructii,4120,120
+7,Instalatii Termice SRL,Instalatii electrice,4321,38
+8,Comert Universal SRL,Comert cu amanuntul,4711,90
+9,Market Express SRL,Comert cu amanuntul,4711,75
+10,Transport Rapid SRL,Transport rutier de marfa,4941,60
+11,Logistica Est SRL,Depozitare si manipulare,5210,47
+12,Hotel Central SRL,Hoteluri,5510,33
+13,Restaurant Bun SRL,Restaurante,5610,28
+14,IT Solutions SRL,Activitati de programare,6201,85
+15,Soft Dev SRL,Consultanta IT,6202,52
+16,Data Analytics SRL,Prelucrarea datelor,6311,40
+17,Consultanta Plus SRL,Consultanta in management,7022,22
+18,Publicitate Creativa SRL,Activitati de publicitate,7311,19
+19,Cercetare Aplicata SRL,Cercetare-dezvoltare,7219,14
+20,Invatamant Privat SRL,Invatamant primar,8520,31
+21,Sanatate Plus SRL,Activitati de asistenta medicala,8690,68
+22,Ingrijire Batrani SRL,Asistenta sociala,8810,24
+23,Colectare Deseuri SRL,Colectarea deseurilor,3811,36
+24,Energie Verde SRL,Productia de energie,3511,58
+25,Petrol Serv SRL,Extractia petrolului,0610,95
+26,Firma X,Test,4400,12
+27,Firma Y,Test,0000,8
+28,Firma Z,Test,9999,5
+29,Firma W,Test,12345,7
+30,Firma V,Test,099,3
