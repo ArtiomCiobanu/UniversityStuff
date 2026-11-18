@@ -1,0 +1,8 @@
+Indicator,Valoare,Prag,Verdict
+Rata de răspuns,86.7%,≥ 90.0%,Rezerve
+Pondere lipsă,13.3%,≤ 10.0%,Rezerve
+Valori neplauzibile,0,0,OK
+Valori aberante IQR,1,tratate,OK
+Rata de imputare,13.3%,≤ 10.0%,Rezerve
+CV,37.9%,≤ 30.0%,CV mare
+Efect tratare medie,-33.18,mic,Semnificativ
