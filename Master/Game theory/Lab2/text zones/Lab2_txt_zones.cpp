@@ -1,19 +1,5 @@
-// mpiCC -o Lab2_txt Lab2_txt_values.cpp
-//
-// Запуск (n читается из первой строки файла):
-//   mpirun -np 4 ./Lab2_txt <файл>
-//
-// Формат текстового файла (фиксированная ширина полей):
-//   строка 1: n, выровненное по правому краю в 10 символах, затем '\n' (11 байт)
-//   далее n строк матрицы A: каждый элемент - поле из 12 символов "%12.4f", затем '\n'
-//   далее n строк матрицы B в том же формате
-//
-// Каждый процесс читает только строки своей зоны (MPI_File_read_at).
-// Прочитанные значения своей зоны выводятся по очереди (для n <= 10).
-// Для каждого равновесия выводятся индексы и выигрыши обоих игроков.
-// Проверка перебором выполняется на процессе 0 только если n <= 1000.
-//
-// Индексы в выводе - с нуля, как в методичке.
+//mpiCC -o Lab2 Lab2.cpp
+//mpirun -host compute-0-1:4 Lab2.exe Lab2.txt
 
 #include <mpi.h>
 #include <stdio.h>
@@ -24,8 +10,6 @@
 
 #define HEADER_BYTES 11   // "%10d\n"
 #define FIELD_W 12        // "%12.4f"
-
-// ========== СТРУКТУРЫ ==========
 
 typedef struct
 {
@@ -98,10 +82,6 @@ Zone *create_zones(int global_rows, int global_cols,
     return zones;
 }
 
-/**
- * Читает свою зону из текстового файла.
- * base - смещение первой строки матрицы (в байтах)
- */
 static void read_zone_txt(MPI_File fh, int n, const Zone *z, MPI_Offset base, double *out)
 {
     int cols = z->cols;
@@ -138,8 +118,6 @@ static void read_zone_txt(MPI_File fh, int n, const Zone *z, MPI_Offset base, do
 
     free(buf);
 }
-
-// ========== ВСПОМОГАТЕЛЬНЫЕ ==========
 
 static int cmp_eq(const void *a, const void *b)
 {
@@ -178,8 +156,6 @@ static int serial_nash(int n, const double *A, const double *B, int *isNE)
     }
     return count;
 }
-
-// ========== ОСНОВНАЯ ПРОГРАММА ==========
 
 int main(int argc, char *argv[])
 {
