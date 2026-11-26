@@ -6,27 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <float.h>
-#include <math.h>
 
-#define HEADER_BYTES 11   // "%10d\n"
-#define FIELD_W 12        // "%12.4f"
-
-typedef struct
-{
-    int row_start;
-    int row_end;
-    int col_start;
-    int col_end;
-    int rows;
-    int cols;
-} Zone;
-
-// Индексы равновесия (передаются через MPI_INT)
-typedef struct
-{
-    int i;
-    int j;
-} Pair;
+#define HEADER_BYTES 11   // заголовок "%10d\n"
+#define FIELD_W 12        // поле числа "%12.4f"
 
 // Равновесие с выигрышами игроков (формируется на процессе 0)
 typedef struct
@@ -37,99 +19,114 @@ typedef struct
     double b; // выигрыш второго игрока
 } Equilibrium;
 
-// ========== ЗОНЫ ==========
+// ========== РАЗБИЕНИЕ ==========
 
 /**
- * Создает информацию о зонах для 2D разбиения матрицы
+ * Делит n элементов на p частей по непрерывным блокам.
+ * Часть r получает элементы [*start, *start + *count).
  */
-Zone *create_zones(int global_rows, int global_cols,
-                   int proc_grid_rows, int proc_grid_cols,
-                   int total_procs)
+static void block_range(int n, int p, int r, int *start, int *count)
 {
-    Zone *zones = (Zone *)malloc(total_procs * sizeof(Zone));
-    if (!zones)
-    {
-        fprintf(stderr, "Ошибка выделения памяти для зон\n");
-        return NULL;
-    }
-
-    int base_rows = global_rows / proc_grid_rows;
-    int extra_rows = global_rows % proc_grid_rows;
-
-    int base_cols = global_cols / proc_grid_cols;
-    int extra_cols = global_cols % proc_grid_cols;
-
-    int rank = 0;
-
-    for (int i = 0; i < proc_grid_rows; i++)
-    {
-        for (int j = 0; j < proc_grid_cols; j++)
-        {
-            Zone *z = &zones[rank];
-
-            z->row_start = i * base_rows + (i < extra_rows ? i : extra_rows);
-            z->rows = base_rows + (i < extra_rows ? 1 : 0);
-            z->row_end = z->row_start + z->rows;
-
-            z->col_start = j * base_cols + (j < extra_cols ? j : extra_cols);
-            z->cols = base_cols + (j < extra_cols ? 1 : 0);
-            z->col_end = z->col_start + z->cols;
-
-            rank++;
-        }
-    }
-
-    return zones;
+    int base = n / p;
+    int extra = n % p;
+    *start = r * base + (r < extra ? r : extra);
+    *count = base + (r < extra ? 1 : 0);
 }
 
-static void read_zone_txt(MPI_File fh, int n, const Zone *z, MPI_Offset base, double *out)
+// ========== ЧТЕНИЕ ==========
+
+/**
+ * Читает подматрицу [row0, row0+nrows) x [col0, col0+ncols) из текстового файла.
+ * Результат записывается в out по строкам: out[i*ncols + j].
+ */
+static void read_block(MPI_File fh, int n, MPI_Offset base,
+                       int row0, int nrows, int col0, int ncols, double *out)
 {
-    int cols = z->cols;
-    if (z->rows == 0 || cols == 0)
+    if (nrows == 0 || ncols == 0)
         return;
 
     MPI_Offset row_len = (MPI_Offset)n * FIELD_W + 1; // n полей + '\n'
-    int bytes = cols * FIELD_W;
+    int bytes = ncols * FIELD_W;
 
     char *buf = (char *)malloc(bytes + 1);
     if (!buf)
     {
-        fprintf(stderr, "Ошибка выделения памяти для чтения строки.\n");
+        fprintf(stderr, "Ошибка выделения памяти для чтения.\n");
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
 
     char tmp[FIELD_W + 1];
 
-    for (int i = 0; i < z->rows; i++)
+    for (int i = 0; i < nrows; i++)
     {
         MPI_Offset off = base
-                       + (MPI_Offset)(z->row_start + i) * row_len
-                       + (MPI_Offset)z->col_start * FIELD_W;
+                       + (MPI_Offset)(row0 + i) * row_len
+                       + (MPI_Offset)col0 * FIELD_W;
 
         MPI_File_read_at(fh, off, buf, bytes, MPI_CHAR, MPI_STATUS_IGNORE);
 
-        for (int j = 0; j < cols; j++)
+        for (int j = 0; j < ncols; j++)
         {
             memcpy(tmp, buf + j * FIELD_W, FIELD_W);
             tmp[FIELD_W] = '\0';
-            out[i * cols + j] = strtod(tmp, NULL);
+            out[i * ncols + j] = strtod(tmp, NULL);
         }
     }
 
     free(buf);
 }
 
-static int cmp_eq(const void *a, const void *b)
-{
-    const Equilibrium *p = (const Equilibrium *)a;
-    const Equilibrium *q = (const Equilibrium *)b;
-    if (p->i != q->i)
-        return p->i - q->i;
-    return p->j - q->j;
-}
+// ========== СБОР КАНДИДАТОВ НА ПРОЦЕССЕ 0 ==========
 
 /**
- * Последовательный перебор всех ситуаций (для проверки).
+ * Собирает на процессе 0 пары (i,j) и значения от всех процессов.
+ * all_ij и all_v заполняются только на процессе 0; на остальных остаются NULL.
+ */
+static void gather_cands(int cnt, const int *ij, const double *v, int numtask, int rank,
+                         int **all_ij, double **all_v, int *total)
+{
+    int *counts = NULL, *ijCount = NULL, *ijDispl = NULL, *vDispl = NULL;
+    *total = 0;
+
+    if (rank == 0)
+    {
+        counts  = (int *)malloc(numtask * sizeof(int));
+        ijCount = (int *)malloc(numtask * sizeof(int));
+        ijDispl = (int *)malloc(numtask * sizeof(int));
+        vDispl  = (int *)malloc(numtask * sizeof(int));
+    }
+
+    MPI_Gather(&cnt, 1, MPI_INT, counts, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
+    if (rank == 0)
+    {
+        for (int r = 0; r < numtask; r++)
+        {
+            ijCount[r] = 2 * counts[r];
+            ijDispl[r] = 2 * (*total);
+            vDispl[r]  = *total;
+            *total += counts[r];
+        }
+        *all_ij = (int *)malloc((*total > 0 ? 2 * (*total) : 1) * sizeof(int));
+        *all_v  = (double *)malloc((*total > 0 ? *total : 1) * sizeof(double));
+    }
+
+    MPI_Gatherv(ij, 2 * cnt, MPI_INT, *all_ij, ijCount, ijDispl, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Gatherv(v, cnt, MPI_DOUBLE, *all_v, counts, vDispl, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    if (rank == 0)
+    {
+        free(counts);
+        free(ijCount);
+        free(ijDispl);
+        free(vDispl);
+    }
+}
+
+// ========== ПОСЛЕДОВАТЕЛЬНАЯ ПРОВЕРКА ==========
+
+/**
+ * Перебор всех ситуаций для проверки.
  * isNE[i*n+j] = 1, если (i,j) - равновесие Нэша.
  */
 static int serial_nash(int n, const double *A, const double *B, int *isNE)
@@ -141,21 +138,19 @@ static int serial_nash(int n, const double *A, const double *B, int *isNE)
         {
             int ok = 1;
             for (int k = 0; k < n && ok; k++)
-            {
                 if (A[k * n + j] > A[i * n + j])
                     ok = 0;
-            }
             for (int l = 0; l < n && ok; l++)
-            {
                 if (B[i * n + l] > B[i * n + j])
                     ok = 0;
-            }
             isNE[i * n + j] = ok;
             count += ok;
         }
     }
     return count;
 }
+
+// ========== MAIN ==========
 
 int main(int argc, char *argv[])
 {
@@ -176,10 +171,11 @@ int main(int argc, char *argv[])
         MPI_Finalize();
         return 1;
     }
-
     fname = argv[1];
 
-    // ========== ЧТЕНИЕ n ИЗ ЗАГОЛОВКА (процесс 0) ==========
+    // ========== РАЗМЕРНОСТЬ n ИЗ ЗАГОЛОВКА (процесс 0) ==========
+    // n - размер матриц из файла, он не зависит от числа процессов.
+    // Число процессов влияет только на то, как матрицы делятся между ними.
 
     if (myrank == root)
     {
@@ -189,7 +185,8 @@ int main(int argc, char *argv[])
             fprintf(stderr, "Не удалось прочитать заголовок файла %s\n", fname);
             MPI_Abort(MPI_COMM_WORLD, 1);
         }
-        fclose(f);
+        if (f)
+            fclose(f);
         if (n < 1)
         {
             fprintf(stderr, "Некорректный заголовок файла.\n");
@@ -199,49 +196,33 @@ int main(int argc, char *argv[])
 
     MPI_Bcast(&n, 1, MPI_INT, root, MPI_COMM_WORLD);
 
-    // ========== СЕТКА ПРОЦЕССОВ ==========
-
-    int proc_grid_rows = (int)sqrt((double)numtask);
-    int proc_grid_cols = numtask / proc_grid_rows;
-
-    if (proc_grid_rows * proc_grid_cols != numtask)
-    {
-        if (myrank == root)
-        {
-            fprintf(stderr, "Ошибка: количество процессов (%d) не подходит для 2D сетки.\n", numtask);
-            fprintf(stderr, "Количество процессов должно делиться на floor(sqrt(p)), например 1, 2, 3, 4, 6, 8, 9, 12, 16.\n");
-        }
-        MPI_Finalize();
-        return 1;
-    }
-
     if (myrank == root)
     {
-        printf("\n===== Программа '%s' (чтение зон из файла, n=%d) =====\n", argv[0], n);
+        printf("\n===== Программа '%s' (полосовое разбиение, n=%d) =====\n", argv[0], n);
         printf("Файл: %s\n", fname);
-        printf("Количество процессов: %d (%dx%d сетка)\n", numtask, proc_grid_rows, proc_grid_cols);
+        printf("Количество процессов: %d\n", numtask);
     }
 
-    // ========== ЗОНЫ ==========
+    // ========== ПОЛОСЫ ==========
+    // A делим по СТОЛБЦАМ: процесс владеет полными столбцами (нужны максимумы по столбцам).
+    // B делим по СТРОКАМ:  процесс владеет полными строками (нужны максимумы по строкам).
 
-    Zone *zones = create_zones(n, n, proc_grid_rows, proc_grid_cols, numtask);
-    if (!zones)
-    {
-        MPI_Abort(MPI_COMM_WORLD, 1);
-    }
+    int col_start, my_cols;
+    int row_start, my_rows;
+    block_range(n, numtask, myrank, &col_start, &my_cols);
+    block_range(n, numtask, myrank, &row_start, &my_rows);
 
-    Zone my_zone = zones[myrank];
-    int localCount = my_zone.rows * my_zone.cols;
-
-    double *localA = (double *)malloc((localCount > 0 ? localCount : 1) * sizeof(double));
-    double *localB = (double *)malloc((localCount > 0 ? localCount : 1) * sizeof(double));
+    // localA: n строк x my_cols столбцов, localA[i*my_cols + j]
+    // localB: my_rows строк x n столбцов, localB[i*n + j]
+    double *localA = (double *)malloc((size_t)(n * my_cols + 1) * sizeof(double));
+    double *localB = (double *)malloc((size_t)(my_rows * n + 1) * sizeof(double));
     if (!localA || !localB)
     {
         fprintf(stderr, "Процесс %d: ошибка выделения памяти.\n", myrank);
         MPI_Abort(MPI_COMM_WORLD, 1);
     }
 
-    // ========== ЧТЕНИЕ СВОЕЙ ЗОНЫ (параллельный ввод) ==========
+    // ========== ЧТЕНИЕ СВОЕЙ ПОЛОСЫ (параллельный ввод) ==========
 
     MPI_File fh;
     if (MPI_File_open(MPI_COMM_WORLD, fname, MPI_MODE_RDONLY, MPI_INFO_NULL, &fh) != MPI_SUCCESS)
@@ -257,8 +238,8 @@ int main(int argc, char *argv[])
     MPI_Barrier(MPI_COMM_WORLD);
     double t_io0 = MPI_Wtime();
 
-    read_zone_txt(fh, n, &my_zone, baseA, localA);
-    read_zone_txt(fh, n, &my_zone, baseB, localB);
+    read_block(fh, n, baseA, 0, n, col_start, my_cols, localA);   // все строки, свои столбцы
+    read_block(fh, n, baseB, row_start, my_rows, 0, n, localB);   // свои строки, все столбцы
 
     MPI_File_close(&fh);
     double io_time = MPI_Wtime() - t_io0;
@@ -273,19 +254,31 @@ int main(int argc, char *argv[])
         MPI_Barrier(MPI_COMM_WORLD);
         if (myrank == r && n <= 10)
         {
-            printf("\nПроцесс %d прочитал зону [строки %d-%d, столбцы %d-%d]:\n",
-                   myrank,
-                   my_zone.row_start, my_zone.row_end - 1,
-                   my_zone.col_start, my_zone.col_end - 1);
+            if (my_cols > 0)
+                printf("\nПроцесс %d: столбцы A [%d..%d]", myrank, col_start, col_start + my_cols - 1);
+            else
+                printf("\nПроцесс %d: столбцы A - пусто", myrank);
 
-            for (int i = 0; i < my_zone.rows; i++)
+            if (my_rows > 0)
+                printf(", строки B [%d..%d]\n", row_start, row_start + my_rows - 1);
+            else
+                printf(", строки B - пусто\n");
+
+            printf("  A (полоса столбцов):\n");
+            for (int i = 0; i < n && my_cols > 0; i++)
             {
-                printf("  A: ");
-                for (int j = 0; j < my_zone.cols; j++)
-                    printf("%10.4f", localA[i * my_zone.cols + j]);
-                printf("   |   B: ");
-                for (int j = 0; j < my_zone.cols; j++)
-                    printf("%10.4f", localB[i * my_zone.cols + j]);
+                printf("    ");
+                for (int j = 0; j < my_cols; j++)
+                    printf("%10.4f", localA[i * my_cols + j]);
+                printf("\n");
+            }
+
+            printf("  B (полоса строк):\n");
+            for (int i = 0; i < my_rows; i++)
+            {
+                printf("    ");
+                for (int j = 0; j < n; j++)
+                    printf("%10.4f", localB[i * n + j]);
                 printf("\n");
             }
             fflush(stdout);
@@ -298,109 +291,98 @@ int main(int argc, char *argv[])
     MPI_Barrier(MPI_COMM_WORLD);
     double t0 = MPI_Wtime();
 
-    // Шаг 1. Максимумы по столбцам A (по всем строкам)
-    double *colMaxLocal = (double *)malloc(n * sizeof(double));
+    // Шаг 1. Максимумы по столбцам A (каждый процесс считает свои полные столбцы)
+    double *colMaxLocal  = (double *)malloc(n * sizeof(double));
     double *colMaxGlobal = (double *)malloc(n * sizeof(double));
     for (int j = 0; j < n; j++)
         colMaxLocal[j] = -DBL_MAX;
 
-    for (int j = 0; j < my_zone.cols; j++)
+    for (int j = 0; j < my_cols; j++)
     {
         double m = -DBL_MAX;
-        for (int i = 0; i < my_zone.rows; i++)
+        for (int i = 0; i < n; i++)
         {
-            double v = localA[i * my_zone.cols + j];
+            double v = localA[i * my_cols + j];
             if (v > m)
                 m = v;
         }
-        colMaxLocal[my_zone.col_start + j] = m;
+        colMaxLocal[col_start + j] = m;
     }
-
     MPI_Allreduce(colMaxLocal, colMaxGlobal, n, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 
-    // Шаг 2. Максимумы по строкам B (по всем столбцам)
-    double *rowMaxLocal = (double *)malloc(n * sizeof(double));
+    // Шаг 2. Максимумы по строкам B (каждый процесс считает свои полные строки)
+    double *rowMaxLocal  = (double *)malloc(n * sizeof(double));
     double *rowMaxGlobal = (double *)malloc(n * sizeof(double));
     for (int i = 0; i < n; i++)
         rowMaxLocal[i] = -DBL_MAX;
 
-    for (int i = 0; i < my_zone.rows; i++)
+    for (int i = 0; i < my_rows; i++)
     {
         double m = -DBL_MAX;
-        for (int j = 0; j < my_zone.cols; j++)
+        for (int j = 0; j < n; j++)
         {
-            double v = localB[i * my_zone.cols + j];
+            double v = localB[i * n + j];
             if (v > m)
                 m = v;
         }
-        rowMaxLocal[my_zone.row_start + i] = m;
+        rowMaxLocal[row_start + i] = m;
     }
-
     MPI_Allreduce(rowMaxLocal, rowMaxGlobal, n, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
 
-    // Шаг 3. Проверка клеток своей зоны; сохраняем индексы и выигрыши
-    Pair *localNE = (Pair *)malloc((localCount > 0 ? localCount : 1) * sizeof(Pair));
-    double *localVal = (double *)malloc((localCount > 0 ? 2 * localCount : 2) * sizeof(double));
-    int localNECount = 0;
+    // Шаг 3. Кандидаты.
+    // Клетка (i,j) - кандидат по A, если A[i][j] = max по столбцу j.
+    // Этим владеет процесс, у которого есть столбец j.
+    int cap = n * my_cols + 1;
+    int *candAij = (int *)malloc(2 * cap * sizeof(int));
+    double *candAv = (double *)malloc(cap * sizeof(double));
+    int cntA = 0;
 
-    for (int i = 0; i < my_zone.rows; i++)
+    for (int j = 0; j < my_cols; j++)
     {
-        for (int j = 0; j < my_zone.cols; j++)
+        int gj = col_start + j;
+        for (int i = 0; i < n; i++)
         {
-            int gi = my_zone.row_start + i;
-            int gj = my_zone.col_start + j;
-            double a = localA[i * my_zone.cols + j];
-            double b = localB[i * my_zone.cols + j];
-
-            if (a == colMaxGlobal[gj] && b == rowMaxGlobal[gi])
+            double a = localA[i * my_cols + j];
+            if (a == colMaxGlobal[gj])
             {
-                localNE[localNECount].i = gi;
-                localNE[localNECount].j = gj;
-                localVal[2 * localNECount] = a;
-                localVal[2 * localNECount + 1] = b;
-                localNECount++;
+                candAij[2 * cntA]     = i;
+                candAij[2 * cntA + 1] = gj;
+                candAv[cntA]          = a;
+                cntA++;
             }
         }
     }
 
-    // Шаг 4. Сбор равновесий и их выигрышей на процессе 0
-    int *counts = NULL;
-    int *recvcounts = NULL;
-    int *displs = NULL;
-    Pair *allNE = NULL;
-    double *allVal = NULL;
-    int totalNE = 0;
+    // Клетка (i,j) - кандидат по B, если B[i][j] = max по строке i.
+    // Этим владеет процесс, у которого есть строка i.
+    cap = my_rows * n + 1;
+    int *candBij = (int *)malloc(2 * cap * sizeof(int));
+    double *candBv = (double *)malloc(cap * sizeof(double));
+    int cntB = 0;
 
-    if (myrank == root)
+    for (int i = 0; i < my_rows; i++)
     {
-        counts = (int *)malloc(numtask * sizeof(int));
-        recvcounts = (int *)malloc(numtask * sizeof(int));
-        displs = (int *)malloc(numtask * sizeof(int));
-    }
-
-    MPI_Gather(&localNECount, 1, MPI_INT, counts, 1, MPI_INT, root, MPI_COMM_WORLD);
-
-    if (myrank == root)
-    {
-        for (int r = 0; r < numtask; r++)
+        int gi = row_start + i;
+        for (int j = 0; j < n; j++)
         {
-            // recvcounts и displs заданы в единицах ints; для Pair это 2 int на равновесие.
-            // Для MPI_DOUBLE те же числа означают 2 double на равновесие, то есть то же смещение.
-            recvcounts[r] = 2 * counts[r];
-            displs[r] = 2 * totalNE;
-            totalNE += counts[r];
+            double b = localB[i * n + j];
+            if (b == rowMaxGlobal[gi])
+            {
+                candBij[2 * cntB]     = gi;
+                candBij[2 * cntB + 1] = j;
+                candBv[cntB]          = b;
+                cntB++;
+            }
         }
-        allNE = (Pair *)malloc((totalNE > 0 ? totalNE : 1) * sizeof(Pair));
-        allVal = (double *)malloc((totalNE > 0 ? 2 * totalNE : 2) * sizeof(double));
     }
 
-    MPI_Gatherv(localNE, 2 * localNECount, MPI_INT,
-                (int *)allNE, recvcounts, displs, MPI_INT,
-                root, MPI_COMM_WORLD);
+    // Шаг 4. Сбор кандидатов на процессе 0
+    int *allAij = NULL, *allBij = NULL;
+    double *allAv = NULL, *allBv = NULL;
+    int totA = 0, totB = 0;
 
-    MPI_Gatherv(localVal, 2 * localNECount, MPI_DOUBLE,
-                allVal, recvcounts, displs, MPI_DOUBLE,
-                root, MPI_COMM_WORLD);
+    gather_cands(cntA, candAij, candAv, numtask, myrank, &allAij, &allAv, &totA);
+    gather_cands(cntB, candBij, candBv, numtask, myrank, &allBij, &allBv, &totB);
 
     double compute_time = MPI_Wtime() - t0;
 
@@ -408,33 +390,64 @@ int main(int argc, char *argv[])
     MPI_Reduce(&io_time, &max_io, 1, MPI_DOUBLE, MPI_MAX, root, MPI_COMM_WORLD);
     MPI_Reduce(&compute_time, &max_compute, 1, MPI_DOUBLE, MPI_MAX, root, MPI_COMM_WORLD);
 
-    // ========== ВЫВОД РАВНОВЕСИЙ ПО ЗОНАМ (по очереди, для n <= 10) ==========
+    // ========== СЧЁТЧИКИ КАНДИДАТОВ (печатает только процесс 0) ==========
 
-    for (int r = 0; r < numtask; r++)
+    int myCnt[2] = {cntA, cntB};
+    int *allCnt = NULL;
+    if (myrank == root)
+        allCnt = (int *)malloc(2 * numtask * sizeof(int));
+
+    MPI_Gather(myCnt, 2, MPI_INT, allCnt, 2, MPI_INT, root, MPI_COMM_WORLD);
+
+    if (myrank == root && n <= 10)
     {
-        MPI_Barrier(MPI_COMM_WORLD);
-        if (myrank == r && n <= 10)
-        {
-            printf("Процесс %d: равновесий в зоне: %d\n", myrank, localNECount);
-            fflush(stdout);
-        }
-        MPI_Barrier(MPI_COMM_WORLD);
+        for (int r = 0; r < numtask; r++)
+            printf("Процесс %d: кандидатов по A: %d, по B: %d\n", r, allCnt[2 * r], allCnt[2 * r + 1]);
     }
 
     // ========== РЕЗУЛЬТАТЫ (процесс 0) ==========
 
     if (myrank == root)
     {
-        // Объединяем индексы и выигрыши в один массив и сортируем
-        Equilibrium *eqs = (Equilibrium *)malloc((totalNE > 0 ? totalNE : 1) * sizeof(Equilibrium));
-        for (int k = 0; k < totalNE; k++)
+        size_t N = (size_t)n * n;
+
+        int *hasA = (int *)calloc(N, sizeof(int));
+        int *hasB = (int *)calloc(N, sizeof(int));
+        double *valA = (double *)malloc(N * sizeof(double));
+        double *valB = (double *)malloc(N * sizeof(double));
+
+        for (int k = 0; k < totA; k++)
         {
-            eqs[k].i = allNE[k].i;
-            eqs[k].j = allNE[k].j;
-            eqs[k].a = allVal[2 * k];
-            eqs[k].b = allVal[2 * k + 1];
+            size_t idx = (size_t)allAij[2 * k] * n + allAij[2 * k + 1];
+            hasA[idx] = 1;
+            valA[idx] = allAv[k];
         }
-        qsort(eqs, totalNE, sizeof(Equilibrium), cmp_eq);
+        for (int k = 0; k < totB; k++)
+        {
+            size_t idx = (size_t)allBij[2 * k] * n + allBij[2 * k + 1];
+            hasB[idx] = 1;
+            valB[idx] = allBv[k];
+        }
+
+        // Равновесие - клетка, которая является кандидатом и по A, и по B.
+        // Обход по строкам дает отсортированный по (i,j) список.
+        Equilibrium *eqs = (Equilibrium *)malloc(N * sizeof(Equilibrium));
+        int totalNE = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                size_t idx = (size_t)i * n + j;
+                if (hasA[idx] && hasB[idx])
+                {
+                    eqs[totalNE].i = i;
+                    eqs[totalNE].j = j;
+                    eqs[totalNE].a = valA[idx];
+                    eqs[totalNE].b = valB[idx];
+                    totalNE++;
+                }
+            }
+        }
 
         printf("\n===== Равновесия Нэша в чистых стратегиях =====\n");
         if (totalNE == 0)
@@ -453,11 +466,11 @@ int main(int argc, char *argv[])
             }
         }
 
-        // Проверка последовательным перебором (только для небольших n)
+        // Проверка перебором (только для небольших n)
         if (n <= 1000)
         {
-            double *fA = (double *)malloc((size_t)n * n * sizeof(double));
-            double *fB = (double *)malloc((size_t)n * n * sizeof(double));
+            double *fA = (double *)malloc(N * sizeof(double));
+            double *fB = (double *)malloc(N * sizeof(double));
             int ok_read = 1;
 
             FILE *f = fopen(fname, "r");
@@ -465,10 +478,10 @@ int main(int argc, char *argv[])
             if (!f || fscanf(f, "%d", &nf) != 1 || nf != n)
                 ok_read = 0;
 
-            for (size_t k = 0; ok_read && k < (size_t)n * n; k++)
+            for (size_t k = 0; ok_read && k < N; k++)
                 if (fscanf(f, "%lf", &fA[k]) != 1)
                     ok_read = 0;
-            for (size_t k = 0; ok_read && k < (size_t)n * n; k++)
+            for (size_t k = 0; ok_read && k < N; k++)
                 if (fscanf(f, "%lf", &fB[k]) != 1)
                     ok_read = 0;
 
@@ -477,24 +490,22 @@ int main(int argc, char *argv[])
 
             if (ok_read)
             {
-                int *isNE = (int *)malloc((size_t)n * n * sizeof(int));
-                int *parFlag = (int *)calloc((size_t)n * n, sizeof(int));
+                int *isNE = (int *)malloc(N * sizeof(int));
                 int serialCount = serial_nash(n, fA, fB, isNE);
 
-                for (int k = 0; k < totalNE; k++)
-                    parFlag[eqs[k].i * n + eqs[k].j] = 1;
-
                 int mismatch = 0;
-                for (int k = 0; k < n * n; k++)
-                    if (parFlag[k] != isNE[k])
+                for (size_t k = 0; k < N; k++)
+                {
+                    int parFlag = hasA[k] && hasB[k];
+                    if (parFlag != isNE[k])
                         mismatch = 1;
+                }
 
                 printf("\nПроверка перебором: %d равновесий - %s\n",
                        serialCount,
                        (!mismatch && serialCount == totalNE) ? "СОВПАДАЕТ" : "НЕ СОВПАДАЕТ");
 
                 free(isNE);
-                free(parFlag);
             }
             else
             {
@@ -512,30 +523,33 @@ int main(int argc, char *argv[])
         printf("\nВремя чтения файла (max по процессам): %.6f с\n", max_io);
         printf("Время вычислений (max по процессам):   %.6f с\n", max_compute);
 
+        free(hasA);
+        free(hasB);
+        free(valA);
+        free(valB);
         free(eqs);
+        free(allAij);
+        free(allAv);
+        free(allBij);
+        free(allBv);
+        free(allCnt);
     }
 
     // ========== ОСВОБОЖДЕНИЕ ПАМЯТИ ==========
 
     free(localA);
     free(localB);
-    free(localNE);
-    free(localVal);
     free(colMaxLocal);
     free(colMaxGlobal);
     free(rowMaxLocal);
     free(rowMaxGlobal);
-    free(zones);
+    free(candAij);
+    free(candAv);
+    free(candBij);
+    free(candBv);
 
     if (myrank == root)
-    {
-        free(counts);
-        free(recvcounts);
-        free(displs);
-        free(allNE);
-        free(allVal);
         printf("\nКонец\n");
-    }
 
     MPI_Finalize();
     return 0;
