@@ -1,17 +1,27 @@
-id,denumire,activitate,caem,angajati
-1,Brutaria Nord,productie paine si produse de patiserie,1071,42
-2,Vinaria Sud,productie de vin din struguri,1102,65
-3,Agrocereale SRL,cultivarea cerealelor,0111,18
-4,Ferma Lactis,cresterea bovinelor pentru lapte,0141,12
-5,Magazin Univers,comert cu amanuntul in magazine nespecializate,4711,120
-6,Pizzeria Roma,restaurante,5610,28
-7,SoftLab,activitati de dezvoltare software,6201,85
-8,ConsultIT,consultanta in tehnologia informatiei,6202,22
-9,Clinica Dentara,activitati de asistenta stomatologica,8623,9
-10,Spital Raional,activitati ale spitalelor,8610,310
-11,TaxiExpress,exploatarea taxiurilor,4932,35
-12,Hotel Central,hoteluri,5510,54
-13,Birou Juridic,activitati juridice,6910,6
-14,ConstructPlus,constructii de cladiri,4120,150
-15,Gimnaziul 5,invatamant primar,8520,48
-16,Firma X,activitate neclara,4400,7
+id,denumire,activitate,caem,nace_ue,angajati
+1,Brutaria Nord,productie paine si produse de patiserie,10.71,10.71,42
+2,Vinaria Sud,productie de vin din struguri,11.02,11.02,65
+3,Agrocereale SRL,cultivarea cerealelor,01.11,,18
+4,Ferma Lactis,cresterea bovinelor pentru lapte,01.41,,12
+5,Magazin Univers,comert cu amanuntul in magazine nespecializate,47.11,,120
+6,Pizzeria Roma,restaurante,56.10,,28
+7,SoftLab,activitati de dezvoltare software,62.01,,85
+8,ConsultIT,consultanta in tehnologia informatiei,62.02,,22
+9,Clinica Dentara,activitati de asistenta stomatologica,86.23,,9
+10,Spital Raional,activitati ale spitalelor,86.10,,310
+11,TaxiExpress,exploatarea taxiurilor,49.32,,35
+12,Hotel Central,hoteluri,55.10,,54
+13,Birou Juridic,activitati juridice,69.10,,6
+14,ConstructPlus,constructii de cladiri,41.20,,150
+15,Gimnaziul 5,invatamant primar,85.20,,48
+16,Firma X,activitate neclara,44.00,,7
+17,Fabricarea sucurilor,fabricarea sucurilor de fructe si legume,10.32,10.32,15
+18,Prelucrarea fructelor,prelucrarea si conservarea fructelor si legumelor,10.39,10.39,20
+19,Uleiuri si grasimi,fabricarea uleiurilor si grasimilor,10.41,10.41,18
+20,Lactate,fabricarea produselor lactate si a branzeturilor,10.51,10.51,35
+21,Inghetata,fabricarea inghetatei,10.52,10.52,12
+22,Morarit,fabricarea produselor de morarit,10.61,10.61,25
+23,Paine si patiserie,fabricarea painii si produselor proaspete de patiserie,10.71,10.71,40
+24,Zahar,fabricarea zaharului,10.81,10.81,30
+25,Vinuri din struguri,fabricarea vinurilor din struguri,11.02,11.02,45
+26,Bauturi racoritoare,productia de bauturi racoritoare si ape minerale,11.07,11.07,22
